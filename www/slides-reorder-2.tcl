@@ -11,7 +11,6 @@ ad_page_contract {
     slide_item_id:multiple,naturalnum,notnull
 }
 
-ad_require_permission $pres_item_id wp_edit_presentation
 
 # Just iterate over the values for slide_id in order and set their respective
 # sort_keys to 1, 2, 3, ...

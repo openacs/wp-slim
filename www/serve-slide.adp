@@ -15,7 +15,7 @@
 
 <multiple name="attach_list">
         <if @attach_list.display@ eq "top">
-          <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
+          <img src="../../pics/@attach_list.file_name@" alt="@attach_list.file_name@">         
         </if>
 </multiple>
 
@@ -27,7 +27,7 @@
 <td align=right>
 <multiple name="attach_list">
         <if @attach_list.display@ eq "preamble">
-          <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
+          <img src="../../pics/@attach_list.file_name@" alt="@attach_list.file_name@">         
         </if>
 </multiple>
 </td>
@@ -36,10 +36,10 @@
 
 <multiple name="attach_list">
         <if @attach_list.display@ eq "after_preamble">
-          <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
+          <img src="../../pics/@attach_list.file_name@" alt="@attach_list.file_name@">         
         </if>
         <if @attach_list.display@ nil>
-          <a href="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">@attach_list.file_name@</a>
+          <a href="../../pics/@attach_list.file_name@" alt="@attach_list.file_name@">@attach_list.file_name@</a>
         </if>
 </multiple>
 
@@ -56,7 +56,7 @@
 <td align=right>
 <multiple name="attach_list">
         <if @attach_list.display@ eq "bullets">
-          <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
+          <img src="../../pics/@attach_list.file_name@" alt="@attach_list.file_name@">         
         </if>
 </multiple>
 </td>
@@ -65,7 +65,7 @@
 
 <multiple name="attach_list">
         <if @attach_list.display@ eq "after_bullets">
-          <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
+          <img src="../../pics/@attach_list.file_name@" alt="@attach_list.file_name@">
         </if>
 </multiple>
 
@@ -77,7 +77,7 @@
 <td align=right>
 <multiple name="attach_list">
         <if @attach_list.display@ eq "postamble">
-          <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
+          <img src="../../pics/@attach_list.file_name@" alt="@attach_list.file_name@">         
         </if>
 </multiple>
 </td>
@@ -86,7 +86,7 @@
 
 <multiple name="attach_list">
         <if @attach_list.display@ eq "bottom">
-          <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
+          <img src="../../pics/@attach_list.file_name@" alt="@attach_list.file_name@">         
         </if>
 </multiple>
 

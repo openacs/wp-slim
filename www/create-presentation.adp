@@ -96,11 +96,13 @@ world know whom you gave the presentation to and for what purpose.
   </tr>
   <tr valign=top>
     <th nowrap align=right><br>Audience:</th>
-    <td><textarea name=audience rows=4 cols=50 wrap=virtual></textarea></td>
+    <td><textarea name=audience rows=4 cols=50
+wrap=virtual>Audience:</textarea></td>
   </tr>
   <tr valign=top>
     <th nowrap align=right><br>Background:</th>
-    <td><textarea name=background rows=4 cols=50 wrap=virtual></textarea></td>
+    <td><textarea name=background rows=4 cols=50 
+wrap=virtual>Background:</textarea></td>
   </tr>
 
 </table>

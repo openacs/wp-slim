@@ -12,7 +12,6 @@ ad_page_contract {
     pres_item_id:naturalnum,notnull
 }
 
-ad_require_permission $slide_item_id wp_delete_presentation
 
 db_exec_plsql delete_slide {
     begin

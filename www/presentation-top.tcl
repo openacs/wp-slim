@@ -21,7 +21,6 @@ ad_page_contract {
     subsite_name
 }
 
-ad_require_permission $pres_item_id wp_edit_presentation
 
 set user_id [ad_verify_and_get_user_id]
 

@@ -18,15 +18,31 @@ ad_page_contract {
     show_modified_p
 }
 
-ad_require_permission $pres_item_id wp_edit_presentation
 
 set header [ad_header "Edit Presentation"]
 
 db_1row get_presentation_data {
-    select p.pres_title, p.page_signature, p.copyright_notice, p.public_p, p.show_modified_p, wp_presentation.get_audience(:pres_item_id) as audience, wp_presentation.get_background(:pres_item_id) as background
+    select p.pres_title, p.page_signature, p.copyright_notice, p.public_p, p.show_modified_p 
     from cr_wp_presentations p, cr_items i
     where i.item_id = :pres_item_id
     and   i.live_revision = p.presentation_id
+}
+
+db_1row get_aud_data {
+    select name as audience
+    from cr_revisions, cr_items
+    where cr_items.content_type = 'cr_wp_presentation_aud'
+    and cr_items.parent_id = :pres_item_id
+    and cr_revisions.revision_id = cr_items.live_revision
+}
+
+
+db_1row get_back_data {
+    select name as background
+    from cr_revisions r, cr_items i
+    where i.content_type = 'cr_wp_presentation_back'
+    and i.parent_id = :pres_item_id
+    and r.revision_id = i.live_revision
 }
 
 #set public_p [db_string get_public_read_p "

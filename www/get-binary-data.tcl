@@ -23,7 +23,6 @@ if {![regexp {attach/([0-9]+)/(.*)} $url match attach_id file_name]} {
     ad_return_error "Wimpy Point" "Could not get a pres_item_id and slide_item_id out of url=$url"
 }
 
-ad_require_permission $attach_id wp_view_presentation
 
 set mime_type [db_string get_mime_type {
 select mime_type

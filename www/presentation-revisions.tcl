@@ -14,7 +14,6 @@ ad_page_contract {
     
 }
 
-ad_require_permission $pres_item_id wp_edit_presentation
 
 db_multirow revisions revisions_get {
     select r.revision_id,

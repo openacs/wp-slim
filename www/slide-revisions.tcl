@@ -16,7 +16,6 @@ ad_page_contract {
     subsite_name
 }
 
-ad_require_permission $slide_item_id wp_edit_presentation
 
 set subsite_name [ad_conn package_url]
 

@@ -7,7 +7,7 @@ ad_page_contract {
      @cvs-id $Id$
 } {
     pres_item_id:naturalnum,notnull
-    {sort_key:integer,optional ""}
+    {sort_key:naturalnum,optional ""}
 } -properties {
     nav_bar
     pres_item_id
@@ -17,7 +17,6 @@ ad_page_contract {
 
 set package_id [ad_conn package_id]
 
-ad_require_permission $package_id wp_create_presentation
 
 db_1row get_presentaiton {
 select pres_title

@@ -24,7 +24,6 @@ ad_page_contract {
     attachment_count
 }
 
-ad_require_permission $slide_item_id wp_edit_presentation
 
 set user_id [ad_verify_and_get_user_id]
 set creation_ip [ad_conn peeraddr]

@@ -14,7 +14,6 @@ ad_page_contract {
     display:notnull
 }
 
-ad_require_permission $slide_item_id wp_edit_presentation
 
 set user_id [ad_verify_and_get_user_id]
 set creation_ip [ad_conn peeraddr]
@@ -27,6 +26,9 @@ set n_bytes [file size $tmp_filename]
 if ![regexp {([^/\\]+)$} $attachment match client_filename] {
     set client_filename $attachment
 }
+
+
+
 
 set exception_count 0
 set exception_text ""
@@ -74,13 +76,13 @@ begin
     and   parent_id = :slide_item_id;
 exception
     when no_data_found then
-        :1 := content_item.new(
-              creation_user => :user_id,
-              creation_ip   => :creation_ip,
-              creation_date => sysdate,
-              name          => :client_filename,
-              parent_id     => :slide_item_id,
-              content_type  => 'cr_wp_attachment'
+        :1 := wp_attachment__new(
+                :attachment,
+		:display,
+                :slide_item_id,
+                now(),
+                :user_id,
+                :creation_ip
               );
 end;
 }]
@@ -103,43 +105,6 @@ if {[string equal $guessed_file_type "*/*"]} {
     }
 }
 
-ns_ora exec_plsql_bind $db "
-begin
-:revision_id := content_revision.new(creation_user => :user_id,
-                                     creation_ip   => :creation_ip,
-                                     creation_date => sysdate,
-                                     title         => '',
-                                     item_id       => :item_id,
-                                     mime_type     => :mime_type,
-                                     data          => null);
-end;" revision_id
-
-ns_ora blob_dml_file_bind $db "
-update cr_revisions
-set content = empty_blob()
-where revision_id = :revision_id
-returning content into :1" [list 1] $path
-
 ns_db releasehandle $db
-
-#set live revision
-db_exec_plsql live_revision_set {
-begin
-    content_item.set_live_revision(:revision_id);
-end;
-}
-
-db_dml attributes_insert {
-    insert into cr_wp_attachments
-    (
-    attach_id,
-    display
-    )
-    select
-    :revision_id,
-    :display
-    from dual
-    where not exists (select 1 from cr_wp_attachments where attach_id = :revision_id)
-}
 
 ad_returnredirect edit-slide?[export_url_vars slide_item_id pres_item_id]

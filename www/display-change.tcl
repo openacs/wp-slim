@@ -15,7 +15,6 @@ ad_page_contract {
     file_name:notnull
 }
 
-ad_require_permission $slide_item_id wp_edit_presentation
 
 # check mime type
 set mime_type [db_string get_mime_type {

@@ -13,7 +13,6 @@ ad_page_contract {
 }
 
 
-ad_require_permission $slide_item_id wp_edit_presentation
 
 db_exec_plsql revisions_and_item_delete {
     begin

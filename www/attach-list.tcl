@@ -16,7 +16,6 @@ ad_page_contract {
     att:multirow
 }
 
-ad_require_permission $slide_item_id wp_edit_presentation
 
 set pres_item_id [db_string pres_item_id_get {
     select parent_id

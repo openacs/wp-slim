@@ -23,7 +23,6 @@ if {![regexp {display/([0-9]+)/?$} $url match pres_item_id]} {
     ad_return_error "Wimpy Point" "Could not get a pres_item_id and slide_item_id out of url=$url"
 }
 
-ad_require_permission $pres_item_id wp_view_presentation
 
 set subsite_name [ad_conn package_url]
 regexp {^(.+)/$} $subsite_name match subsite_name

@@ -13,7 +13,6 @@ ad_page_contract {
 
 set package_id [ad_conn package_id]
 
-ad_require_permission $package_id wp_view_presentation
 
 set user_id [ad_verify_and_get_user_id]
 
@@ -56,7 +55,8 @@ if {$user_id == 0} {
 	and   ao.object_id = i.item_id
 	and   ao.creation_user <> :user_id
 	and   ao.creation_user = p.person_id
-	and   acs_permission.permission_p(i.item_id, :user_id, 'wp_view_presentation') = 't'
+	and   acs_permission.permission_p(i.item_id, :user_id,
+'wp_view_presentation') = 'f'
     }
 
     ad_return_template index

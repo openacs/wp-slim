@@ -13,7 +13,6 @@ ad_page_contract {
     out
 }
 
-ad_require_permission $pres_item_id wp_edit_presentation
 
 set header [ad_header "Reorder Slides"]
 
