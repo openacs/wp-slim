@@ -10,7 +10,7 @@
 
 <center>
 
-<p><table border=2 cellpadding=10 width=60%><tr><td>
+<p><table border=2 cellpadding=10 width="60%"><tr><td>
 <table cellspacing=0 cellpadding=0>
 <tr><td colspan=2>Please enter part of the E-mail address or last name of the user
 you wish to give permission to view the presentation test.<p>If you can't find the person you're looking for,

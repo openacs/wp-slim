@@ -13,7 +13,7 @@
 
 <center>
 
-<p><table border=2 cellpadding=10 width=60%><tr><td>
+<p><table border=2 cellpadding=10 width="60%"><tr><td>
 <table cellspacing=0 cellpadding=0>
 <tr><td colspan=2>Please select the name of the group
 you wish to give permission to @role@ thee presentation test.

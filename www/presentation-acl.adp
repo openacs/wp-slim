@@ -18,7 +18,7 @@ The presentation is public, so anyone is allowed to view it. You can <nobr><a hr
 </if>
 <else>
 <tr valign=top>
-<td align=right width=30%>
+<td align=right width="30%">
 <br>The following users may view the presentation:<p>(or you can <a href="presentation-public?pres_item_id=@pres_item_id@&public_p=t">make the presentation public</a> so everyone can view it)
 </td>
 <td>&nbsp;</td>
@@ -57,7 +57,7 @@ The presentation is public, so anyone is allowed to view it. You can <nobr><a hr
 <tr><td>&nbsp;</td></tr>
 
 <tr valign=top>
-<td align=right width=30%>
+<td align=right width="30%">
 <br>The following users may view and make changes to the presentation:</td>
 <td>&nbsp;</td>
 
@@ -94,7 +94,7 @@ The presentation is public, so anyone is allowed to view it. You can <nobr><a hr
 <tr><td>&nbsp;</td></tr>
 
 <tr valign=top>
-<td align=right width=30%>
+<td align=right width="30%">
 <br>The following users may view and make changes to the presentation, and decide who gets to view/edit it:</td>
 <td>&nbsp;</td>
 
