@@ -726,7 +726,8 @@ create function wp_presentation__new (
 	boolean,
 	boolean,
 	varchar,
-	varchar
+	varchar,
+	integer
 ) 
 returns integer as'     
 declare
@@ -741,7 +742,8 @@ declare
 	p_show_modified_p      	alias for $9;
 	aud	      	alias for $10;
 	back	      	alias for $11;
-    	v_item_id               cr_items.item_id%TYPE;
+	p_parent_id		alias for $12;
+	v_item_id               cr_items.item_id%TYPE;
     	v_audience_item_id	cr_items.item_id%TYPE;
     	v_background_item_id	cr_items.item_id%TYPE;
     	v_revision_id		cr_revisions.revision_id%TYPE;
@@ -759,7 +761,7 @@ begin
 
     v_item_id := content_item__new( 
       v_name,
-      null,
+      p_parent_id,
       null,
       null,
       p_creation_date,

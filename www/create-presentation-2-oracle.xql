@@ -18,7 +18,8 @@
       public_p         => :public_p,
       show_modified_p  => :show_modified_p,
       audience         => :audience,
-      background       => :background
+      background       => :background,
+      parent_id       => :package_id
       );
     end;
 

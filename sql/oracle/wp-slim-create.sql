@@ -595,7 +595,8 @@ as
     public_p     	in cr_wp_presentations.public_p%TYPE default 'f',
     show_modified_p     in cr_wp_presentations.show_modified_p%TYPE default 'f',
     audience            in varchar2,
-    background          in varchar2
+    background          in varchar2,
+    parent_id		in integer
   ) return cr_items.item_id%TYPE;
 
   procedure delete_audience (
@@ -762,7 +763,8 @@ as
     public_p     	in cr_wp_presentations.public_p%TYPE,
     show_modified_p     in cr_wp_presentations.show_modified_p%TYPE default 'f',
     audience            in varchar2,
-    background          in varchar2
+    background          in varchar2,
+    parent_id		in integer
   ) return cr_items.item_id%TYPE
   is
     v_item_id			cr_items.item_id%TYPE;
@@ -789,7 +791,8 @@ as
       content_type  => 'cr_wp_presentation',
       creation_date => creation_date,
       creation_user => creation_user,
-      creation_ip   => creation_ip
+      creation_ip   => creation_ip,
+      parent_id     => parent_id
     );
 
     v_revision_id := content_revision.new(

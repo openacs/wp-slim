@@ -17,7 +17,8 @@
       	:public_p,
       	:show_modified_p,
       	:audience,
-      	:background
+      	:background,
+	:package_id
       );
 
       </querytext>
