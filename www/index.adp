@@ -2,7 +2,7 @@
 <property name="title">WimpyPoint</property>
 
 <h2>WimpyPoint</h2>
-<a href="/pvt/home">Your Workspace</a>: Wimpy Point
+@context_bar@
 <hr>
 
 <h2> My Presentations</h2>
