@@ -1,6 +1,6 @@
 <master>
 <property name="title">Wimpy Point Users</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 Select an author from this list of users who have created presentations (number of presentations shown in parentheses.)
 

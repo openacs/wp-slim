@@ -1,6 +1,6 @@
 <master>
 <property name="title">Details</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 Revision in <font color=red>red</font> is the current live revision.
 

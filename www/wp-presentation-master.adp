@@ -5,7 +5,7 @@
 </head>
 <body<multiple name=attribute> @attribute.key@="@attribute.value@"</multiple>>
 <if @body_start_include@ not nil>
-<include src="@body_start_include@" />
+<include src="@body_start_include;noquote@" />
 </if>
 <slave>
 

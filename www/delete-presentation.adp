@@ -1,6 +1,6 @@
 <master>
 <property name="title">Delete Presentation</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <form method=post action="delete-presentation-2">
 

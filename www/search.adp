@@ -1,5 +1,5 @@
 <master>
-<property name=title>User Search <if @group_name@ not nil>in @group_name@</if></property>
+<property name=title>User Search <if @group_name;noquote@ not nil>in @group_name;noquote@</if></property>
 <property name="context">"User search"</property>
 
 Search 

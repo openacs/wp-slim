@@ -1,6 +1,6 @@
 <master>
 <property name="title">Add User</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 <form action="search">
 
 @params@

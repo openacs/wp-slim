@@ -1,6 +1,6 @@
 <master>
 <property name="title">All Revisions of This Slide</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <blockquote>
 

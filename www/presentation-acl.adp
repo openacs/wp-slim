@@ -1,6 +1,6 @@
 <master>
 <property name="title">Authorization</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <form name=f>
 

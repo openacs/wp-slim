@@ -1,6 +1,6 @@
 <master src="wp-presentation-master">
-<property name="title">@slide_title@</property>
-<property name="context">@context@</property>
+<property name="title">@slide_title;noquote@</property>
+<property name="context">@context;noquote@</property>
 
 <table align=right>
 <tr>

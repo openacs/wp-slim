@@ -1,6 +1,6 @@
 <master>
 <property name="title">Create A Slide</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 
 <form name=f action=create-slide-2 method=post>

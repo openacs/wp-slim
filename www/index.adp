@@ -1,6 +1,6 @@
 <master>
 <property name="title">WimpyPoint</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <h2>My Presentations</h2>
 

@@ -1,6 +1,6 @@
 <master>
 <property name="title">Reorder Slides</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <form name=f>
 To move a slide in your presentation, select its title and click the Up or Down arrow.

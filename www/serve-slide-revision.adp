@@ -1,6 +1,6 @@
 <master>
-<property name="title">@slide_title@</property>
-<property name="context">@context@</property>
+<property name="title">@slide_title;noquote@</property>
+<property name="context">@context;noquote@</property>
 
 <if @show_modified_p@ eq t>
 <i>Last modified @modified_date@</i>

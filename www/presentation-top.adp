@@ -1,6 +1,6 @@
 <master>
-<property name="title">@presentation_title@</property>
-<property name="context">@context@</property>
+<property name="title">@presentation_title;noquote@</property>
+<property name="context">@context;noquote@</property>
 
 <h3>The Slides</h3>
 

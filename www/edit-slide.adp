@@ -1,6 +1,6 @@
 <master>
 <property name="title">Edit Slide</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <form name=f action=edit-slide-2 method=post>
 

@@ -1,6 +1,6 @@
 <master>
 <property name="title">List of Attachments</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <ul>
 <multiple name="att">

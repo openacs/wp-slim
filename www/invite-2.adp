@@ -1,6 +1,6 @@
 <master>
 <property name="title">Email Sent</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 @name@ (@email@) has been invited to work on the presentation test. The following E-mail was sent:
 

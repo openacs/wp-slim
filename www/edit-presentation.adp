@@ -1,6 +1,6 @@
 <master>
 <property name="title">Edit Presentation</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 
 <form name=f action=edit-presentation-2 method=post>

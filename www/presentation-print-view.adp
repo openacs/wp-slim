@@ -1,5 +1,5 @@
 <master>
-<property name="title">@pres_title@</property>
+<property name="title">@pres_title;noquote@</property>
 
 <h2>@pres_title@</h2>
 a Wimpy Point Presentation owned by <a href="/shared/community-member?user_id=@owner_id@">@owner_name@</a>

@@ -1,6 +1,6 @@
 <master>
 <property name="title">Add Group</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <form action="presentation-acl-add-group-2">
 

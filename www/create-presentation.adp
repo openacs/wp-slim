@@ -1,6 +1,6 @@
 <master>
 <property name="title">Create Presentation</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <form method=POST action="create-presentation-2">
 

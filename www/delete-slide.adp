@@ -1,6 +1,6 @@
 <master>
 <property name="title">Delete a Slide</property>
-<property name="context">@context@</property>
+<property name="context">@context;noquote@</property>
 
 <form>
 
