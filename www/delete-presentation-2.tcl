@@ -24,7 +24,7 @@ if { [ad_check_password $user_id $password] } {
     }
 } else {
     ad_return_error "Bad Password" "Wrong password."
-    return
+    ad_script_abort
 }
 
 ad_returnredirect ""

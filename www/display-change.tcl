@@ -31,7 +31,7 @@ set mime_type [db_string get_mime_type {
 if { ![empty_string_p $display] } {
     if { [cr_registered_type_for_mime_type $mime_type] != "image" } {
 	ad_return_complaint 1 "<li>The file is neither a .gif file nor a .jpg file. Therefore we cannot display it as an image."
-	return
+        ad_script_abort
     }
     db_dml display_change ""
 }

@@ -42,7 +42,7 @@ if { ![empty_string_p [ad_parameter MaxAttachmentSize "comments"]] && $tmp_size 
 
 if { $exception_count > 0 } {
     ad_return_complaint $exception_count $exception_text
-    return
+    ad_script_abort
 }
 
 if {[string equal $mime_type "*/*"]} {
@@ -67,7 +67,7 @@ db_transaction {
 <li>Double-clicking the \"Add\" button on the previous page.
 </ul><p>Here is the actual error message:<blockquote><pre>$errmsg</pre></blockquote>"
 
-    return
+    ad_script_abort
 }
 
 
