@@ -34,7 +34,7 @@ db_foreach slides_sel {
     order by s.sort_key
 } {
     incr counter
-    append out "<option value=$slide_item_id>$counter. $slide_title\n"
+    append out "<option value=\"$slide_item_id\">$counter. $slide_title\n"
 }
 
 ad_return_template

@@ -56,16 +56,16 @@ function done() {
 <table>
 <tr><td rowspan=2>
 <select name=slides size=10>
-@out@
+@out;noquote@
 </select>
 </td>
-<td align=center valign=middle><a href="javascript:up()"><img src="pics/up.gif" border=0 alt="#wp-slim.up#"></a></td>
+<td align="center" valign="top"><a href="javascript:up()"><img src="pics/up.gif" border="0" alt="#wp-slim.up#"></a></td>
 </tr>
 <tr>
-<td align=center valign=middle><a href="javascript:down()"><img src="pics/down.gif" border=0 alt="#wp-slim.down#"></a></td>
+<td align="center" valign="bottom"><a href="javascript:down()"><img src="pics/down.gif" border="0" alt="#wp-slim.down#"></a></td>
 </tr>
 
-<tr><td align=center><input type=button value="#wp-slim.Save_Changes#" onClick="done()"></td></tr>
+<tr><td align=center><input type="button" value="#wp-slim.Save_Changes#" onClick="done()"></td></tr>
 
 </table>
 </center>
