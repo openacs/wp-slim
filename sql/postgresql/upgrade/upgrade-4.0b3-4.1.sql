@@ -10,7 +10,7 @@
 -- the old functions, so they would linger in the db. drop them explicitly
 
 drop function wp_presentation__new (
-	timestamptz,
+	timestamp,
 	integer,
 	varchar(400),
 	varchar(400),	
@@ -25,7 +25,7 @@ drop function wp_presentation__new (
 );
 
 drop function wp_presentation__new_revision (
-    timestamptz,
+    timestamp,
     integer,	 
     varchar,	 
     integer,	 
@@ -41,7 +41,7 @@ drop function wp_presentation__new_revision (
 
 drop function wp_slide__new (
     integer,
-    timestamptz,
+    timestamp,
     integer,
     varchar,
     varchar,
@@ -57,7 +57,7 @@ drop function wp_slide__new (
 );
 
 drop function wp_slide__new_revision(
-    timestamptz,
+    timestamp,
     integer,
     varchar,
     integer,
