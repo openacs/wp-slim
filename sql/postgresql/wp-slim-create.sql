@@ -1910,4 +1910,4 @@ select acs_privilege__add_child('wp_admin_presentation', 'wp_delete_presentation
 -- lets give site-wide permissions, wp-permissions! 
 select acs_privilege__add_child('admin', 'wp_admin_presentation');
 
-
+\i wp-packages-create.sql
