@@ -30,33 +30,34 @@ if {![empty_string_p $email]} {
     ns_sendmail $email_from_search $sender_email "WimpyPoint Authorization" "$message"
 }
 
+set privilege_list "wp_view_presentation"
+if { [string equal $role "write"] } {
+    lappend privilege_list "wp_edit_presentation"
+}
+if { [string equal $role "write"] } {
+    lappend privilege_list "wp_edit_presentation"
+}
+
 switch $role {
     "read" {
-	db_exec_plsql grant_privilege {
-	    begin
-	        acs_permission.grant_permission(:pres_item_id, :user_id_from_search, 'wp_view_presentation');
-	    end;
-	}
+        set privilege_list { wp_view_presentation }
     }
-
     "write" {
-	db_exec_plsql grant_privilege {
-	    begin
-	        acs_permission.grant_permission(:pres_item_id, :user_id_from_search, 'wp_view_presentation');
-	        acs_permission.grant_permission(:pres_item_id, :user_id_from_search, 'wp_edit_presentation');
-	    end;
-	}
+        set privilege_list { wp_view_presentation wp_edit_presentation }
     }
-
     "admin" {
-	db_exec_plsql grant_privilege {
-	    begin
-	        acs_permission.grant_permission(:pres_item_id, :user_id_from_search, 'wp_view_presentation');
-	        acs_permission.grant_permission(:pres_item_id, :user_id_from_search, 'wp_edit_presentation');
-	        acs_permission.grant_permission(:pres_item_id, :user_id_from_search, 'wp_admin_presentation');
-	    end;
-	}
+        set privilege_list { wp_view_presentation wp_edit_presentation wp_admin_presentation }
     }
 }
 
-ad_returnredirect presentation-acl?[export_url_vars pres_item_id]
+db_transaction {
+    foreach privilege $privilege_list {
+        db_exec_plsql grant_privilege {
+            begin
+                acs_permission.grant_permission(:pres_item_id, :user_id_from_search, :privilege);
+            end;
+        }
+    }   
+}
+
+ad_returnredirect presentation-acl?[export_vars -url { pres_item_id }]

@@ -5,30 +5,8 @@
 
 <fullquery name="grant_privilege">      
       <querytext>
-	select acs_permission__grant_permission(:pres_item_id,
-:user_id_from_search,'wp_view_presentation');
-	
+	select acs_permission__grant_permission(:pres_item_id, :user_id_from_search, :privilege);
       </querytext>
 </fullquery>
-
- 
-<fullquery name="grant_privilege">      
-      <querytext>
-
-	select  acs_permission__grant_permission(:pres_item_id,
-:user_id_from_search, 'wp_view_presentation');
-	
-      </querytext>
-</fullquery>
-
- 
-<fullquery name="grant_privilege">      
-      <querytext>
-
-	select acs_permission__grant_permission(:pres_item_id,
-:user_id_from_search, 'wp_view_presentation');
-      </querytext>
-</fullquery>
-
  
 </queryset>
