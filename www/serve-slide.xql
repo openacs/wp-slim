@@ -39,17 +39,4 @@
       </querytext>
 </fullquery>
 
- 
-<fullquery name="get_attachments">      
-      <querytext>
-      
-    select x.attach_id as attach_id, x.display, i.name as file_name
-    from cr_wp_attachments x, cr_items i
-    where i.parent_id = :slide_item_id
-    and   i.live_revision = x.attach_id
-
-      </querytext>
-</fullquery>
-
- 
 </queryset>

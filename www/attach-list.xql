@@ -18,7 +18,7 @@
       
     select name, item_id
     from cr_items
-    where content_type = 'cr_wp_attachment'
+    where content_type in ('cr_wp_image_attachment', 'cr_wp_file_attachment')
     and   parent_id = :slide_item_id
 
       </querytext>

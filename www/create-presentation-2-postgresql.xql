@@ -23,32 +23,22 @@
       </querytext>
 </fullquery>
 
- 
 <fullquery name="grant_owner_access">      
       <querytext>
-
-#select
-#acs_permission__grant_permissi(:pres_item_id,:user_id,'wp_admin_presentation');
-#select
-#acs_permission__grant_permission(:pres_item_id,:user_id,'wp_view_presentation');
-#select
-#acs_permission__grant_permission(:pres_item_id,:user_id,'wp_edit_presentation');
-#select
-#acs_permission__grant_permission(:pres_item_id,:user_id,'wp_delete_presenation');
-
-
-
+         begin
+           perform acs_permission__grant_permission(:pres_item_id,:user_id,'wp_admin_presentation');
+           perform acs_permission__grant_permission(:pres_item_id,:user_id,'wp_view_presentation');
+           perform acs_permission__grant_permission(:pres_item_id,:user_id,'wp_edit_presentation');
+           perform acs_permission__grant_permission(:pres_item_id,:user_id,'wp_delete_presentation');
+           return 0;
+         end;
       </querytext>
 </fullquery>
 
  
 <fullquery name="make_wp_presentation_public">      
       <querytext>
-
-#select
-#acs_permission__grant_permission(:pres_item_id,acs__magic_object_id('the_public'),'wp_view_presentation');
-
-    
+         select acs_permission__grant_permission(:pres_item_id,acs__magic_object_id('the_public'),'wp_view_presentation');
       </querytext>
 </fullquery>
 

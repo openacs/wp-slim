@@ -11,18 +11,5 @@
 
       </querytext>
 </fullquery>
-
- 
-<fullquery name="info_get">      
-      <querytext>
-      
-    select i.live_revision, x.display
-    from cr_items i, cr_wp_attachments x
-    where x.attach_id = i.live_revision
-    and   i.item_id = :attach_item_id
-
-      </querytext>
-</fullquery>
-
  
 </queryset>

@@ -12,15 +12,14 @@
 </fullquery>
 
  
-<fullquery name="display_chagne">      
+<fullquery name="display_change">      
       <querytext>
       
-    update cr_wp_attachments
+    update cr_wp_image_attachments
     set display = :display
     where attach_id = :revision_id
 
       </querytext>
 </fullquery>
-
  
 </queryset>

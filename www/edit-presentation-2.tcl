@@ -5,12 +5,12 @@ ad_page_contract {
      @creation-date Tue Nov 21 08:40:33 2000
      @cvs-id
 } {
-    pres_item_id
+    pres_item_id:integer,notnull
     pres_title
     page_signature
     copyright_notice
     show_modified_p
-    public_p
+    public_p:notnull
     style
     audience
     background
@@ -39,7 +39,7 @@ db_exec_plsql update_wp_presentation {
     end;
 }
 
-if {[regexp {t} $public_p]} {
+if {$public_p == "t"} {
     db_exec_plsql grant_public_read {
         begin
           acs_permission.grant_permission(:pres_item_id,acs.magic_object_id('the_public'),'wp_view_presentation');

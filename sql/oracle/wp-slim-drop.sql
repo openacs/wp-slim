@@ -7,7 +7,7 @@ delete from cr_item_publish_audit;
 
 -- ??
 delete from cr_folder_type_map
-where content_type in ('cr_wp_attachment', 'cr_wp_presentation', 'cr_wp_presentation_audience', 'cr_wp_presentation_background', 'cr_wp_slide', 'cr_wp_slide_preamble', 'cr_wp_slide_postamble', 'cr_wp_slide_bullet_items');
+where content_type in ('cr_wp_image_attachment', 'cr_wp_file_attachment', 'cr_wp_presentation', 'cr_wp_presentation_aud', 'cr_wp_presentation_back', 'cr_wp_slide', 'cr_wp_slide_preamble', 'cr_wp_slide_postamble', 'cr_wp_slide_bullet_items');
 
 -- drop clobs tables
 
@@ -17,7 +17,7 @@ declare
   cursor v_attach_cursor
   is
   select item_id from cr_items
-  where content_type = 'cr_wp_attachment';
+  where content_type in ('cr_wp_image_attachment', 'cr_wp_file_attachment');
 
 begin
 
@@ -33,29 +33,33 @@ show errors
 -- drop attachment table and views
 
 begin
-  content_type.unregister_child_type('cr_wp_slide', 'cr_wp_attachment', 'generic');
+  content_type.unregister_child_type('cr_wp_slide', 'cr_wp_image_attachment', 'generic');
+  content_type.unregister_child_type('cr_wp_slide', 'cr_wp_file_attachment', 'generic');
 end;
 /
 show errors
 
 begin
-  content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_attachment');
+  content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_image_attachment');
+  content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_file_attachment');
 end;
 /
 show errors
 
 
 begin
-  content_type.drop_attribute('cr_wp_attachment', 'display');
+  content_type.drop_attribute('cr_wp_file_attachment', 'display');
+  content_type.drop_attribute('cr_wp_image_attachment', 'display');
 end;
 /
 show errors
 
-delete from acs_objects where object_type = 'cr_wp_attachment';
+delete from acs_objects where object_type in ('cr_wp_file_attachment', 'cr_wp_image_attachment');
 
 
 begin
-  acs_object_type.drop_type('cr_wp_attachment');
+  acs_object_type.drop_type('cr_wp_image_attachment');
+  acs_object_type.drop_type('cr_wp_file_attachment');
 end;
 /
 show errors
@@ -76,7 +80,7 @@ declare
   cursor v_pres_clob_cursor
   is
   select item_id from cr_items
-  where content_type in ('cr_wp_presentation_audience', 'cr_wp_presentation_background');
+  where content_type in ('cr_wp_presentation_aud', 'cr_wp_presentation_back');
   
   cursor v_pres_cursor
   is
@@ -115,8 +119,8 @@ show errors
 
 
 begin
-  content_type.unregister_child_type('cr_wp_presentation', 'cr_wp_presentation_audience', 'generic');
-  content_type.unregister_child_type('cr_wp_presentation', 'cr_wp_presentation_background', 'generic');
+  content_type.unregister_child_type('cr_wp_presentation', 'cr_wp_presentation_aud', 'generic');
+  content_type.unregister_child_type('cr_wp_presentation', 'cr_wp_presentation_back', 'generic');
   content_type.unregister_child_type('cr_wp_presentation', 'cr_wp_slide', 'generic');
 
   content_type.unregister_child_type('cr_wp_slide', 'cr_wp_slide_preamble', 'generic');
@@ -128,8 +132,8 @@ show errors
 
 begin
   content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_presentation');
-  content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_presentation_audience');
-  content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_presentation_background');
+  content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_presentation_aud');
+  content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_presentation_back');
   content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_slide');
   content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_slide_preamble');
   content_folder.unregister_content_type(content_item.c_root_folder_id, 'cr_wp_slide_postamble');
@@ -140,8 +144,8 @@ show errors
 
 
 begin
-  content_type.drop_attribute('cr_wp_presentation_audience', 'presentation_id');
-  content_type.drop_attribute('cr_wp_presentation_background', 'presentation_id');
+  content_type.drop_attribute('cr_wp_presentation_aud', 'presentation_id');
+  content_type.drop_attribute('cr_wp_presentation_back', 'presentation_id');
 
   content_type.drop_attribute('cr_wp_slide_preamble', 'slide_id');
   content_type.drop_attribute('cr_wp_slide_postamble', 'slide_id');
@@ -171,13 +175,13 @@ end;
 show errors
 
 
-delete from acs_objects where object_type in ('cr_wp_attachment', 'cr_wp_presentation', 'cr_wp_presentation_audience', 'cr_wp_presentation_background', 'cr_wp_slide', 'cr_wp_slide_preamble', 'cr_wp_slide_postamble', 'cr_wp_slide_bullet_items');
+delete from acs_objects where object_type in ('cr_wp_image_attachment', 'cr_wp_file_attachment', 'cr_wp_presentation', 'cr_wp_presentation_aud', 'cr_wp_presentation_back', 'cr_wp_slide', 'cr_wp_slide_preamble', 'cr_wp_slide_postamble', 'cr_wp_slide_bullet_items');
 
 
 begin
   acs_object_type.drop_type('cr_wp_presentation');
-  acs_object_type.drop_type('cr_wp_presentation_audience');
-  acs_object_type.drop_type('cr_wp_presentation_background');
+  acs_object_type.drop_type('cr_wp_presentation_aud');
+  acs_object_type.drop_type('cr_wp_presentation_back');
 
   acs_object_type.drop_type('cr_wp_slide');
   acs_object_type.drop_type('cr_wp_slide_preamble');
@@ -234,15 +238,19 @@ drop package wp_slide;
 drop package wp_presentation;
 
 
-drop table cr_wp_presentations_audience;
-drop table cr_wp_presentations_background;
+drop table cr_wp_presentations_aud;
+drop table cr_wp_presentations_back;
 drop table cr_wp_slides_preamble;
 drop table cr_wp_slides_postamble;
 drop table cr_wp_slides_bullet_items;
 
-drop view cr_wp_attachmentsi;
-drop view cr_wp_attachmentsx;
-drop table cr_wp_attachments;
+drop table cr_wp_image_attachments;
+drop table cr_wp_file_attachments;
+
+drop view cr_wp_image_attachmentsi;
+drop view cr_wp_image_attachmentsx;
+drop view cr_wp_file_attachmentsi;
+drop view cr_wp_file_attachmentsx;
 
 drop view cr_wp_slidesi;
 drop view cr_wp_slidesx;

@@ -35,11 +35,14 @@
 </tr>
 
 <tr>
+<th align=left>Audience</th>
+<td>@audience@</td>
+</tr>
+
+<tr>
 <th align=left>Background</th>
 <td>@background@</td>
 </tr>
-
-
 
 </table>
 </blockquote>

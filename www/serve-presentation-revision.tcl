@@ -39,14 +39,14 @@ db_1row get_presentation_data {
     and   p.presentation_id = :pres_revision_id
 }
 
-db_1row get_aud_data {
+db_1row get_audience_data {
     select content as audience
     from cr_revisions r, cr_wp_presentations_aud pa
     where pa.presentation_id = :pres_revision_id
     and r.revision_id = pa.id
 }
 
-db_1row get_back_data {
+db_1row get_background_data {
     select content as background
     from cr_revisions r, cr_wp_presentations_back pb
     where pb.presentation_id = :pres_revision_id

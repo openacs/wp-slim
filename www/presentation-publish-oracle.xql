@@ -12,12 +12,12 @@
       content_item.set_live_revision(:revision_id);
 
       select id into v_revision_id
-      from cr_wp_presentations_audience
+      from cr_wp_presentations_aud
       where presentation_id = :revision_id;
       content_item.set_live_revision(v_revision_id);
 
       select id into v_revision_id
-      from cr_wp_presentations_background
+      from cr_wp_presentations_back
       where presentation_id = :revision_id;
       content_item.set_live_revision(v_revision_id);
     end;

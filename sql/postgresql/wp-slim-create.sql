@@ -57,9 +57,9 @@ create table wp_styles (
 
 insert into wp_styles(style_id, name, css)
 values(-1, 'Default (Plain)',
-       'BODY { background-color: white; color: black } P { line-height: 120% } UL { line-height: 140% }');
+       'BODY { back-color: white; color: black } P { line-height: 120% } UL { line-height: 140% }');
 
---jackp: create the presentation table
+--jackp: p_create the presentation table
 create table cr_wp_presentations (
 	presentation_id		integer
 				constraint cr_wp_presentations_id_fk
@@ -114,26 +114,23 @@ create table cr_wp_slides (
                                 references wp_styles
 );
 
---jackp: The table for the audiences. We had to truncate audience to aud
 create table cr_wp_presentations_aud (
 	id 		integer  
                         references cr_revisions,
 	presentation_id	integer
-			constraint cr_wp_paud_pid_nn
+			constraint cr_wp_paudience_pid_nn
 			not null
-			constraint cr_wp_paud_pid_fk
+			constraint cr_wp_paudience_pid_fk
                        	references cr_wp_presentations
 );
 
---jackp: The table for the background. We had to truncate background to
---back.
 create table cr_wp_presentations_back (
 	id 		integer 
                         references cr_revisions,
 	presentation_id	integer
-			constraint cr_wp_pback_pid_nn
+			constraint cr_wp_pbackground_pid_nn
 			not null
-			constraint cr_wp_pback_pid_fk
+			constraint cr_wp_pbackground_pid_fk
                        	references cr_wp_presentations
 );
 
@@ -171,7 +168,7 @@ create table cr_wp_slides_bullet_items (
 );
 
 --jackp: Need to use inline functions in PostgreSQL.
---jackp: We create the main content type here.
+--jackp: We p_create the main content type here.
 --jackp: Need to use PERFORM command line to indicate that the line needs
 --jackp: to be run.
 create function inline_0 ()
@@ -271,7 +268,7 @@ end;' language 'plpgsql';
 select inline_1 ();
 drop function inline_1 ();
 
---jackp: This section creates the attributes that are linked to the
+--jackp: This section p_creates the attributes that are linked to the
 --jackp: different types
 create function inline_2 ()
 returns integer as'
@@ -524,16 +521,26 @@ end;' language 'plpgsql';
 select inline_6 ();
 drop function inline_6 ();
 
---jackp: create a table to store different attachments.
---jackp: As far as I can see this table is not actually used anywhere
-create table cr_wp_attachments (
+-- DRB: table for file attachments.  Empty but necessary because the object
+-- system doesn't allow for simple renaming of types.  Nor can two types
+-- share an attribute table.
+
+create table cr_wp_file_attachments (
 	attach_id	integer
-		        constraint cr_wattach_attach_id_fk
+		        constraint cr_fattach_attach_id_fk
 			references cr_revisions
-			constraint cr_wattach_attach_id_pk
+			constraint cr_fattach_attach_id_pk
+			primary key
+);
+
+create table cr_wp_image_attachments (
+	attach_id	integer
+		        constraint cr_iattach_attach_id_fk
+			references cr_revisions
+			constraint cr_iattach_attach_id_pk
 			primary key,
         display         varchar(20)
-	                constraint cr_wattach_display_ck
+	                constraint cr_iattach_display_ck
 			check(display in (
 				      'preamble',
 				      'bullets', 
@@ -544,7 +551,7 @@ create table cr_wp_attachments (
 				      'bottom'))
 );
 
---jackp: create the content-type and content-attribute assosciated with
+--jackp: p_create the content-type and content-attribute assosciated with
 --jackp: attachments
 create function inline_7 ()
 returns integer as'
@@ -552,17 +559,17 @@ declare
   	attr_id            acs_attributes.attribute_id%TYPE;
 begin
  	PERFORM content_type__create_type (
-		''cr_wp_attachment'',
-		''content_revision'',
-		''Wimpy Attachment'',
-		''Wimpy Attachments'',
-		''cr_wp_attachments'',
+		''cr_wp_image_attachment'',
+		''image'',
+		''Wimpy Image Attachment'',
+		''Wimpy Image Attachments'',
+		''cr_wp_image_attachments'',
 		''attach_id'',
 		null 
   	);
 
  	attr_id := content_type__create_attribute (
-	       ''cr_wp_attachment'',
+	       ''cr_wp_image_attachment'',
 	       ''display'',
 	       ''text'',
 	       ''Where to display'',
@@ -571,6 +578,28 @@ begin
 	       null,		   
 	       ''varchar(20)''
  	);
+
+ 	PERFORM content_type__create_type (
+		''cr_wp_file_attachment'',
+		''content_revision'',
+		''Wimpy File Attachment'',
+		''Wimpy File Attachments'',
+		''cr_wp_file_attachments'',
+		''attach_id'',
+		null 
+  	);
+
+ 	attr_id := content_type__create_attribute (
+	       ''cr_wp_file_attachment'',
+	       ''display'',
+	       ''text'',
+	       ''Where to display'',
+	       ''Where display this'',
+	       null,		   
+	       null,		   
+	       ''varchar(20)''
+ 	);
+
 	return 0;
 end;' language 'plpgsql';
 select inline_7 ();
@@ -582,7 +611,14 @@ returns integer as'
 begin
  	PERFORM content_type__register_child_type(
 		''cr_wp_slide'',
-		''cr_wp_attachment'', 
+		''cr_wp_image_attachment'', 
+		''generic'', 
+		0, 
+		null
+	);
+ 	PERFORM content_type__register_child_type(
+		''cr_wp_slide'',
+		''cr_wp_file_attachment'', 
 		''generic'', 
 		0, 
 		null
@@ -593,18 +629,18 @@ select inline_8 ();
 drop function inline_8 ();
 
 --jackp: register the different content types for attachments
-create function inline_9 ()
-returns integer as'
-begin
-  	PERFORM content_folder__register_content_type(
-		content_item_globals.c_root_folder_id, 
-		''cr_wp_attachment'', 
-		''f''
-	);
-	return 0;
-end;' language 'plpgsql';
-select inline_9 ();
-drop function inline_9 ();
+--create function inline_9 ()
+--returns integer as'
+--begin
+--  	PERFORM content_folder__register_content_type(
+--		content_item_globals.c_root_folder_id, 
+--		''cr_wp_attachment'', 
+--		''f''
+--	);
+--	return 0;
+--end;' language 'plpgsql';
+--select inline_9 ();
+--drop function inline_9 ();
 
 commit;
 
@@ -678,7 +714,7 @@ drop function inline_11 ();
 
 --jackp: From here on the functions are defined
 
---jackp: To create each presentation
+--jackp: To p_create each presentation
 create function wp_presentation__new (
 	timestamp,
 	integer,
@@ -694,17 +730,17 @@ create function wp_presentation__new (
 ) 
 returns integer as'     
 declare
-	creation_date	      	alias for $1;
-	creation_user	      	alias for $2;
-	creation_ip	      	alias for $3;
+	p_creation_date	      	alias for $1;
+	p_creation_user	      	alias for $2;
+	p_creation_ip	      	alias for $3;
 	p_pres_title	      	alias for $4;
 	p_page_signature	alias for $5;
 	p_copyright_notice      alias for $6;
 	p_style		      	alias for $7;
 	p_public_p	      	alias for $8;
 	p_show_modified_p      	alias for $9;
-	audience	      	alias for $10;
-	background	      	alias for $11;
+	aud	      	alias for $10;
+	back	      	alias for $11;
     	v_item_id               cr_items.item_id%TYPE;
     	v_audience_item_id	cr_items.item_id%TYPE;
     	v_background_item_id	cr_items.item_id%TYPE;
@@ -721,52 +757,15 @@ begin
     
     v_name := p_pres_title || ''_'' || v_max_id;
 
---jackp: found in acs-content-repository/sql/postgresql/content-item.sql
---jackp: format for new is:
---jackp: id := content_item__new(
---jackp:	name
---jackp:	parent_id
---jackp:	item_id 
---jackp:	locale  
---jackp:	creation_date
---jackp:	creation_user
---jackp:	context_id
---jackp:	creation_ip
---jackp:	item_subtype
---jackp:	content_type
---jackp:	title
---jackp:	description
---jackp:	mime_type
---jackp:	nls_language
---jackp:	text
---jackp:	storage_type
---jackp: );
-
---jackp: found in acs-content-repository/content-revision.sql
---jackp: format for revision is:
---jackp: id :=  content_revision__new(
---jackp: 	title 
---jackp:	description
---jackp:	publish_date
---jackp:	mime_type
---jackp:	nls_language
---jackp:	data
---jackp:	item_id 
---jackp:	revision_id 
---jackp:	creation_date
---jackp:	creation_user
---jackp:	creation_ip
---jackp: );
-
     v_item_id := content_item__new( 
       v_name,
       null,
       null,
       null,
-      creation_date,
-      creation_user,
+      p_creation_date,
+      p_creation_user,
       null,
-      creation_ip,
+      p_creation_ip,
       ''content_item'',
       ''cr_wp_presentation'',
        null,
@@ -778,17 +777,17 @@ begin
     );
 
     v_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
       null,
       null,
       v_item_id,
       null,
-      creation_date,
-      creation_user,
-      creation_ip
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
     );
     
     PERFORM content_item__set_live_revision(v_revision_id);
@@ -814,14 +813,14 @@ begin
     );
    
     v_audience_item_id := content_item__new(    
-      audience,
+      aud,
       v_item_id,
       null,
       null,
-      creation_date,
-      creation_user,
+      p_creation_date,
+      p_creation_user,
       null,
-      creation_ip,
+      p_creation_ip,
       ''content_item'',
       ''cr_wp_presentation_aud'',
        null,
@@ -833,17 +832,17 @@ begin
     );
 
     v_audience_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
       null,
-      audience,
+      aud,
       v_audience_item_id,
       null,
-      creation_date,
-      creation_user,
-      creation_ip
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
      );
     
     PERFORM content_item__set_live_revision(v_audience_revision_id);
@@ -858,14 +857,14 @@ begin
     );
     
     v_background_item_id := content_item__new(
-      background,
+      back,
       v_item_id,
       null,
       null,
-      creation_date,
-      creation_user,
+      p_creation_date,
+      p_creation_user,
       null,
-      creation_ip,
+      p_creation_ip,
       ''content_item'',
       ''cr_wp_presentation_back'',
        null,
@@ -877,17 +876,17 @@ begin
     );
     
     v_background_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
       null,
-      background,
+      back,
       v_background_item_id,
       null,
-      creation_date,
-      creation_user,
-      creation_ip
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
     );
     
     PERFORM content_item__set_live_revision(v_background_revision_id);
@@ -912,7 +911,7 @@ declare
 	audience_item_id	alias $1;
 begin
     delete from cr_wp_presentations_aud
-    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_aud__id and item_id = audience_item_id);     
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_aud.id and item_id = audience_item_id);     
     delete from cr_item_publish_audit
     where item_id = audience_item_id;
      
@@ -928,7 +927,7 @@ declare
 	background_item_id	alias $1;
 begin
     delete from cr_wp_presentations_back
-    where exists (select 1 from cr_revisions where revision_id = cr_wp_presenta$tions_background__id and item_id = background_item_id);  
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_back.id and item_id = background_item_id);  
     delete from cr_item_publish_audit
     where item_id = background_item_id;
     
@@ -959,14 +958,14 @@ begin
     where content_type = ''cr_wp_presentation_aud''
     and   parent_id = pres_item_id;
     
-    delete_audience(v_audience_item_id);
+    delete_aud(v_audience_item_id);
     
     select item_id into v_background_item_id
     from cr_items
     where content_type = ''cr_wp_presentation_back''
     and   parent_id = pres_item_id;
     
-    delete_background(v_background_item_id);
+    delete_back(v_background_item_id);
     
     delete from acs_permissions where object_id = pres_item_id;
     update acs_objects set context_id=null where context_id = pres_item_id;
@@ -975,66 +974,61 @@ begin
 return 0;
 end;' language 'plpgsql';
 
-create function wp_presentation__get_audience (
-	integer		
-) returns blob as'
+-- DRB: All these could've been implemented as a single function with a type argument
+-- but I'm not going to rewrite all of wp-slim's queries just to clean this up...
+
+create function wp_presentation__get_ad_revision (integer) returns text as '
 declare
-    pres_item_id	alias for $1;
-    v_blob		blob;
+    p_pres_revision_id	alias for $1;
 begin
-    select content into v_blob
-    from cr_revisions, cr_items
-    where cr_items__content_type = ''cr_wp_presentation_aud''
-    and cr_items__parent_id = pres_item_id
-    and cr_revisions__revision_id = cr_items__live_revision;
-    return v_blob;
+  return r.content
+  from cr_revisions r,
+    cr_wp_presentations_aud pa
+  where pa.presentation_id = p_pres_revision_id
+    and r.revision_id = pa.id;
 end;' language 'plpgsql';
 
-create function wp_presentation__get_ad_revision(		
-integer ) returns blob as'
+create function wp_presentation__get_audience (
+	integer		
+) returns text as'
 declare
-    pres_revision_id	alias for $1;
-v_blob			blob;
+    p_pres_item_id	alias for $1;
 begin
-    select r__content into v_blob
-    from cr_revisions r, cr_wp_presentations_aud pa
-    where pa__presentation_id = pres_revision_id
-    and r__revision_id = pa__id;
-    return v_blob;
-end;' language'plpgsql';
+    return content
+    from cr_revisions, cr_items
+    where cr_items.content_type = ''cr_wp_presentation_aud''
+    and cr_items.parent_id = p_pres_item_id
+    and cr_revisions.revision_id = cr_items__live_revision;
+end;' language 'plpgsql';
+
+create function wp_presentation__get_bg_revision (integer) returns text as '
+declare
+    p_pres_revision_id	alias for $1;
+begin
+  return r.content
+  from cr_revisions r,
+    cr_wp_presentations_aud pa
+  where pa.presentation_id = p_pres_revision_id
+    and r.revision_id = pa.id;
+end;' language 'plpgsql';
 
 create function wp_presentation__get_background (
     integer	
-) returns blob as'
+) returns text as'
 declare 
     pres_item_id	alias for $1;
-    v_blob		blob;  
 begin
-    select content into v_blob
-    from cr_revisions r, cr_items i   
-    where i__content_type = ''cr_wp_presentation_back''
-    and i__parent_id = pres_item_id
-    and r__revision_id = i__live_revision;
-    return v_blob;
-end;' language'plpgsql';
-   
-create function wp_presentation__get_bg_revision (
-    integer 
-) returns blob as'
-declare
-    pres_revision_id	alias for $1;
-    v_blob			blob;  
- begin
-    select cr_revisions__content into v_blob
-    from cr_revisions r, cr_wp_presentations_back pb
-    where pb__presentation_id = pres_revision_id
-    and r__revision_id = pb__id;
-    return v_blob;
+    return content
+    from cr_revisions, cr_items
+    where cr_items.content_type = ''cr_wp_presentation_bak''
+    and cr_items.parent_id = p_pres_item_id
+    and cr_revisions.revision_id = cr_items__live_revision;
 end;' language 'plpgsql';
+   
 
 create function wp_presentation__new_revision (
     timestamp,
-    varchar(400),	 
+    integer,	 
     varchar,	 
     integer,	 
     varchar(400),    
@@ -1066,12 +1060,17 @@ declare
     v_background_revision_id    cr_revisions.revision_id%TYPE;
 begin
     v_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
       null,
-      p_pres_item_id
+      null,
+      p_pres_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
     );
 
     PERFORM content_item__set_live_revision(v_revision_id);
@@ -1101,12 +1100,17 @@ begin
     and   content_type = ''cr_wp_presentation_aud'';
     
     v_audience_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
+      null,
       p_audience,
-      v_audience_item_id
+      v_audience_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
     );
     
     PERFORM content_item__set_live_revision(v_audience_revision_id);
@@ -1126,13 +1130,18 @@ begin
     and   content_type = ''cr_wp_presentation_back'';
         
     v_background_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
+      null,
       p_background,
-      v_background_item_id
-    ); 
+      v_background_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
+    );
     
     PERFORM content_item__set_live_revision(v_background_revision_id);
     
@@ -1141,7 +1150,7 @@ begin
     	id,
     	presentation_id
     ) values (
-    	v_audience_revision_id,
+    	v_background_revision_id,
     	v_revision_id
     );
     return 0;
@@ -1216,9 +1225,9 @@ begin
     );
 
     v_revision_id := content_revision__new(
-      '''', 
+      null,
       null, 
-      now(),
+      current_timestamp,
       ''text/plain'', 
       null, 
       null,
@@ -1277,12 +1286,17 @@ begin
     );  
 
     v_preamble_revision_id := content_revision__new(
-        '''',
-       null,
-       now(),
-       ''text/plain'',
-       p_preamble,
-       v_preamble_item_id
+      null,
+      null, 
+      current_timestamp,
+      ''text/plain'', 
+      null, 
+      p_preamble,
+      v_preamble_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip          
     );
     
     PERFORM content_item__set_live_revision(v_preamble_revision_id);
@@ -1315,13 +1329,19 @@ begin
       ''text''      
     );
 
+
     v_postamble_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
-      ''text/plain'',
+      null, 
+      current_timestamp,
+      ''text/plain'', 
+      null, 
       p_postamble,
-      v_postamble_item_id
+      v_postamble_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip          
     );
 
     PERFORM content_item__set_live_revision(v_postamble_revision_id);
@@ -1346,7 +1366,7 @@ begin
       p_creation_ip,
       ''content_item'',
       ''cr_wp_slide_bullet_items'',
-      '''',
+      null,
       null,
       null,
       ''text/plain'',
@@ -1354,13 +1374,19 @@ begin
       ''text''      
     );
 
+
     v_bullet_items_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
-      ''text/plain'',
+      null, 
+      current_timestamp,
+      ''text/plain'', 
+      null, 
       p_bullet_items,
-      v_bullet_items_item_id
+      v_bullet_items_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip          
     );
 
     PERFORM content_item__set_live_revision(v_bullet_items_revision_id);
@@ -1444,7 +1470,7 @@ declare
 begin
     for del_rec in select item_id as attach_item_id
     from cr_items
-    where content_type = ''cr_wp_attachment''
+    where content_type in (''cr_wp_image_attachment'', ''cr_wp_file_attachment'')
     and   parent_id = slide_item_id
     loop
      wp_attachment__delete(del_rec.attach_item_id);
@@ -1505,82 +1531,84 @@ begin
     return 0;
 end;' language 'plpgsql';
 
-create function wp_slide__get_preamble(
+create function wp_slide__get_preamble_revision (
     integer
-) returns record as'
+) returns text as '
 declare
-    get_preamble__slide_item_id                alias for $1;
-    v_blob record;
-begin 
-    select content into v_blob
-    from cr_revisions, cr_items
-    where cr_items.content_type = ''cr_wp_slide_preamble''
-    and cr_items.parent_id = get_preamble.slide_item_id
-    and cr_revisions.revision_id = cr_items.live_revision;
-    return v_blob;
+  p_slide_revision_id alias for $1;
+begin
+  return content
+  from cr_revisions r, cr_wp_slides_preamble sp
+  where sp.slide_id = p_slide_revision_id
+  and r.revision_id = sp.id;
+end;' language 'plpgsql';
+
+create function wp_slide__get_postamble_revision (
+    integer
+) returns text as '
+declare
+  p_slide_revision_id alias for $1;
+begin
+  return content
+  from cr_revisions r, cr_wp_slides_postamble sp
+  where sp.slide_id = p_slide_revision_id
+  and r.revision_id = sp.id;
+end;' language 'plpgsql';
+
+create function wp_slide__get_bullet_items_revision (
+    integer
+) returns text as '
+declare
+  p_slide_revision_id alias for $1;
+begin
+  return content
+  from cr_revisions r, cr_wp_slides_bullet_items sp
+  where sp.slide_id = p_slide_revision_id
+  and r.revision_id = sp.id;
 end;' language 'plpgsql';
 
 create function wp_slide__get_postamble(
     integer
-) returns record as'
+) returns text as '
 declare
-    get_postamble__slide_item_id	alias for $1;
-    v_blob 				record;
+    p_slide_item_id	alias for $1;
 begin
-    select content into v_blob
+    return content
     from cr_revisions, cr_items
     where cr_items.content_type = ''cr_wp_slide_postamble''
-    and cr_items.parent_id = get_postamble.slide_item_id
+    and cr_items.parent_id = p_slide_item_id
     and cr_revisions.revision_id = cr_items.live_revision;
-    return v_blob;
 end;' language 'plpgsql';
 
-create function wp_slide__get_preamble_revision(
+create function wp_slide__get_preamble(
     integer
-) returns blob as'
+) returns text as'
 declare
-    get_preamble_revision__slide_revision_id                alias for $1;
-    v_blob blob;
+    p_slide_item_id                alias for $1;
 begin
-    select content into v_blob
-    from cr_revisions r, cr_wp_slides_preamble sp
-    where sp.slide_id = get_preamble_revision.slide_revision_id
-    and   r.revision_id = sp.id;
-    return v_blob;
+    return content
+    from cr_revisions, cr_items
+    where cr_items.content_type = ''cr_wp_slide_preamble''
+    and cr_items.parent_id = p_slide_item_id
+    and cr_revisions.revision_id = cr_items.live_revision;
 end;' language 'plpgsql';
 
 create function wp_slide__get_bullet_items(
     integer
-) returns record as'
+) returns text as'
 declare
-    slide_item_id	alias for $1;
-    v_blob		record;
+    p_slide_item_id	alias for $1;
 begin
-    select content into v_blob
+    return content
     from cr_revisions, cr_items
     where cr_items.content_type = ''cr_wp_slide_bullet_items''
-    and cr_items.parent_id = slide_item_id
+    and cr_items.parent_id = p_slide_item_id
     and cr_revisions.revision_id = cr_items.live_revision;
-    return v_blob;
 end;' language 'plpgsql';
 
-create function wp_slide__get_bullet_items_revision(
-    integer
-) returns blob as'
-declare
-    get_bullet_items_revision__slide_revision_id 	alias for $1;
-    v_blob    blob;
-begin
-    select content into v_blob
-    from cr_revisions r, cr_wp_slides_bullet_items sb
-    where sb.slide_id = get_bullet_items_revision.slide_revision_id
-    and   r.revision_id = sb.id;
-    return v_blob;
-end;' language 'plpgsql';
-   
 create function wp_slide__new_revision(
     timestamp,
-    varchar,
+    integer,
     varchar,
     integer,
     varchar, 
@@ -1616,13 +1644,18 @@ declare
     v_bullet_items_revision_id  cr_revisions.revision_id%TYPE;
 begin
     v_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
       null,
-      p_slide_item_id
-    );             
+      null,
+      p_slide_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
+    );
 
     PERFORM content_item__set_live_revision(v_revision_id);
     
@@ -1651,12 +1684,17 @@ begin
     and   content_type = ''cr_wp_slide_preamble'';
     
     v_preamble_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
+      null,
       p_preamble,
-      v_preamble_item_id
+      v_preamble_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
     );
           
     PERFORM content_item__set_live_revision(v_preamble_revision_id);
@@ -1676,12 +1714,17 @@ begin
     and   content_type = ''cr_wp_slide_postamble'';
 
     v_postamble_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
+      null,
       p_postamble,
-      v_postamble_item_id
+      v_postamble_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
     );
 
     PERFORM content_item__set_live_revision(v_postamble_revision_id);
@@ -1701,12 +1744,17 @@ begin
     and   content_type = ''cr_wp_slide_bullet_items'';
  
     v_bullet_items_revision_id := content_revision__new(
-      '''',
       null,
-      now(),
+      null,
+      current_timestamp,
       ''text/plain'',
+      null,
       p_bullet_items,
-      v_bullet_items_item_id  
+      v_bullet_items_item_id,
+      null,
+      p_creation_date,
+      p_creation_user,
+      p_creation_ip
     );
 
     PERFORM content_item__set_live_revision(v_bullet_items_revision_id); 
@@ -1722,80 +1770,20 @@ begin
     return 0;
 end;' language 'plpgsql';
 
-create function wp_attachment__new (
-varchar,
-varchar,
-integer,
-timestamp,
-integer,
-varchar
-) returns integer as'
-declare
-    p_filename          alias for $1;
-    p_display		alias for $2;
-    p_slide_item_id	alias for $3;
-    p_creation_date	alias for $4;
-    p_creation_user	alias for $5;
-    p_creation_ip	alias for $6;
-    v_item_id               cr_items.item_id%TYPE;
-    v_revision_id           cr_revisions.revision_id%TYPE;
-begin
-    v_item_id := content_item__new(
-      p_filename,
-      p_slide_item_id,
-      null,
-      null,
-      p_creation_date,
-      p_creation_user,
-      null,
-      p_creation_ip,
-      ''content_item'',
-      ''cr_wp_attachment'',
-       null, 
-       null,
-       ''text/plain'',
-       null,
-       null,
-       ''text''
-    );
-
-    v_revision_id := content_revision__new(
-      '''',
-      null,
-      now(),
-      ''text/plain'',
-      null,
-      null,
-      v_item_id,
-      null,
-      p_creation_date,
-      p_creation_user,
-      p_creation_ip
-    );
-
-   PERFORM content_item__set_live_revision(v_revision_id);
-
-   insert into cr_wp_attachments
-    (
-        attach_id,
-        display
-    ) values (
-        v_revision_id,
-	p_display
-    );
---''after_bullets''
-    return v_item_id;
-end;' language 'plpgsql';
-
 create function wp_attachment__delete(
     integer
 ) returns integer as'
 declare 
     p_attach_item_id		alias for $1;
 begin
-    delete from cr_wp_attachments
+    delete from cr_wp_file_attachments
     where exists (select 1 from cr_revisions where revision_id 
-      = cr_wp_attachments.attach_id 
+      = cr_wp_file_attachments.attach_id 
+      and item_id = p_attach_item_id);
+    
+    delete from cr_wp_image_attachments
+    where exists (select 1 from cr_revisions where revision_id 
+      = cr_wp_image_attachments.attach_id 
       and item_id = p_attach_item_id);
     
     delete from cr_item_publish_audit
@@ -1813,3 +1801,26 @@ declare
 begin
     return 0;
 end; 'language 'plpgsql';
+
+create function wp_presentation__set_live_revision(integer) returns integer as '
+declare
+  p_revision_id    alias for $1;
+  v_revision_id    integer;
+begin
+  perform content_item__set_live_revision(p_revision_id);
+
+  select id into v_revision_id
+  from cr_wp_presentations_aud
+  where presentation_id = p_revision_id;
+      
+  perform content_item__set_live_revision(v_revision_id);
+
+  select id into v_revision_id
+  from cr_wp_presentations_back
+  where presentation_id = p_revision_id;
+
+  perform content_item__set_live_revision(v_revision_id);
+  return 0;
+end;' language 'plpgsql';
+
+

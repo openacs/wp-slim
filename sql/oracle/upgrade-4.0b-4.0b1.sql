@@ -16,19 +16,19 @@ show errors
 
 -- add a parent_id column in all of the auxiliary tables for clobs so that we can keep
 -- track of all revisions of a specific presentation or slide.
-alter table cr_wp_presentations_audience add (
+alter table cr_wp_presentations_aud add (
 	presentation_id	integer
-			constraint cr_wp_paud_pid_nn
+			constraint cr_wp_paudience_pid_nn
 			not null
-			constraint cr_wp_paud_pid_fk
+			constraint cr_wp_paudience_pid_fk
                        	references cr_wp_presentations
 );
 
-alter table cr_wp_presentations_background add (
+alter table cr_wp_presentations_back add (
 	presentation_id	integer
-			constraint cr_wp_pback_pid_nn
+			constraint cr_wp_pbackground_pid_nn
 			not null
-			constraint cr_wp_pback_pid_fk
+			constraint cr_wp_pbackground_pid_fk
                        	references cr_wp_presentations
 );
 
@@ -62,7 +62,7 @@ declare
 begin
   
   attr_id := content_type.create_attribute (
-    content_type   => 'cr_wp_presentation_audience',
+    content_type   => 'cr_wp_presentation_aud',
     attribute_name => 'presentation_id',
     datatype       => 'integer',
     pretty_name    => 'Prsentation ID',
@@ -71,7 +71,7 @@ begin
   );
 
   attr_id := content_type.create_attribute (
-    content_type   => 'cr_wp_presentation_background',
+    content_type   => 'cr_wp_presentation_back',
     attribute_name => 'presentation_id',
     datatype       => 'integer',
     pretty_name    => 'Prsentation ID',
@@ -288,7 +288,7 @@ as
     v_audience_item_id := content_item.new(
       name          => 'audience',
       parent_id     => v_item_id,		
-      content_type  => 'cr_wp_presentation_audience',
+      content_type  => 'cr_wp_presentation_aud',
       creation_date => creation_date,
       creation_user => creation_user,
       creation_ip   => creation_ip
@@ -305,7 +305,7 @@ as
 
     content_item.set_live_revision(v_audience_revision_id);
 
-    insert into cr_wp_presentations_audience
+    insert into cr_wp_presentations_aud
     (
     id,
     presentation_id
@@ -319,7 +319,7 @@ as
     v_background_item_id := content_item.new(
       name          => 'background',
       parent_id     => v_item_id,
-      content_type  => 'cr_wp_presentation_background',
+      content_type  => 'cr_wp_presentation_back',
       creation_date => creation_date,
       creation_user => creation_user,
       creation_ip   => creation_ip
@@ -336,7 +336,7 @@ as
 
     content_item.set_live_revision(v_background_revision_id);
 
-    insert into cr_wp_presentations_background
+    insert into cr_wp_presentations_back
     (
     id,
     presentation_id
@@ -356,8 +356,8 @@ as
   )
   is
   begin
-    delete from cr_wp_presentations_audience
-    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_audience.id and item_id = audience_item_id);
+    delete from cr_wp_presentations_aud
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_aud.id and item_id = audience_item_id);
     
     delete from cr_item_publish_audit
     where item_id = audience_item_id;
@@ -370,8 +370,8 @@ as
   )
   is
   begin
-    delete from cr_wp_presentations_background
-    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_background.id and item_id = background_item_id);
+    delete from cr_wp_presentations_back
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_back.id and item_id = background_item_id);
     
     delete from cr_item_publish_audit
     where item_id = background_item_id;
@@ -397,17 +397,17 @@ as
 
     select item_id into v_audience_item_id
     from cr_items
-    where content_type = 'cr_wp_presentation_audience'
+    where content_type = 'cr_wp_presentation_aud'
     and   parent_id = pres_item_id;
 
-    delete_audience(v_audience_item_id);
+    delete_aud(v_audience_item_id);
 
     select item_id into v_background_item_id
     from cr_items
-    where content_type = 'cr_wp_presentation_background'
+    where content_type = 'cr_wp_presentation_back'
     and   parent_id = pres_item_id;
 
-    delete_audience(v_background_item_id);
+    delete_aud(v_background_item_id);
 
     delete from acs_permissions where object_id = pres_item_id;
     update acs_objects set context_id=null where context_id = pres_item_id;
@@ -423,7 +423,7 @@ as
   begin
     select content into v_blob
     from cr_revisions, cr_items
-    where cr_items.content_type = 'cr_wp_presentation_audience'
+    where cr_items.content_type = 'cr_wp_presentation_aud'
     and cr_items.parent_id = pres_item_id
     and cr_revisions.revision_id = cr_items.live_revision;
     return v_blob;
@@ -437,7 +437,7 @@ as
   begin
     select r.content into v_blob
     from cr_revisions r,
-         cr_wp_presentations_audience pa
+         cr_wp_presentations_aud pa
     where pa.presentation_id = pres_revision_id
     and r.revision_id = pa.id;
     return v_blob;
@@ -451,7 +451,7 @@ as
   begin
     select content into v_blob
     from cr_revisions, cr_items
-    where cr_items.content_type = 'cr_wp_presentation_background'
+    where cr_items.content_type = 'cr_wp_presentation_back'
     and cr_items.parent_id = pres_item_id
     and cr_revisions.revision_id = cr_items.live_revision;
     return v_blob;
@@ -465,7 +465,7 @@ as
   begin
     select r.content into v_blob
     from cr_revisions r,
-         cr_wp_presentations_background pb
+         cr_wp_presentations_back pb
     where pb.presentation_id = pres_revision_id
     and r.revision_id = pb.id;
     return v_blob;
@@ -530,7 +530,7 @@ as
     select item_id into v_audience_item_id
     from cr_items
     where parent_id = pres_item_id
-    and   content_type = 'cr_wp_presentation_audience';
+    and   content_type = 'cr_wp_presentation_aud';
 
     v_audience_revision_id := content_revision.new(
         creation_date => creation_date,
@@ -538,12 +538,12 @@ as
         creation_ip   => creation_ip,
         item_id       => v_audience_item_id,
         title         => '',
-	text          => audience
+	text          => aud
     );
 
     content_item.set_live_revision(v_audience_revision_id);
 
-    insert into cr_wp_presentations_audience
+    insert into cr_wp_presentations_aud
     (
     id,
     presentation_id
@@ -557,7 +557,7 @@ as
     select item_id into v_background_item_id
     from cr_items
     where parent_id = pres_item_id
-    and   content_type = 'cr_wp_presentation_background';
+    and   content_type = 'cr_wp_presentation_back';
 
     v_background_revision_id := content_revision.new(
         creation_date => creation_date,
@@ -565,12 +565,12 @@ as
         creation_ip   => creation_ip,
         item_id       => v_background_item_id,
         title         => '',
-	text          => background
+	text          => back
     );
 
     content_item.set_live_revision(v_background_revision_id);
 
-    insert into cr_wp_presentations_background
+    insert into cr_wp_presentations_back
     (
     id,
     presentation_id

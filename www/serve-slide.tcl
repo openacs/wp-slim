@@ -47,33 +47,6 @@ db_1row get_slide_info {
     and   ao.object_id = s.slide_id
 }
 
-# Serve a specific slide.
-db_1row get_pre_info {
-  select content as preamble
-  from cr_revisions, cr_items
-  where cr_items.content_type = 'cr_wp_slide_preamble'
-  and cr_items.parent_id = :slide_item_id
-  and cr_revisions.revision_id = cr_items.live_revision
-
-}
-
-db_1row get_pos_info {
-select content as postamble
-  from cr_revisions, cr_items
-  where cr_items.content_type = 'cr_wp_slide_postamble'
-  and cr_items.parent_id = :slide_item_id
-  and cr_revisions.revision_id = cr_items.live_revision
-}
-
-db_1row get_bul_info {
-select content as bullet_items
-  from cr_revisions, cr_items
-  where cr_items.content_type = 'cr_wp_slide_bullet_items'
-  and cr_items.parent_id = :slide_item_id
-  and cr_revisions.revision_id = cr_items.live_revision;
-}
-
-
 db_1row get_presentation_page_signature {
     select p.page_signature,
     p.show_modified_p
@@ -114,12 +87,10 @@ if {!$found_slide} {
     if {$sort_key == 1} {        
 	# this is the only slide.
 	set href_back ""
-	set href_forward "<a href=\"\">top</a>"
-    } else {
-	set href_forward "<a href=\"$subsite_name/presentation-top?pres_item_id=$pres_item_id\">top</a>"
+	set href_forward "<a href=\"$subsite_name/display/$pres_item_id\">top</a>"
     }
 } else {
-    set href_forward "<a href=\"${next_slide_item_id}.wimpy\">next</a>"
+    set href_forward "<a href=\"$subsite_name/display/$pres_item_id/${next_slide_item_id}.wimpy\">next</a>"
 }
 
 

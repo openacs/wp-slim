@@ -16,9 +16,10 @@ ad_page_contract {
     slide_item_id
     attach_item_id
     revisions:multirow
-    live_revision
+    revision_id
     display
     file_name
+    attachment_type
 }
 
 
@@ -51,12 +52,9 @@ set after_bullets_selected ""
 set postamble_selected ""
 set bottom_selected ""
 
-db_1row info_get {
-    select i.live_revision, x.display
-    from cr_items i, cr_wp_attachments x
-    where x.attach_id = i.live_revision
-    and   i.item_id = :attach_item_id
-}
+db_1row info_get ""
+
+set attachment_type [cr_registered_type_for_mime_type $mime_type]
 
 set ${display}_selected "selected"
 

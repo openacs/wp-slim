@@ -6,7 +6,7 @@
 <tr>
    <td><a href="@subsite_name@">done</a> | 
    <if @first_slide_item_id@ not nil>
-   <a href="@first_slide_item_id@.wimpy">next</a>
+   <a href="@subsite_name@/display/@pres_item_id@/@first_slide_item_id@.wimpy">next</a>
    </if>
    </td>
 </tr>

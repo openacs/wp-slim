@@ -18,6 +18,5 @@ and   i.live_revision = s.slide_id
 
       </querytext>
 </fullquery>
-
  
 </queryset>

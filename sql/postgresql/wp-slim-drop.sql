@@ -1,3 +1,4 @@
+
 -- I think some cascade or something needs to be added to the delete
 -- statements in case some other object points to a presentation or slide.
 
@@ -17,7 +18,7 @@ declare
   del_rec record;
 begin
   for del_rec in select item_id from cr_items 
-	where content_type = ''cr_wp_attachment'' 
+	where content_type in (''cr_wp_file_attachment'', ''cr_wp_image_attachment'')
   loop 
     update acs_objects set context_id = null where context_id = del_rec.item_id;
     PERFORM content_item__delete(del_rec.item_id);
@@ -32,8 +33,8 @@ drop function inline_0 ();
 create function inline_1 ()
 returns integer as'
 begin
-PERFORM
-content_type__unregister_child_type(''cr_wp_slide'',''cr_wp_attachment'',null);
+PERFORM content_type__unregister_child_type(''cr_wp_slide'',''cr_wp_file_attachment'',null);
+PERFORM content_type__unregister_child_type(''cr_wp_slide'',''cr_wp_image_attachment'',null);
 return 0;
 end;' language 'plpgsql';
 select inline_1 ();
@@ -43,10 +44,8 @@ drop function inline_1 ();
 create function inline_2 ()
 returns integer as'
 begin
-  PERFORM
-content_folder__unregister_content_type(content_item_globals.c_root_folder_id,''cr_wp_attachment'',''f'');
-
-  PERFORM content_type__unregister_child_type(''cr_wp_slide'',''cr_wp_attachment'', ''null'');
+  PERFORM content_folder__unregister_content_type(content_item_globals.c_root_folder_id,''cr_wp_file_attachment'',''f'');
+  PERFORM content_folder__unregister_content_type(content_item_globals.c_root_folder_id,''cr_wp_image_attachment'',''f'');
 return 0;
 end;' language 'plpgsql';
 select inline_2 ();
@@ -54,7 +53,8 @@ drop function inline_2 ();
 
 delete from cr_type_children
 where parent_type in (
-	'cr_wp_attachment', 
+	'cr_wp_file_attachment', 
+	'cr_wp_image_attachment', 
 	'cr_wp_presentation',
 	'cr_wp_presentation_aud', 
 	'cr_wp_presentation_back',
@@ -68,19 +68,22 @@ where parent_type in (
 create function inline_3 ()
 returns integer as'
 begin
-  PERFORM acs_attribute__drop_attribute(''cr_wp_attachment'', ''display'');
+  PERFORM acs_attribute__drop_attribute(''cr_wp_file_attachment'', ''display'');
+  PERFORM acs_attribute__drop_attribute(''cr_wp_image_attachment'', ''display'');
 return 0;
 end;' language 'plpgsql';
 select inline_3 ();
 drop function inline_3 ();
 
-delete from acs_objects where object_type = 'cr_wp_attachment';
+delete from acs_objects where object_type = 'cr_wp_file_attachment';
+delete from acs_objects where object_type = 'cr_wp_image_attachment';
 
 
 create function inline_4 ()
 returns integer as'
 begin
-PERFORM acs_object_type__drop_type(''cr_wp_attachment'',''f'');
+PERFORM acs_object_type__drop_type(''cr_wp_file_attachment'',''f'');
+PERFORM acs_object_type__drop_type(''cr_wp_image_attachment'',''f'');
 return 0;
 end;' language 'plpgsql';
 select inline_4 ();
@@ -260,14 +263,6 @@ begin
   PERFORM acs_attribute__drop_attribute(''cr_wp_slide'',''include_in_outline_p'');
   PERFORM acs_attribute__drop_attribute(''cr_wp_slide'',''context_break_after_p'');
   PERFORM acs_attribute__drop_attribute(''cr_wp_slide'',''style'');
- 
---  PERFORM content_type__drop_attribute(''cr_wp_slide'',''sort_key'',''f'');
---  PERFORM content_type__drop_attribute(''cr_wp_slide'',''slide_title'',''f'');
---  PERFORM content_type__drop_attribute(''cr_wp_slide'',''include_in_outline_p'',''f'');
---  PERFORM content_type__drop_attribute(''cr_wp_slide'',''context_break_after_p'',''f'');
---  PERFORM content_type__drop_attribute(''cr_wp_slide'',''style'',''f'');
---  PERFORM content_type__drop_attribute(''cr_wp_attachment'', ''display'',''f'');
-
 
 return 0;
 end;' language 'plpgsql';
@@ -355,22 +350,14 @@ end;' language 'plpgsql';
 select inline_12 ();
 drop function inline_12 ();
 
---DROP package wp_attachment;
-DROP FUNCTION wp_attachment__new (
-	integer,
-	timestamp,
-	varchar,
-	varchar
-);
 
 DROP FUNCTION wp_attachment__delete (
 	integer
 );
 
 DROP FUNCTION wp_attachment__new_revision(
-	integer
+    integer	 
 );
-
 
 --drop package wp_slide;
 DROP FUNCTION wp_slide__new(
@@ -406,34 +393,12 @@ DROP FUNCTION wp_slide__delete(
 	integer
 );
 
-DROP FUNCTION wp_slide__get_preamble(
-	integer
-);
-
 DROP FUNCTION wp_slide__get_preamble_revision(
 	integer
 );
-
-DROP FUNCTION wp_slide__get_bullet_items_revision(
+DROP FUNCTION wp_slide__get_preamble(
 	integer
 );
-
-DROP FUNCTION wp_slide__new_revision(
-	timestamp,
-	varchar,
-	varchar,
-	integer,
-	varchar,
-	varchar,
-	varchar,
-	varchar,
-	integer,
-	integer,
-	varchar,
-	varchar,
-	varchar
-);
-
 
 --drop package wp_presentation;
 DROP FUNCTION wp_presentation__new(
@@ -462,40 +427,49 @@ DROP FUNCTION wp_presentation__delete(
 	integer
 );
 
-DROP FUNCTION wp_presentation__get_audience(
-	integer
-);
-
---not sure why is it saying this table is already dropped? ie. not existing
-DROP FUNCTION wp_presentation__get_ad_revision(
-	integer
-);
-
---not sure why it is sayding this table is already dropped. ie. not existing
-DROP FUNCTION wp_presentation__get_background(
+DROP FUNCTION wp_presentation__get_ad_revision (
 	integer
 );
 
 DROP FUNCTION wp_presentation__get_bg_revision(
 	integer
 );
-
-DROP FUNCTION wp_presentation__new_revision(
-	timestamp,
-	varchar,
-	integer,
-	integer,
-	varchar,
-	varchar,
-	varchar,	
-	integer,
-	boolean,
-	boolean,
-	varchar,
-	varchar
+DROP FUNCTION wp_presentation__get_audience(
+	integer
 );
 
+DROP FUNCTION wp_presentation__get_background(
+	integer
+);
 
+drop function wp_slide__new_revision(
+    timestamp,
+    integer,
+    varchar,
+    integer,
+    varchar, 
+    text, 
+    varchar, 
+    varchar, 
+    integer, 
+    integer, 
+    integer, 
+    boolean,
+    boolean);
+
+drop function wp_presentation__new_revision (
+    timestamp,
+    integer,	 
+    varchar,	 
+    integer,	 
+    varchar(400),    
+    varchar(200),	 
+    varchar(400),	 
+    integer,		
+    boolean,	
+    boolean,	
+    varchar,	
+    varchar);
 
 --checked
 drop table cr_wp_presentations_aud;
@@ -504,9 +478,13 @@ drop table cr_wp_slides_preamble;
 drop table cr_wp_slides_postamble;
 drop table cr_wp_slides_bullet_items;
 
-drop view cr_wp_attachmentsi;
-drop view cr_wp_attachmentsx;
-drop table cr_wp_attachments;
+drop view cr_wp_image_attachmentsi;
+drop view cr_wp_image_attachmentsx;
+drop table cr_wp_image_attachments;
+
+drop view cr_wp_file_attachmentsi;
+drop view cr_wp_file_attachmentsx;
+drop table cr_wp_file_attachments;
 
 drop view cr_wp_slidesi;
 drop view cr_wp_slidesx;
@@ -516,5 +494,9 @@ drop view cr_wp_presentationsx;
 drop table cr_wp_presentations;
 
 drop table wp_styles;
+drop function wp_slide__get_bullet_items_revision(integer);
+drop function wp_slide__get_postamble_revision(integer);
+drop function wp_slide__get_bullet_items(integer);
+drop function wp_slide__get_postamble(integer);
 
-
+drop function wp_presentation__set_live_revision(integer);

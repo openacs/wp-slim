@@ -25,4 +25,4 @@ if {![regexp {attach/([0-9]+)/(.*)} $url match attach_id file_name]} {
     ad_return_error "Wimpy Point" "Could not get a pres_item_id and slide_item_id out of url=$url"
 }
 
-cr_write_content -item_id $attach_id
+cr_write_content -revision_id $attach_id

@@ -15,6 +15,11 @@ ad_page_contract {
     file_name:notnull
 }
 
+# DRB: This code actually should never be called except for images, since
+# the user isn't allowed to change the display attribute for links (rather
+# stupid, but that's the way it is).  Rather than allow the user the opportunity
+# to try to make such a change, only to deny it with the following code, I've
+# changed the calling page to suppress the option except for images...
 
 # check mime type
 set mime_type [db_string get_mime_type {
@@ -24,17 +29,12 @@ set mime_type [db_string get_mime_type {
 }]
 
 if { ![empty_string_p $display] } {
-    if { ![string equal $mime_type "image/gif"] &&
-    ![string equal $mime_type "image/jpeg"] } {
+    if { [cr_registered_type_for_mime_type $mime_type] != "image" } {
 	ad_return_complaint 1 "<li>The file is neither a .gif file nor a .jpg file. Therefore we cannot display it as an image."
 	return
     }
+    db_dml display_change ""
 }
 
-db_dml display_chagne {
-    update cr_wp_attachments
-    set display = :display
-    where attach_id = :revision_id
-}
 
 ad_returnredirect "attach-detail?[export_url_vars slide_item_id attach_item_id file_name]"

@@ -34,32 +34,32 @@ from cr_wp_slides s, cr_items i
 where i.item_id = :slide_item_id
 and   i.live_revision = s.slide_id
 }
-
-db_1row get_pre_info {
-  select content as preamble
-  from cr_revisions, cr_items
-  where cr_items.content_type = 'cr_wp_slide_preamble'
-  and cr_items.parent_id = :slide_item_id
-  and cr_revisions.revision_id = cr_items.live_revision
-}
-
-db_1row get_pos_info {
-elect content as postamble
-  from cr_revisions, cr_items
-  where cr_items.content_type = 'cr_wp_slide_postamble' 
-  and cr_items.parent_id = :slide_item_id
-  and cr_revisions.revision_id = cr_items.live_revision
-}
-
-db_1row get_bul_info {
-select content as bullet_items
-  from cr_revisions, cr_items
-  where cr_items.content_type = 'cr_wp_slide_bullet_items'
-  and cr_items.parent_id = :slide_item_id
-  and cr_revisions.revision_id = cr_items.live_revision;
-}
-
-
+#
+#db_1row get_pre_info {
+#  select content as preamble
+#  from cr_revisions, cr_items
+#  where cr_items.content_type = 'cr_wp_slide_preamble'
+#  and cr_items.parent_id = :slide_item_id
+#  and cr_revisions.revision_id = cr_items.live_revision
+#}
+#
+#db_1row get_pos_info {
+#  select content as postamble
+#  from cr_revisions, cr_items
+#  where cr_items.content_type = 'cr_wp_slide_postamble' 
+#  and cr_items.parent_id = :slide_item_id
+#  and cr_revisions.revision_id = cr_items.live_revision
+#}
+#
+#db_1row get_bul_info {
+#select content as bullet_items
+#  from cr_revisions, cr_items
+#  where cr_items.content_type = 'cr_wp_slide_bullet_items'
+#  and cr_items.parent_id = :slide_item_id
+#  and cr_revisions.revision_id = cr_items.live_revision;
+#}
+#
+#
 
 set bullet_num [llength $bullet_items]
 

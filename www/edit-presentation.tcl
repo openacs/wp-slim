@@ -45,15 +45,6 @@ db_1row get_back_data {
     and r.revision_id = i.live_revision
 }
 
-#set public_p [db_string get_public_read_p "
-#select decode(count(*),1,'t','f')
-#from acs_permissions
-#where object_id = :pres_item_id
-#and upper(privilege)='WP_VIEW_PRESENTATION' 
-#and grantee_id = acs.magic_object_id('the_public')
-#"]
-
-
 set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]"  "$pres_title"] "Edit Presentation"]
 
 ad_return_template

@@ -61,7 +61,7 @@ create table wp_styles (
 -- Insert the magic, "default" style.
 insert into wp_styles(style_id, name, css)
 values(-1, 'Default (Plain)',
-       'BODY { background-color: white; color: black } P { line-height: 120% } UL { line-height: 140% }');
+       'BODY { back-color: white; color: black } P { line-height: 120% } UL { line-height: 140% }');
 
 
 create table cr_wp_presentations (
@@ -123,21 +123,21 @@ create table cr_wp_slides (
                                 references wp_styles
 );
 
-create table cr_wp_presentations_audience (
+create table cr_wp_presentations_aud (
 	id 		references cr_revisions,
 	presentation_id	integer
-			constraint cr_wp_paud_pid_nn
+			constraint cr_wp_paudience_pid_nn
 			not null
-			constraint cr_wp_paud_pid_fk
+			constraint cr_wp_paudience_pid_fk
                        	references cr_wp_presentations
 );
 
-create table cr_wp_presentations_background (
+create table cr_wp_presentations_back (
 	id 		references cr_revisions,
 	presentation_id	integer
-			constraint cr_wp_pback_pid_nn
+			constraint cr_wp_pbackground_pid_nn
 			not null
-			constraint cr_wp_pback_pid_fk
+			constraint cr_wp_pbackground_pid_fk
                        	references cr_wp_presentations
 );
 
@@ -171,18 +171,18 @@ create table cr_wp_slides_bullet_items (
 
 begin
   content_type.create_type (
-    content_type  => 'cr_wp_presentation_audience',
+    content_type  => 'cr_wp_presentation_aud',
     pretty_name   => 'WimpyPoint Presentation Audience',
     pretty_plural => 'WimpyPoint Presentation Audience',
-    table_name    => 'cr_wp_presentations_audience',
+    table_name    => 'cr_wp_presentations_aud',
     id_column     => 'id'
   );
 
   content_type.create_type (
-    content_type  => 'cr_wp_presentation_background',
+    content_type  => 'cr_wp_presentation_back',
     pretty_name   => 'WimpyPoint Presentation Background',
     pretty_plural => 'WimpyPoint Presentation Background',
-    table_name    => 'cr_wp_presentations_background',
+    table_name    => 'cr_wp_presentations_back',
     id_column     => 'id'
   );
 
@@ -355,7 +355,7 @@ declare
 begin
   
   attr_id := content_type.create_attribute (
-    content_type   => 'cr_wp_presentation_audience',
+    content_type   => 'cr_wp_presentation_aud',
     attribute_name => 'presentation_id',
     datatype       => 'integer',
     pretty_name    => 'Prsentation ID',
@@ -364,7 +364,7 @@ begin
   );
 
   attr_id := content_type.create_attribute (
-    content_type   => 'cr_wp_presentation_background',
+    content_type   => 'cr_wp_presentation_back',
     attribute_name => 'presentation_id',
     datatype       => 'integer',
     pretty_name    => 'Prsentation ID',
@@ -405,8 +405,8 @@ show errors
 
 
 begin
-  content_type.register_child_type('cr_wp_presentation', 'cr_wp_presentation_audience', 'generic');
-  content_type.register_child_type('cr_wp_presentation', 'cr_wp_presentation_background', 'generic');
+  content_type.register_child_type('cr_wp_presentation', 'cr_wp_presentation_aud', 'generic');
+  content_type.register_child_type('cr_wp_presentation', 'cr_wp_presentation_back', 'generic');
   content_type.register_child_type('cr_wp_presentation', 'cr_wp_slide', 'generic');
 
   content_type.register_child_type('cr_wp_slide', 'cr_wp_slide_preamble', 'generic');
@@ -418,8 +418,8 @@ show errors
 
 begin
   content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_presentation');
-  content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_presentation_audience');
-  content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_presentation_background');
+  content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_presentation_aud');
+  content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_presentation_back');
   content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_slide');
   content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_slide_preamble');
   content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_slide_postamble');
@@ -435,16 +435,27 @@ show errors
 -- ???? should references cr_items
 
 
--- File attachments (including images).
-create table cr_wp_attachments (
+-- File attachments - always displayed as a link
+
+create table cr_wp_file_attachments (
 	attach_id	integer
-		        constraint cr_wattach_attach_id_fk
+		        constraint cr_fattach_attach_id_fk
 			references cr_revisions
-			constraint cr_wattach_attach_id_pk
+			constraint cr_fattach_attach_id_pk
+			primary key
+);
+
+-- Image attachments.  May or may not be displayed as a link.
+
+create table cr_wp_image_attachments (
+	attach_id	integer
+		        constraint cr_iattach_attach_id_fk
+			references cr_revisions
+			constraint cr_iattach_attach_id_pk
 			primary key,
 	-- Display how? null for a link
         display         varchar(20)
-	                constraint cr_wattach_display_ck
+	                constraint cr_iattach_display_ck
 			check(display in ('preamble', 'bullets', 'postamble', 'top', 'after_preamble', 'after_bullets', 'bottom'))
 );
 
@@ -453,15 +464,33 @@ declare
   attr_id        acs_attributes.attribute_id%TYPE;
 begin
   content_type.create_type (
-    content_type  => 'cr_wp_attachment',
-    pretty_name   => 'Wimpy Attachment',
-    pretty_plural => 'Wimpy Attachments',
-    table_name    => 'cr_wp_attachments',
+    content_type  => 'cr_wp_image_attachment',
+    supertype     => 'image',
+    pretty_name   => 'Wimpy Image Attachment',
+    pretty_plural => 'Wimpy Image Attachments',
+    table_name    => 'cr_wp_image_attachments',
     id_column     => 'attach_id'
   );
 
   attr_id := content_type.create_attribute (
-    content_type   => 'cr_wp_attachment',
+    content_type   => 'cr_wp_image_attachment',
+    attribute_name => 'display',
+    datatype       => 'text',
+    pretty_name    => 'Where to display',
+    pretty_plural  => 'Where to display',
+    column_spec    => 'varchar2(20)'
+  );
+
+  content_type.create_type (
+    content_type  => 'cr_wp_file_attachment',
+    pretty_name   => 'Wimpy File Attachment',
+    pretty_plural => 'Wimpy File Attachments',
+    table_name    => 'cr_wp_file_attachments',
+    id_column     => 'attach_id'
+  );
+
+  attr_id := content_type.create_attribute (
+    content_type   => 'cr_wp_file_attachment',
     attribute_name => 'display',
     datatype       => 'text',
     pretty_name    => 'Where to display',
@@ -475,13 +504,15 @@ show errors
 
 
 begin
-  content_type.register_child_type('cr_wp_slide', 'cr_wp_attachment', 'generic');
+  content_type.register_child_type('cr_wp_slide', 'cr_wp_image_attachment', 'generic');
+  content_type.register_child_type('cr_wp_slide', 'cr_wp_file_attachment', 'generic');
 end;
 /
 show errors
 
 begin
-  content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_attachment');
+  content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_image_attachment');
+  content_folder.register_content_type(content_item.c_root_folder_id, 'cr_wp_file_attachment');
 end;
 /
 show errors
@@ -699,16 +730,11 @@ end wp_slide;
 /
 show errors
 
+-- DRB: Creating an attachment is handled by cr_import_content
 
 create or replace package wp_attachment
 as
-  function new (
-    slide_item_id        	in cr_items.item_id%TYPE,
-    creation_date		in acs_objects.creation_date%TYPE default sysdate,
-    creation_user		in acs_objects.creation_user%TYPE default null,
-    creation_ip			in acs_objects.creation_ip%TYPE default null
-  ) return cr_items.item_id%TYPE;
-    
+
   procedure delete (
     attach_item_id	in cr_items.item_id%TYPE
   );
@@ -720,9 +746,6 @@ as
 end wp_attachment;
 /
 show errors
-
-
-
     
 create or replace package body wp_presentation
 as
@@ -802,9 +825,9 @@ as
     );
 
     v_audience_item_id := content_item.new(
-      name          => 'audience',
+      name          => 'aud',
       parent_id     => v_item_id,		
-      content_type  => 'cr_wp_presentation_audience',
+      content_type  => 'cr_wp_presentation_aud',
       creation_date => creation_date,
       creation_user => creation_user,
       creation_ip   => creation_ip
@@ -821,7 +844,7 @@ as
 
     content_item.set_live_revision(v_audience_revision_id);
 
-    insert into cr_wp_presentations_audience
+    insert into cr_wp_presentations_aud
     (
     id,
     presentation_id
@@ -833,9 +856,9 @@ as
     );
 
     v_background_item_id := content_item.new(
-      name          => 'background',
+      name          => 'back',
       parent_id     => v_item_id,
-      content_type  => 'cr_wp_presentation_background',
+      content_type  => 'cr_wp_presentation_back',
       creation_date => creation_date,
       creation_user => creation_user,
       creation_ip   => creation_ip
@@ -852,7 +875,7 @@ as
 
     content_item.set_live_revision(v_background_revision_id);
 
-    insert into cr_wp_presentations_background
+    insert into cr_wp_presentations_back
     (
     id,
     presentation_id
@@ -872,8 +895,8 @@ as
   )
   is
   begin
-    delete from cr_wp_presentations_audience
-    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_audience.id and item_id = audience_item_id);
+    delete from cr_wp_presentations_aud
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_aud.id and item_id = audience_item_id);
     
     delete from cr_item_publish_audit
     where item_id = audience_item_id;
@@ -886,8 +909,8 @@ as
   )
   is
   begin
-    delete from cr_wp_presentations_background
-    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_background.id and item_id = background_item_id);
+    delete from cr_wp_presentations_back
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_presentations_back.id and item_id = background_item_id);
     
     delete from cr_item_publish_audit
     where item_id = background_item_id;
@@ -913,14 +936,14 @@ as
 
     select item_id into v_audience_item_id
     from cr_items
-    where content_type = 'cr_wp_presentation_audience'
+    where content_type = 'cr_wp_presentation_aud'
     and   parent_id = pres_item_id;
 
     delete_audience(v_audience_item_id);
 
     select item_id into v_background_item_id
     from cr_items
-    where content_type = 'cr_wp_presentation_background'
+    where content_type = 'cr_wp_presentation_back'
     and   parent_id = pres_item_id;
 
     delete_audience(v_background_item_id);
@@ -939,7 +962,7 @@ as
   begin
     select content into v_blob
     from cr_revisions, cr_items
-    where cr_items.content_type = 'cr_wp_presentation_audience'
+    where cr_items.content_type = 'cr_wp_presentation_aud'
     and cr_items.parent_id = pres_item_id
     and cr_revisions.revision_id = cr_items.live_revision;
     return v_blob;
@@ -953,7 +976,7 @@ as
   begin
     select r.content into v_blob
     from cr_revisions r,
-         cr_wp_presentations_audience pa
+         cr_wp_presentations_aud pa
     where pa.presentation_id = pres_revision_id
     and r.revision_id = pa.id;
     return v_blob;
@@ -967,7 +990,7 @@ as
   begin
     select content into v_blob
     from cr_revisions, cr_items
-    where cr_items.content_type = 'cr_wp_presentation_background'
+    where cr_items.content_type = 'cr_wp_presentation_back'
     and cr_items.parent_id = pres_item_id
     and cr_revisions.revision_id = cr_items.live_revision;
     return v_blob;
@@ -981,7 +1004,7 @@ as
   begin
     select r.content into v_blob
     from cr_revisions r,
-         cr_wp_presentations_background pb
+         cr_wp_presentations_back pb
     where pb.presentation_id = pres_revision_id
     and r.revision_id = pb.id;
     return v_blob;
@@ -1046,7 +1069,7 @@ as
     select item_id into v_audience_item_id
     from cr_items
     where parent_id = pres_item_id
-    and   content_type = 'cr_wp_presentation_audience';
+    and   content_type = 'cr_wp_presentation_aud';
 
     v_audience_revision_id := content_revision.new(
         creation_date => creation_date,
@@ -1059,7 +1082,7 @@ as
 
     content_item.set_live_revision(v_audience_revision_id);
 
-    insert into cr_wp_presentations_audience
+    insert into cr_wp_presentations_aud
     (
     id,
     presentation_id
@@ -1073,7 +1096,7 @@ as
     select item_id into v_background_item_id
     from cr_items
     where parent_id = pres_item_id
-    and   content_type = 'cr_wp_presentation_background';
+    and   content_type = 'cr_wp_presentation_back';
 
     v_background_revision_id := content_revision.new(
         creation_date => creation_date,
@@ -1086,7 +1109,7 @@ as
 
     content_item.set_live_revision(v_background_revision_id);
 
-    insert into cr_wp_presentations_background
+    insert into cr_wp_presentations_back
     (
     id,
     presentation_id
@@ -1343,7 +1366,7 @@ as
     cursor v_attach_cursor is
     select item_id as attach_item_id
     from cr_items
-    where content_type = 'cr_wp_attachment'
+    where content_type in ('cr_wp_image_attachment', 'cr_wp_file_attachment')
     and   parent_id = slide_item_id;
   begin
     for c in v_attach_cursor loop
@@ -1615,25 +1638,17 @@ show errors
 
 create or replace package body wp_attachment
 as
-  function new (
-    slide_item_id        	in cr_items.item_id%TYPE,
-    creation_date		in acs_objects.creation_date%TYPE default sysdate,
-    creation_user		in acs_objects.creation_user%TYPE default null,
-    creation_ip			in acs_objects.creation_ip%TYPE default null
-  ) return cr_items.item_id%TYPE
-  is
-    v_item_id cr_items.item_id%TYPE;
-  begin
-    return v_item_id;
-  end;
     
   procedure delete (
     attach_item_id	in cr_items.item_id%TYPE
   )
   is
   begin
-    delete from cr_wp_attachments
-    where exists (select 1 from cr_revisions where revision_id = cr_wp_attachments.attach_id and item_id = attach_item_id);
+    delete from cr_wp_image_attachments
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_image_attachments.attach_id and item_id = attach_item_id);
+
+    delete from cr_wp_file_attachments
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_file_attachments.attach_id and item_id = attach_item_id);
     
     delete from cr_item_publish_audit
     where item_id = attach_item_id;
