@@ -19,7 +19,7 @@
         </if>
 </multiple>
 
-<table width=100%>
+<table width="100%">
 <tr>
 <td>
 <p>@preamble@
@@ -43,7 +43,7 @@
         </if>
 </multiple>
 
-<table width=100%>
+<table width="100%">
 <tr>
 <td>
 <ul>
@@ -69,7 +69,7 @@
         </if>
 </multiple>
 
-<table width=100%>
+<table width="100%">
 <tr>
 <td>
 <p>@postamble@

@@ -87,8 +87,6 @@ exception
 end;
 }]
 
-set db [ns_db gethandle]
-
 set path $tmp_filename
 
 if {[string equal $guessed_file_type "*/*"]} {
@@ -104,7 +102,5 @@ if {[string equal $guessed_file_type "*/*"]} {
 	where not exists (select 1 from cr_mime_types where mime_type = :mime_type)
     }
 }
-
-ns_db releasehandle $db
 
 ad_returnredirect edit-slide?[export_url_vars slide_item_id pres_item_id]

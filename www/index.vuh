@@ -15,6 +15,9 @@ ad_page_contract {
 # which makes some db querries, then that .tcl file calls ad_return_template to return its
 # template.
 
+# DRB: This is mildly insane.  Either we should implement templated virtual URLs or 
+# package authors should live with ugly URLs.
+
 set url [ad_conn extra_url]
 
 set subsite_name [ad_conn package_url]
@@ -50,7 +53,7 @@ if {[regexp {^display/([0-9]+)/?$} $url match pres_item_id]} {
     adp_parse_ad_conn_file 
 } else {
     # Didn't understand the URL.
-    ns_log notice "## Wimpy Point: Sorry I could not resolve the URL you requested."
+    ns_log notice "## Wimpy Point: Sorry I could not resolve the URL you requested: $url"
     ad_return_error "Wimpy Point Error" "Sorry I could not resolve the URL you requested."
     return
 }
