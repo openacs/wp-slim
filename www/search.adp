@@ -1,6 +1,6 @@
 <master>
 <property name=title>User Search <if @group_name@ not nil>in @group_name@</if></property>
-<property name="context">@context@</property>
+<property name="context">"User search"</property>
 
 Search 
 <if @search_type@ eq "keyword">
