@@ -21,16 +21,7 @@ set package_id [ad_conn package_id]
 
 set context "[list "[_ wp-slim.All_Authors]"]"
 
-db_multirow users get_wp_users {
-    select p.person_id, p.first_names, p.last_name, parties.email, count(i.item_id) as num_presentations
-    from persons p, cr_items i, acs_objects o, parties
-    where i.content_type = 'cr_wp_presentation'
-    and   o.object_id = i.item_id
-    and   p.person_id = o.creation_user
-    and   parties.party_id = p.person_id
-    and   o.context_id = :package_id
-    group by p.person_id, p.first_names, p.last_name, parties.email
-}
+db_multirow users get_wp_users { *SQL* }
 
 
 ad_return_template

@@ -49,7 +49,7 @@
 
 <ul>
 <multiple name=allpresentations>
-<li><a href="display/@allpresentations.pres_item_id@/">@allpresentations.pres_title@</a>#wp-slim.lt_created_by_a_hrefshar#
+<li><a href="display/@allpresentations.pres_item_id@/">@allpresentations.pres_title@</a>&nbsp;#wp-slim.lt_created_by_a_hrefshar#
 </multiple>
 </ul>
 

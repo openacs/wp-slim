@@ -6,7 +6,7 @@
 
 <ul>
 <multiple name=users>
-<li><a href="/shared/community-member?user_id=@users.person_id@">@users.first_names@ @users.last_name@</a>, @users.email@ (@users.num_presentations@)
+<li><a href="/shared/community-member?user_id=@users.person_id@">@users.first_names@ @users.last_name@</a> (@users.num_presentations@)
 </multiple>
 </ul>
 
