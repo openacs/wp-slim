@@ -11,7 +11,7 @@
      <multiple name="slides">
      <tr>
      <td>@slides.sort_key@.</td>
-     <td> <a href="@subsite_name@display/@pres_item_id@/@slides.slide_item_id@.wimpy">@slides.slide_title@</a> </td>
+     <td> <a href="@subsite_name@display/@pres_item_id@/@slides.slide_item_id@.wimpy">@slides.slide_title;noquote@</a> </td>
      <td>
      [ #wp-slim.Preamble#
      <a href="add-edit-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@&edit_slide=1&edit_preamble=1">

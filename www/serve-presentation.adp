@@ -15,7 +15,7 @@
 </tr>
 </table>
        
-<h2>@pres_title@</h2>
+<h2>@pres_title;noquote@</h2>
 #wp-slim.lt_a_Wimpy_Point_Present# <a href="/shared/community-member?user_id=@owner_id@">@owner_name@</a>
 <if @collaborators:rowcount@ gt 0>
 <br> #wp-slim.lt_in_collaboration_with# 
@@ -29,7 +29,7 @@
 
 <ul>
 <multiple name="slides">
-        <li><a href="@slides.url@">@slides.slide_title@</a>
+        <li><a href="@slides.url@">@slides.slide_title;noquote@</a>
 </multiple>
 </ul>
 

@@ -11,7 +11,7 @@
 </tr>
 </table>
 
-<h2>@slide_title@</h2>
+<h2>@slide_title;noquote@</h2>
 <if @show_modified_p@ eq t>
 <i>#wp-slim.lt_Last_modified_modifie#</i>
 </if>
@@ -52,7 +52,7 @@
 <td>
 <ul>
 <list name="bullet_items">
-        <li>@bullet_items:item@
+        <li>@bullet_items:item;noquote@
 </list>
 </ul>
 </td>
@@ -95,7 +95,7 @@
 </multiple>
 
 
-@page_signature@
+@page_signature;noquote@
 
 <if @edit_p@ eq 1 or @show_comments_p@ eq "t">
 
