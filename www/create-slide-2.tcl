@@ -6,9 +6,9 @@ ad_page_contract {
      @cvs-id $Id$
 } {
     pres_item_id:naturalnum,notnull
-    slide_title:notnull
+    slide_title:notnull,html
     sort_key:naturalnum
-    preamble:html
+    preamble:html,html
     array_max:integer
     bullet:array,html
     postamble:html   
