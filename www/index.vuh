@@ -1,0 +1,58 @@
+ad_page_contract {
+    # /index.vuh
+
+    # This file is meant to receive URL requests that look like
+    # /display/1256/ (display the beginning of the presentation with pres_item_id=1256)
+    # /display/1256/3457.wimpy (display slide with slide_item_id=3457 of presentation with pres_item_id=1256)
+    @author Paul Konigsberg (paulk@arsdigita.com)
+    @cvs-id $Id$
+} {
+} 
+
+# Here's the deal. With ACS 4.0.1 .vuh files aren't supported with templates.
+# Thats why I had to do this crazy deal with the global ad_conn, set ad_conn(file)
+# and adp_parse_ad_conn_file.... What all that does is call a .tcl file
+# which makes some db querries, then that .tcl file calls ad_return_template to return its
+# template.
+
+set url [ad_conn extra_url]
+
+set subsite_name [ad_conn package_url]
+regexp {^(.+)/$} $subsite_name match subsite_name
+
+set file_path [ad_conn file]
+regexp {^(.*)/.*$} $file_path match file_path
+
+if {[regexp {^display/([0-9]+)/?$} $url match pres_item_id]} {   
+    # Serve the beginning of a presentation.
+    global ad_conn
+    set ad_conn(file) "$file_path/serve-presentation.tcl"
+    adp_parse_ad_conn_file
+} elseif {[regexp {^presentation_revision/([0-9]+)/([0-9]+)} $url match pres_item_id pre_revision_id]} {
+    # Serve a specific presentation revision
+    global ad_conn
+    set ad_conn(file) "$file_path/serve-presentation-revision.tcl"
+    adp_parse_ad_conn_file
+} elseif {[regexp {^display/([0-9]+)/([0-9]+)\.wimpy} $url match pres_item_id slide_item_id]} {
+    # Serve a specific slide.
+    global ad_conn
+    set ad_conn(file) "$file_path/serve-slide.tcl"
+    adp_parse_ad_conn_file
+} elseif {[regexp {^slide_revision/([0-9]+)/([0-9]+)/([0-9]+)\.wimpy} $url match pres_item_id slide_item_id slide_revision_id]} {
+    # Serve a specific slide revision
+    global ad_conn
+    set ad_conn(file) "$file_path/serve-slide-revision.tcl"
+    adp_parse_ad_conn_file
+} elseif {[regexp {^attach/([0-9]+)/(.*)} $url match attach_id file_name]} {
+    # Serve a specific attachment
+    global ad_conn
+    set ad_conn(file) "$file_path/get-binary-data.tcl"
+    adp_parse_ad_conn_file 
+} else {
+    # Didn't understand the URL.
+    ns_log notice "## Wimpy Point: Sorry I could not resolve the URL you requested."
+    ad_return_error "Wimpy Point Error" "Sorry I could not resolve the URL you requested."
+    return
+}
+
+
