@@ -81,10 +81,7 @@ the clear.
   </tr>
   <tr>
     <th nowrap align=right>Style:</th>
-    <td><select name=style>
-<option value=-1 selected>Default (Plain)
-
-</select>
+    <td>@available_styles@
     </td>
   </tr>
   <tr>

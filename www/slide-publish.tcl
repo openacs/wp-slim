@@ -10,7 +10,12 @@ ad_page_contract {
 } {
     revision_id:naturalnum,notnull
     return_url:notnull
+    pres_item_id:notnull
 }
+
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
 db_exec_plsql live_revision_set {
     declare

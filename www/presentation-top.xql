@@ -14,5 +14,5 @@ order by s.sort_key
       </querytext>
 </fullquery>
 
- 
+
 </queryset>

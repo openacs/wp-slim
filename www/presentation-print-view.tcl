@@ -2,7 +2,8 @@
 ad_page_contract {
 This  generates a printer friendly view of a presentation, suitable for print-out thru' a browser.
     @author Samir Joshi(samir@symphinity.com)
-    @creation-date Thu 8 Aug 2002
+    @author Rocael HR (roc@viaro.net)
+    @creation-date Thu 1 Apr 2003
 
 } {
    item_id:naturalnum,notnull
@@ -18,7 +19,11 @@ This  generates a printer friendly view of a presentation, suitable for print-ou
     owner_name:onevalue
     owner_id : onevalue
 }
+
+set context [list "Print View"]
 set user_id [ad_verify_and_get_user_id]
+## permission checking roc@
+permission::require_permission -party_id $user_id -object_id $item_id -privilege wp_view_presentation
 
 set subsite_name [ad_conn package_url]
 regexp {^(.+)/$} $subsite_name match subsite_name

@@ -7,8 +7,7 @@
 Are you sure that you want to delete this slide?
 
 <ul>
-<li>Title:  as
-<li>Contents:
+<li>Title:  @slide_title@
 </ul>
 
 <input type=button value="Yes, delete the slide." onClick="location.href='delete-slide-2?pres_item_id=@pres_item_id@&slide_item_id=@slide_item_id@'">

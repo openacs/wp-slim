@@ -5,10 +5,13 @@ ad_page_contract {
     and give you some options...like creating a new presentation or
     editing an old one.
     
-    @author Paul Konigsberg (paul@arsdigita.com)
+    @author Rocael Hernandez (roc@viaro.net) openacs package owner
+    @author Paul Konigsberg (paul@arsdigita.com, original)
     @creation-date Wed Nov  8 17:33:21 2000
     @cvs-id $Id$
 } {
+    {show_age:integer "14"}
+    {show_user "yours"}
 }
 
 set package_id [ad_conn package_id]
@@ -17,47 +20,26 @@ set context [list]
 
 set user_id [ad_verify_and_get_user_id]
 
+set show_user_value "show_user=$show_user"
+set show_age_value "show_age=$show_age"
+
+if {$show_age != 0} {
+    if {[db_type] == "oracle"} { set date sysdate } else { set date "now()" }
+    set extra_where_clauses "and ao.creation_date >= ($date - $show_age)"
+} else {
+    set extra_where_clauses ""
+}
+
 if {$user_id == 0} {
-    db_multirow allpresentations get_all_public_presentations { 
-	select i.item_id as pres_item_id,
-	pres.pres_title,
-	to_char(ao.creation_date, 'Month DD, YYYY') as creation_date,
-	ao.creation_user,
-	p.first_names || ' ' || p.last_name as full_name
-	from cr_items i, cr_wp_presentations pres, persons p, acs_objects ao
-	where i.live_revision = pres.presentation_id
-	and   ao.object_id = i.item_id
-	and   ao.creation_user = p.person_id
-	and   pres.public_p = 't'
-    }
+    db_multirow allpresentations get_all_public_presentations { *SQL* }
     
     set return_url [ns_urlencode [ad_conn url]]
     ad_return_template index-unregistered
 } else {
-    db_multirow presentations get_my_presentations { 
-	select i.item_id as pres_item_id,
-	p.pres_title,
-	to_char(ao.creation_date, 'Month DD, YYYY') as creation_date
-	from cr_items i, cr_wp_presentations p, acs_objects ao
-	where i.live_revision = p.presentation_id
-	and   ao.object_id = i.item_id
-	and   ao.creation_user = :user_id
-    }
+    db_multirow presentations get_my_presentations { *SQL* }
 
-    db_multirow allpresentations get_all_visible_presentations { 
-	select i.item_id as pres_item_id,
-	pres.pres_title,
-	to_char(ao.creation_date, 'Month DD, YYYY') as creation_date,
-	ao.creation_user,
-	p.first_names || ' ' || p.last_name as full_name,
-	acs_permission.permission_p(i.item_id, :user_id, 'wp_edit_presentation') as edit_p
-	from cr_items i, cr_wp_presentations pres, persons p, acs_objects ao
-	where i.live_revision = pres.presentation_id
-	and   ao.object_id = i.item_id
-	and   ao.creation_user <> :user_id
-	and   ao.creation_user = p.person_id
-	and   acs_permission.permission_p(i.item_id, :user_id,
-'wp_view_presentation') = 'f'
+    if {$show_user == "all"} {
+	db_multirow allpresentations get_all_visible_presentations { *SQL* }
     }
 
     ad_return_template index

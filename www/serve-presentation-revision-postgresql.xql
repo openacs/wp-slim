@@ -10,7 +10,8 @@
            p.page_signature,
            p.copyright_notice,
            p.public_p,
-           p.show_modified_p 
+           p.show_modified_p,
+	   p.style
     from cr_wp_presentations p, cr_items i
     where i.item_id = :pres_item_id
     and   p.presentation_id = :pres_revision_id

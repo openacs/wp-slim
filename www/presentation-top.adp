@@ -3,7 +3,6 @@
 <property name="context">@context@</property>
 
 <h3>The Slides</h3>
-
    <if  @slides:rowcount@ eq 0>
           <a href="create-slide?sort_key=1&pres_item_id=@pres_item_id@">Create the first slide.</a>
    </if>
@@ -16,7 +15,7 @@
      <td>
 [ <a href="edit-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">edit</a> |
 <if @delete_p@ eq t>
-  <a href="delete-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">delete</a> |
+  <a href="delete-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@&slide_title=@slides.slide_title@">delete</a> |
 </if>
 <a href="attach-list?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">attach</a> |
 <a href="slide-revisions?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">view revisions</a>]
@@ -37,6 +36,7 @@
 <h3>Options</h3>
 <ul>
 <li> <a href="display/@pres_item_id@/">Show presentation.</a>
+<li> <a href="presentation-print-view.tcl?item_id=@pres_item_id@">Printer friendly view. </a>
 <li> <a href="edit-presentation?pres_item_id=@pres_item_id@">Edit presentation properties.</a>
 <if @delete_p@ eq t>
   <li> <a href="delete-presentation?pres_item_id=@pres_item_id@&title=@encoded_title@">Delete this presentation.</a>
@@ -49,28 +49,33 @@
 <if @public_p@ eq t>
   <li> Everyone can view the presentation, since it is public.
 </if>
-<multiple name="viewers">
-  <li><a href="/shared/community-member?user_id=@viewers.person_id@">@viewers.full_name@</a>
-  <if @viewers.person_id@ eq @creation_user@>
+<multiple name="users">
+  <li><a href="/shared/community-member?user_id=@users.person_id@">@users.full_name@</a>
+  <if @users.person_id@ eq @creation_user@>
     (creator)
   </if>
-  <if @viewers.person_id@ eq @user_id@>
+  <if @users.person_id@ eq @user_id@>
     (You)
   </if>
-  [
-  <if @viewers.view_p@ eq t>
-    read &nbsp;
+  <if @users.privilege@ eq "wp_admin_presentation">
+  [ admin ]
   </if>
-  <if @viewers.edit_p@ eq t>
-    write &nbsp;
-  </if>
-  <if @viewers.admin_p@ eq t>
-    admin &nbsp;
-  </if>
-  ]
+  <elseif @users.privilege@ eq "wp_edit_presentation">
+  [ editor ]
+  </elseif>
+  <else>
+  [ viewer ]
+  </else>
 </multiple>
+
 <if @admin_p@ eq t>
   <li><a href="presentation-acl?pres_item_id=@pres_item_id@">Change people who can view/edit this presentation</a>
+<if @show_comments_p@ eq "t">
+  <li>All viewers can see the comments (<a href=toggle-comments-view?pres_item_id=@pres_item_id@&presentation_id=@presentation_id@&view=f>make available only for editors</a>)
+	</if>
+<else>
+  <li>Editors can see the comments (<a href=toggle-comments-view?pres_item_id=@pres_item_id@&presentation_id=@presentation_id@&view=t>make available to all viewers</a>)
+</else>
 </if>
 </ul>
 

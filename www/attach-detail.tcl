@@ -30,6 +30,11 @@ set pres_item_id [db_string pres_item_id_get {
     and   item_id = :slide_item_id
 }]
 
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
+
+
 set context [list [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "Edit Slide"] "Details"]
 
 db_multirow revisions revisions_get {

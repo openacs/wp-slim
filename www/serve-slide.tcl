@@ -29,6 +29,18 @@ if {![regexp {display/([0-9]+)/([0-9]+)\.wimpy} $url match pres_item_id slide_it
     ad_return_error "Wimpy Point" "Could not get a pres_item_id and slide_item_id out of url=$url"
 }
 
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_view_presentation
+
+set edit_p 0
+if {[permission::permission_p -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation]} {
+    set edit_p 1
+}
+set delete_p 0
+if {[permission::permission_p -party_id $user_id -object_id $pres_item_id -privilege wp_delete_presentation]} {
+    set delete_p 1
+}
 
 set subsite_name [ad_conn package_url]
 regexp {^(.+)/$} $subsite_name match subsite_name
@@ -48,13 +60,7 @@ db_1row get_slide_info {
     and   ao.object_id = s.slide_id
 }
 
-db_1row get_presentation_page_signature {
-    select p.page_signature,
-    p.show_modified_p
-    from cr_wp_presentations p, cr_items i
-    where i.item_id = :pres_item_id
-    and   i.live_revision = p.presentation_id
-}
+db_1row get_presentation_page_signature { *SQL* }
 
 set context [list [list "$subsite_name/display/$pres_item_id" "one presentation"] "one slide"]
 
@@ -90,10 +96,8 @@ if {!$found_slide} {
     if {$sort_key == 1} {        
 	# this is the only slide.
 	set href_back ""
-	set href_forward "<a href=\"$subsite_name/display/$pres_item_id\">top</a>"
-    } else { 
-        set href_forward {}
     }
+        set href_forward "<a href=\"$subsite_name/display/$pres_item_id\">top</a>"
 } else {
     set href_forward "<a href=\"$subsite_name/display/$pres_item_id/${next_slide_item_id}.wimpy\">next</a>"
 }
@@ -107,5 +111,22 @@ db_multirow attach_list get_attachments {
     and   i.live_revision = x.attach_id
 }
 
-set href_back_forward "$href_back $href_forward"
+set extra ""
+if {$edit_p == 1} {
+    append extra "<a href=\"$subsite_name/edit-slide?[export_url_vars slide_item_id pres_item_id]\">edit</a> | "
+}
+if {$delete_p == 1} {
+    append extra "<a href=\"$subsite_name/delete-slide?[export_url_vars slide_item_id pres_item_id slide_title]\">delete</a> |"
+}
+
+set href_back_forward "$href_back $extra $href_forward"
+
+
+#comments capability added roc@
+if {$edit_p == 1 || $show_comments_p == "t"} {
+    set comment_link [general_comments_create_link $slide_item_id $url]
+    set comments [general_comments_get_comments -print_content_p 1 -print_attachments_p 1 \
+             $slide_item_id $url]
+}
+
 ad_return_template serve-slide

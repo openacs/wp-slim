@@ -4,7 +4,7 @@
 
 <ul>
 <multiple name="att">
-<li>@att.name@ (<a href="attach-del?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@">remove</a> | <a href="attach-detail?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@&file_name=@att.name@">details</a>)
+<li>@att.name@ (<a href="attach-del?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@&pres_item_id=@pres_item_id@">remove</a> | <a href="attach-detail?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@&file_name=@att.name@&pres_item_id=@pres_item_id@">details</a>)
 </multiple>
 </ul>
 

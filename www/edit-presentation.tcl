@@ -19,14 +19,14 @@ ad_page_contract {
 }
 
 
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
+
 set header [ad_header "Edit Presentation"]
 
-db_1row get_presentation_data {
-    select p.pres_title, p.page_signature, p.copyright_notice, p.public_p, p.show_modified_p 
-    from cr_wp_presentations p, cr_items i
-    where i.item_id = :pres_item_id
-    and   i.live_revision = p.presentation_id
-}
+db_1row get_presentation_data { *SQL* }
+
 
 db_1row get_aud_data {
     select name as audience
@@ -52,5 +52,21 @@ set page_signature [ad_quotehtml $page_signature]
 set copyright_notice [ad_quotehtml $copyright_notice]
 set audience [ad_quotehtml $audience]
 set background [ad_quotehtml $background]
+
+set items [db_list_of_lists wp_styles { *SQL* }]
+
+    set names [list]
+    set values [list]
+    foreach image $items {
+	lappend names [lindex $image 1]
+	lappend values [lindex $image 0]
+    }
+
+    lappend names "none" 
+    lappend values -1 
+
+    set available_styles "<select name=style>
+    [ad_generic_optionlist $names $values $style]</select>\n"
+
 
 ad_return_template

@@ -51,6 +51,11 @@ if {[regexp {^display/([0-9]+)/?$} $url match pres_item_id]} {
     global ad_conn
     set ad_conn(file) "$file_path/get-binary-data.tcl"
     adp_parse_ad_conn_file 
+} elseif {[regexp {^styles/(default|[0-9]+)/(.*)} $url match style_id file_name]} {
+    # Serve a specific attachment
+    global ad_conn
+    set ad_conn(file) "$file_path/serve-style.tcl"
+    adp_parse_ad_conn_file 
 } else {
     # Didn't understand the URL.
     ns_log notice "## Wimpy Point: Sorry I could not resolve the URL you requested: $url"

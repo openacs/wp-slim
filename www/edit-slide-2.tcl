@@ -24,12 +24,15 @@ ad_page_contract {
 }
 
 
+#added permission checking  roc@
 set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
+
 set creation_ip [ad_conn peeraddr]
 
 # construct the list of bullet_items
 set bullet_items [list]
-for {set index 1} {$index < [expr $bullet_num + 1]} {incr index} {
+for {set index 1} {$index <= [expr $bullet_num + 1]} {incr index} {
     if {![empty_string_p $bullet($index)]} {
         lappend bullet_items $bullet($index)
     }

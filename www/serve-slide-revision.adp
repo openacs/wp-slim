@@ -1,6 +1,9 @@
-<master>
+<master src="wp-presentation-master">
 <property name="title">@slide_title@</property>
 <property name="context">@context@</property>
+<property name="style_id">@style@</property>
+<property name="page_signature">@page_signature@</property>
+<property name="copyright_notice">@copyright_notice@</property>
 
 <if @show_modified_p@ eq t>
 <i>Last modified @modified_date@</i>

@@ -22,21 +22,12 @@ ad_page_contract {
 }
 
 
+#added permission checking  roc@
 set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
-db_1row get_presentaiton {
-select p.public_p,
-       p.pres_title as presentation_title,
-       acs_permission.permission_p(:pres_item_id, :user_id, 'wp_admin_presentation') as admin_p,
-       acs_permission.permission_p(:pres_item_id, :user_id, 'wp_delete_presentation') as delete_p,
-       ao.creation_user
-from cr_wp_presentations p,
-     cr_items i,
-     acs_objects ao
-where i.item_id = :pres_item_id
-and   i.live_revision = p.presentation_id
-and   ao.object_id = :pres_item_id
-}
+
+db_1row get_presentation { *SQL* }
 
 set encoded_title [ns_urlencode $presentation_title]
 set context [list "$presentation_title"]
@@ -51,17 +42,16 @@ and   i.live_revision = s.slide_id
 order by s.sort_key
 }
 
-db_multirow viewers get_viewers {
-    select first_names || ' ' || last_name as full_name,
-           person_id,
-           acs_permission.permission_p(:pres_item_id, person_id, 'wp_view_presentation') as view_p,
-           acs_permission.permission_p(:pres_item_id, person_id, 'wp_edit_presentation') as edit_p,
-           acs_permission.permission_p(:pres_item_id, person_id, 'wp_admin_presentation') as admin_p
-    from persons
-    where acs_permission.permission_p(:pres_item_id, person_id, 'wp_view_presentation') = 't'
-    or    acs_permission.permission_p(:pres_item_id, person_id, 'wp_edit_presentation') = 't'
-    or    acs_permission.permission_p(:pres_item_id, person_id, 'wp_admin_presentation') = 't'
+#lets not show duplicate users for this
+#the oracle select distinct (p.person_id) doesn't work? so lets verify it in the db_multirow, in PG works fine =) roc@
+set users_list [list]
+db_multirow users get_users {} {
+    if {[lsearch $users_list $person_id] != -1} {
+	continue
+    } 
+    lappend users_list $person_id
 }
+
 
 #set public_p [db_string get_permissions {
 #select decode(count(1),1,'The Public','')

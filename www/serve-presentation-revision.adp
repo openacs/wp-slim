@@ -1,6 +1,9 @@
-<master>
+<master src="wp-presentation-master">
 <property name="title">@pres_title@</property>
 <property name="context">@context@</property>
+<property name="style_id">@style@</property>
+<property name="page_signature">@page_signature@</property>
+<property name="copyright_notice">@copyright_notice@</property>
 
 <h3>One Revision</h3>
 

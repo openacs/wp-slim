@@ -105,12 +105,7 @@ entitled <i>Edit one of your styles</i> from WimpyPoint's main page.)
   </tr>
   <tr>
     <th nowrap align=right>Style:</th>
-    <td><select name=style>
-<option value=-1>Default (Plain)
-
-<option value="upload">I'll provide my own
-</select>
-    </td>
+    <td>@available_styles@
   </tr>
   <tr>
     <td></td><td>

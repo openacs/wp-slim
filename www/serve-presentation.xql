@@ -17,7 +17,7 @@
 <fullquery name="get_presentation_info">      
       <querytext>
       
-    select p.pres_title, p.page_signature
+    select p.pres_title, p.page_signature, p.style, p.copyright_notice
     from cr_wp_presentations p, cr_items i
     where i.item_id = :pres_item_id
     and   i.live_revision = p.presentation_id
@@ -50,5 +50,26 @@ order by s.sort_key
       </querytext>
 </fullquery>
 
+
+<fullquery name="get_collaborators">      
+      <querytext>
+      
+    select p.person_id,
+           p.first_names || ' ' || p.last_name as full_name,
+           perm.privilege
+    from persons p,
+         acs_permissions perm
+    where perm.object_id = :pres_item_id
+    and   perm.grantee_id <> :owner_id
+    and   perm.grantee_id = p.person_id
+    and
+    ( perm.privilege = 'wp_edit_presentation'
+     or perm.privilege = 'wp_admin_presentation'
+    ) 
+    order by p.person_id, perm.privilege ASC
+
+
+      </querytext>
+</fullquery>
  
 </queryset>
