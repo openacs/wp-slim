@@ -377,7 +377,7 @@ DROP FUNCTION wp_attachment__new_revision(
 --drop package wp_slide;
 DROP FUNCTION wp_slide__new(
 	integer,
-	timestamp,
+	timestamptz,
 	integer,
 	varchar,
 	varchar,
@@ -417,7 +417,7 @@ DROP FUNCTION wp_slide__get_preamble(
 
 --drop package wp_presentation;
 DROP FUNCTION wp_presentation__new(
-	timestamp,
+	timestamptz,
 	integer,
 	varchar,
 	varchar,
@@ -459,7 +459,7 @@ DROP FUNCTION wp_presentation__get_background(
 );
 
 drop function wp_slide__new_revision(
-    timestamp,
+    timestamptz,
     integer,
     varchar,
     integer,
@@ -474,13 +474,13 @@ drop function wp_slide__new_revision(
     boolean);
 
 drop function wp_presentation__new_revision (
-    timestamp,
+    timestamptz,
     integer,	 
     varchar,	 
     integer,	 
-    varchar(400),    
-    varchar(200),	 
-    varchar(400),	 
+    varchar,    
+    varchar,	 
+    varchar,	 
     integer,		
     boolean,	
     boolean,	
