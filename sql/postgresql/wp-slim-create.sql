@@ -33,8 +33,8 @@
 -- Style for presentation. We'll think more about this later if there's time 
 -- maybe allow ADPs for more flexibility.
 
-insert into cr_mime_types (mime_type) 
-select 'application/octet-stream'
+insert into cr_mime_types (label, mime_type) 
+select 'Binary data', 'application/octet-stream'
 from dual
 where not exists (select 1 from cr_mime_types where mime_type ='application/octet-stream');
 
@@ -716,7 +716,7 @@ drop function inline_11 ();
 
 --jackp: To p_create each presentation
 create function wp_presentation__new (
-	timestamp,
+	timestamptz,
 	integer,
 	varchar(400),
 	varchar(400),	
@@ -1029,7 +1029,7 @@ end;' language 'plpgsql';
    
 
 create function wp_presentation__new_revision (
-    timestamp,
+    timestamptz,
     integer,	 
     varchar,	 
     integer,	 
@@ -1160,7 +1160,7 @@ end;' language 'plpgsql';
 
 create function wp_slide__new (
     integer,
-    timestamp,
+    timestamptz,
     integer,
     varchar,
     varchar,
@@ -1602,7 +1602,7 @@ begin
 end;' language 'plpgsql';
 
 create function wp_slide__new_revision(
-    timestamp,
+    timestamptz,
     integer,
     varchar,
     integer,

@@ -6,7 +6,7 @@
 
 <input type=hidden name=slide_item_id value="@slide_item_id@">
 <input type=hidden name=pres_item_id value="@pres_item_id@">
-<input type=hidden name=bullet_num value="@bullet_num@">
+<input type=hidden name=bullet_num value="@bullets:rowcount@">
 <input type=hidden name=sort_key value="@sort_key@">
 <input type=hidden name=original_slide_id value="@original_slide_id@">
 
@@ -37,16 +37,20 @@ function swapWithNext(index)
     <th align=right nowrap>Bullet Items:</th>
     <td>
       <ul>
-        <input type=hidden name=array_max value=<%=[expr $bullet_num + 2]%>>
-<list name="bullet_items">
-  <if @bullet_items:rownum@ eq 1>
-    <li><input type=text size=60 name=bullet.1 value="@bullet_items:item@">&nbsp;<img src="pics/1white.gif" width=18 height=15"><a href="javascript:swapWithNext(1)"><img src="pics/down.gif" width=18 height=15 border=0></a>
-  </if>
-<else>
-  <li><input type=text size=60 name=bullet.@bullet_items:rownum@ value="@bullet_items:item@">&nbsp;<a href="javascript:swapWithNext(<%=[expr @bullet_items:rownum@ - 1]%>)"><img src="pics/up.gif" width=18 height=15 border=0></a><a href="javascript:swapWithNext(@bullet_items:rownum@)"><img src="pics/down.gif" width=18 height=15 border=0></a>
+
+<multiple name="bullets">
+<li> <if @bullets.widget@ eq "text">
+    <input type="text" name="bullet.@bullets.rownum@" value="@bullets.item@" size="70">
+</if><else>
+    <textarea wrap="soft" rows="@bullets.rows@" cols="60" name="bullet.@bullets.rownum@">@bullets.item@</textarea>
 </else>
-</list>
-<li><input type=text size=60 name=bullet.<%=[expr $bullet_num + 1]%> value="">&nbsp;<a href="javascript:swapWithNext(@bullet_num@)"><img src="pics/up.gif" width=18 height=15 border=0></a><img src="pics/1white.gif" width=18 height=15">
+<if @bullets.prev@ gt 0><a href="javascript:swapWithNext(@bullets.prev@)"><img src="pics/up.gif" width=18 height=15 border=0></a>
+</if><else>
+    <img src="pics/1white.gif" width=18 height=15">
+</else>
+<a href="javascript:swapWithNext(@bullets.rownum@)"><img src="pics/down.gif" width=18 height=15 border=0></a>
+</multiple>
+<li><input type="text" size="70" name="bullet.@bullet_num@" value="">&nbsp;<a href="javascript:swapWithNext(@bullets:rowcount@)"><img src="pics/up.gif" width=18 height=15 border=0></a><img src="pics/1white.gif" width=18 height=15">
 
         <br><i>You can add additional bullets later.</i>
       </ul>
@@ -60,7 +64,6 @@ function swapWithNext(index)
     </td>
   </tr>
 </table>
-
 <p><center>
 <input type=submit name=button value="Save Slide">
 <spacer type=horizontal size=50>

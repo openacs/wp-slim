@@ -31,8 +31,7 @@ and   ao.object_id = :pres_item_id
            acs_permission__permission_p(:pres_item_id, person_id, 'wp_edit_presentation') as edit_p,
            acs_permission__permission_p(:pres_item_id, person_id, 'wp_admin_presentation') as admin_p
     from persons
-    where acs_permission__permission_p(:pres_item_id, person_id,
-'wp_view_presentation') = 'f'
+    where acs_permission__permission_p(:pres_item_id, person_id, 'wp_view_presentation') = 't'
     or    acs_permission__permission_p(:pres_item_id, person_id, 'wp_edit_presentation') = 't'
     or    acs_permission__permission_p(:pres_item_id, person_id, 'wp_admin_presentation') = 't'
 

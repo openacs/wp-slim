@@ -47,4 +47,10 @@ db_1row get_back_data {
 
 set context [list [list "presentation-top?[export_url_vars pres_item_id]"  "$pres_title"] "Edit Presentation"]
 
+# quote html tags
+set page_signature [ad_quotehtml $page_signature]
+set copyright_notice [ad_quotehtml $copyright_notice]
+set audience [ad_quotehtml $audience]
+set background [ad_quotehtml $background]
+
 ad_return_template

@@ -19,7 +19,7 @@ set user_id [ad_verify_and_get_user_id]
 set creation_ip [ad_conn peeraddr]
 
 set tmp_filename [ns_queryget attachment.tmpfile]
-set mime_type [ns_guesstype $attachment]
+set mime_type [cr_filename_to_mime_type -create $attachment]
 set tmp_size [file size $tmp_filename]
 
 # strip off the C:\directories... crud and just get the file name

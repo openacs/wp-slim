@@ -1,4 +1,4 @@
-<master>
+<master src="wp-presentation-master">
 <property name="title">@slide_title@</property>
 <property name="context">@context@</property>
 
@@ -8,9 +8,11 @@
 </tr>
 </table>
 
+<h2>@slide_title@</h2>
 <if @show_modified_p@ eq t>
 <i>Last modified @modified_date@</i>
 </if>
+<hr>
 
 <multiple name="attach_list">
         <if @attach_list.display@ eq "top">
