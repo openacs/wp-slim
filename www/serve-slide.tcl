@@ -88,6 +88,8 @@ if {!$found_slide} {
 	# this is the only slide.
 	set href_back ""
 	set href_forward "<a href=\"$subsite_name/display/$pres_item_id\">top</a>"
+    } else { 
+        set href_forward {}
     }
 } else {
     set href_forward "<a href=\"$subsite_name/display/$pres_item_id/${next_slide_item_id}.wimpy\">next</a>"
