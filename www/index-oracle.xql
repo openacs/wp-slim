@@ -3,6 +3,14 @@
 <queryset>
    <rdbms><type>oracle</type><version>8.1.6</version></rdbms>
 
+<fullquery name="extra_where_clauses">
+      <querytext>
+
+         and ao.create_date >= (sysdate - $show_age)
+
+      </querytext>
+</fullquery>
+
 <fullquery name="get_all_public_presentations">      
       <querytext>
        

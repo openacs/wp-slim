@@ -8,7 +8,7 @@ ad_page_contract {
     @author Rocael Hernandez (roc@viaro.net) openacs package owner
     @author Paul Konigsberg (paul@arsdigita.com, original)
     @creation-date Wed Nov  8 17:33:21 2000
-    @cvs-id $Id$
+    @cvs-id index.tcl,v 1.4.2.1 2003/05/21 15:31:03 rocaelh Exp
 } {
     {show_age:integer "14"}
     {show_user "yours"}
@@ -24,8 +24,7 @@ set show_user_value "show_user=$show_user"
 set show_age_value "show_age=$show_age"
 
 if {$show_age != 0} {
-    if {[db_type] == "oracle"} { set date sysdate } else { set date "now()" }
-    set extra_where_clauses "and ao.creation_date >= ($date - $show_age)"
+    set extra_where_clauses [db_map extra_where_clauses]
 } else {
     set extra_where_clauses ""
 }

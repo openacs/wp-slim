@@ -3,6 +3,14 @@
 <queryset>
    <rdbms><type>postgresql</type><version>7.1</version></rdbms>
 
+<fullquery name="extra_where_clauses">
+      <querytext>
+
+        and ao.creation_date >= (current_timestamp - cast('$show_age days' as interval))
+
+      </querytext>
+</fullquery>
+
 <fullquery name="get_all_public_presentations">      
       <querytext>
        
