@@ -971,7 +971,7 @@ begin
     
     delete from acs_permissions where object_id = pres_item_id;
     update acs_objects set context_id=null where context_id = pres_item_id;
-    delete from cr_wp_presentations where exists (select 1 from cr_revisions wh$ere cr_revisions__revision_id = cr_wp_presentations__presentation_id and cr_revisions__item_id = pres_item_id);    
+    delete from cr_wp_presentations where exists (select 1 from cr_revisions where cr_revisions__revision_id = cr_wp_presentations__presentation_id and cr_revisions__item_id = pres_item_id);    
     content_item__delete(pres_item_id);
 return 0;
 end;' language 'plpgsql';
