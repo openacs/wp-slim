@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <queryset>
-
+  
 <fullquery name="get_attachments">      
   <querytext>
     select live_revision as attach_id, display, name as file_name
