@@ -13,6 +13,7 @@ ad_page_contract {
     users:multirow
 }
 
+set package_id [ad_conn package_id]
 
 # Right now this file is weak. It should link the username to a one-user page which shows 
 # What presentations that users has created (but only if the current user has permission to see/view
@@ -27,6 +28,7 @@ db_multirow users get_wp_users {
     and   o.object_id = i.item_id
     and   p.person_id = o.creation_user
     and   parties.party_id = p.person_id
+    and   o.context_id = :package_id
     group by p.person_id, p.first_names, p.last_name, parties.email
 }
 

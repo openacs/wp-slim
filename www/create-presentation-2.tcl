@@ -8,7 +8,7 @@ ad_page_contract {
     { background:html "" }
     { page_signature:html "" }
     { copyright_notice:html "" }
-    pres_title:html,notnull
+    pres_title:notnull
     { style:integer -1 }
     show_modified_p:notnull
     public_p:notnull

@@ -9,13 +9,13 @@ ad_page_contract {
     slide_item_id:naturalnum,notnull
     pres_item_id:naturalnum,notnull
     slide_title
-    preamble
-    postamble
+    preamble:html
+    postamble:html
     sort_key
     original_slide_id
     array_max
     button
-    bullet:array
+    bullet:array,html
     bullet_num:integer
 } -properties {
     slide_item_id

@@ -7,13 +7,13 @@ ad_page_contract {
 } {
     pres_item_id:integer,notnull
     pres_title
-    page_signature
-    copyright_notice
+    page_signature:html
+    copyright_notice:html
     show_modified_p
     public_p:notnull
     style
-    audience
-    background
+    audience:html
+    background:html
 }
 
 

@@ -4,7 +4,8 @@
 
 
 -- certainly needs to be modified !!
-delete from cr_item_publish_audit;
+-- DaveB content_item__delete should take care of this
+-- delete from cr_item_publish_audit;
 
 
 delete from cr_folder_type_map
@@ -20,7 +21,8 @@ begin
   for del_rec in select item_id from cr_items 
 	where content_type in (''cr_wp_file_attachment'', ''cr_wp_image_attachment'')
   loop 
-    update acs_objects set context_id = null where context_id = del_rec.item_id;
+-- DaveB this causes an RI error, and it works without it
+--    update acs_objects set context_id = null where context_id = del_rec.item_id;
     PERFORM content_item__delete(del_rec.item_id);
   end loop;
 return 0;
@@ -104,8 +106,9 @@ begin
 	''cr_wp_slide_bullet_items''
 )
   loop
-    update acs_objects set context_id = null 
-	where context_id = del_rec_a.item_id; 
+-- DaveB this causes an RI error, and it works without it
+--    update acs_objects set context_id = null 
+--	where context_id = del_rec_a.item_id; 
     PERFORM content_item__delete(del_rec_a.item_id);
   end loop;
 
@@ -113,8 +116,9 @@ begin
   in select item_id from cr_items
   where content_type = ''cr_wp_slide''
   loop
-    update acs_objects set context_id = null 
-	where context_id = del_rec_b.item_id; 
+-- DaveB this causes an RI error, and it works without it
+--    update acs_objects set context_id = null 
+--	where context_id = del_rec_b.item_id; 
     PERFORM content_item__delete(del_rec_b.item_id);
   end loop;
 
@@ -124,8 +128,9 @@ begin
 	''cr_wp_presentation_aud'', 
 	''cr_wp_presentation_back'')
   loop
-    update acs_objects set context_id = null 
-	where context_id = del_rec_c.item_id;
+-- DaveB this causes an RI error, and it works without it
+--   update acs_objects set context_id = null 
+--	where context_id = del_rec_c.item_id;
     PERFORM content_item__delete(del_rec_c.item_id);
   end loop;
 
@@ -133,8 +138,9 @@ begin
   in select item_id from cr_items
   where content_type = ''cr_wp_presentation''
   loop 
-    update acs_objects set context_id = null 
-	where context_id = del_rec_d.item_id;
+-- DaveB this causes an RI error, and it works without it
+--    update acs_objects set context_id = null 
+--	where context_id = del_rec_d.item_id;
     PERFORM content_item__delete(del_rec_d.item_id);
   end loop;
 
@@ -412,7 +418,8 @@ DROP FUNCTION wp_presentation__new(
 	boolean,
 	boolean,
         varchar,
-        varchar
+        varchar,
+	integer
 );
 
 DROP FUNCTION wp_presentation__delete_audience(
