@@ -21,7 +21,7 @@ and Sidharth Widge(Porter)</owner>
         <vendor url="http://arsdigita.com/">ArsDigita Corporation</vendor>
         <description format="text/plain">Ported (Jack). Fixed several bugs. Added new features (e.g. versioning and authorization).</description>
 
-        <requires url="acs-content-repository" version="4.0"/>
+        <requires url="acs-content-repository" version="4.6.3"/>
         <requires url="acs-kernel" version="4.0"/>
 
         <files>

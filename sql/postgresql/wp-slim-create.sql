@@ -33,8 +33,8 @@
 -- Style for presentation. We'll think more about this later if there's time 
 -- maybe allow ADPs for more flexibility.
 
-insert into cr_mime_types (mime_type) 
-select 'application/octet-stream'
+insert into cr_mime_types (label, mime_type) 
+select 'Binary data', 'application/octet-stream'
 from dual
 where not exists (select 1 from cr_mime_types where mime_type ='application/octet-stream');
 
