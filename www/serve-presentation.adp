@@ -1,4 +1,4 @@
-<master>
+<master src="wp-presentation-master">
 <property name="title">@pres_title@</property>
 <property name="context">"one presentation"</property>
 
