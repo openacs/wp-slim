@@ -8,10 +8,10 @@ ad_page_contract {
     pres_item_id:naturalnum,notnull
     slide_title:notnull
     sort_key:naturalnum
-    preamble
+    preamble:html
     array_max:integer
-    bullet:array
-    postamble    
+    bullet:array,html
+    postamble:html   
 }
 
 set package_id [ad_conn package_id]
