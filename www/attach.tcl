@@ -57,8 +57,18 @@ db_transaction {
         set revision_id [cr_import_content -image_type cr_wp_image_attachment -other_type cr_wp_file_attachment \
                                            $slide_item_id $tmp_filename $tmp_size $mime_type $client_filename]
     }
-    cr_set_imported_content_live -image_sql [db_map image_data] -other_sql [db_map file_data] \
-                                 $mime_type $revision_id
+    cr_set_imported_content_live -image_sql [db_map image_data] -other_sql [db_map file_data] $mime_type $revision_id
+} on_error {
+    # most likely a duplicate name, double click, or non-image file uploaded as an inline image.
+
+    ad_return_complaint 1 "There was an error trying to add your content.  Most likely causes you've
+<ul><li>Tried to upload a non-image file when you've select the \"display image in-line\" option.
+<li>Tried to add multiple copies of the same attachment to the slide
+<li>Double-clicking the \"Add\" button on the previous page.
+</ul><p>Here is the actual error message:<blockquote><pre>$errmsg</pre></blockquote>"
+
+    return
 }
+
 
 ad_returnredirect edit-slide?[export_url_vars slide_item_id pres_item_id]
