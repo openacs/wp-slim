@@ -26,7 +26,7 @@ set def ""
 set bullet_num ""
 
 
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 set creation_ip [ad_conn peeraddr]
 set package_id [ad_conn package_id]
 permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation

@@ -24,7 +24,7 @@ ad_require_permission $pres_item_id wp_admin_presentation
 
 set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "[_ wp-slim.Authorization]"] [list "invite?[export_url_vars pres_item_id role title]" "[_ wp-slim.Invite_User]"] "[_ wp-slim.Email_Sent]"]
 
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 
 db_1row user_info_get {
     select persons.first_names || ' ' || persons.last_name as user_name,

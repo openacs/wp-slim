@@ -12,7 +12,7 @@ ad_page_contract {
 }
 
 set package_id [ad_conn package_id]
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 set creation_ip [ad_conn peeraddr]
 set audience [_ wp-slim.Audience]
 set background [_ wp-slim.Background]

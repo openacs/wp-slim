@@ -46,7 +46,7 @@ if { [info exists css] && ![empty_string_p [ad_html_security_check $css]] } {
     return
 }
 
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 
 
 # We're OK to insert or update.

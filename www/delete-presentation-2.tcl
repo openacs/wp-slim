@@ -14,7 +14,7 @@ ad_page_contract {
 
 ad_require_permission $pres_item_id wp_delete_presentation
 
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 
 if { [ad_check_password $user_id $password] } {
     db_exec_plsql delete_presentation {

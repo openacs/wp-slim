@@ -21,7 +21,7 @@ ad_page_contract {
 ad_require_permission $pres_item_id wp_admin_presentation
 
 if {![empty_string_p $email]} {
-    set user_id [ad_verify_and_get_user_id]
+    set user_id [ad_conn user_id]
     db_1row email_get {
 	select email as sender_email
 	from parties

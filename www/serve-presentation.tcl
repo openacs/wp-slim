@@ -25,7 +25,7 @@ if {![regexp {display/([0-9]+)/?$} $url match pres_item_id]} {
 }
 
 #added permission checking  roc@
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_view_presentation
 
 set subsite_name [ad_conn package_url]
