@@ -7,15 +7,15 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
     
-    <version name="4.0b3" url="http://arsdigita.com/acs-repository/download/apm/wp-slim-4.0b3.apm">
+    <version name="5.0d1" url="http://arsdigita.com/acs-repository/download/apm/wp-slim-5.0d1.apm">
         <owner url="mailto:roc@viaro.net">Rocael Hernandez Rizzardini</owner>
         <summary>Wimpy Point allows users to collaborate and share online presentations.</summary>
         <release-date>2003-03-27</release-date>
         <vendor url="http://openacs.org/">Openacs</vendor>
         <description format="text/plain">Scalability test, permission revision, enhancements from WPII and other features added (Rocael). Ported (Jack). Fixed several bugs. Added new features (e.g. versioning and authorization).</description>
 
-        <requires url="acs-content-repository" version="4.6.3"/>
-        <requires url="acs-kernel" version="4.0"/>
+        <requires url="acs-content-repository" version="5.0d1"/>
+        <requires url="acs-kernel" version="5.0d13"/>
         <requires url="general-comments" version="4.0"/>
 
         <callbacks>
