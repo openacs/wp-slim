@@ -1,9 +1,9 @@
 <master>
-<property name="title">@pres_title;noquote@</property>
-<property name="context">@context;noquote@</property>
+<property name="title">@pres_title@</property>
+<property name="context">@context@</property>
 
 <h2>@pres_title@</h2>
-a Wimpy Point Presentation owned by <a href="/shared/community-member?user_id=@owner_id@">@owner_name@</a>
+#wp-slim.lt_a_Wimpy_Point_Present# <a href="/shared/community-member?user_id=@owner_id@">@owner_name@</a>
 @copyright_notice@
 
 <multiple name="slides">
@@ -95,3 +95,4 @@ a Wimpy Point Presentation owned by <a href="/shared/community-member?user_id=@o
 </multiple>
 <hr>
 @page_signature@
+

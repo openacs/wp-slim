@@ -25,7 +25,7 @@ ad_page_contract {
 set user_id [ad_verify_and_get_user_id]
 permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
-set context [list "presentation-top?[export_url_vars pres_item_id] {presentation}" {Edit Slide}]
+set context [list "presentation-top?[export_url_vars pres_item_id] {presentation}" "[_ wp-slim.Edit_Slide]"]
 
 db_1row get_slide_info {
 select s.slide_title,

@@ -19,15 +19,15 @@ wp_check_style_authorization $style_id $user_id
 
 # Get the style information to display a confirmation message.
 set name [db_string wp_style_name_select { *SQL* }]
-set context [list "[list "style-list.tcl" "Your Styles"]" "Delete $name"]
+set context [list "[list "style-list.tcl" "[_ wp-slim.Your_Styles]"]" "[_ wp-slim.Delete_name]"]
 
 set num_images [db_string wp_image_count_select { *SQL* }]
 if { $num_images == 0 } {
     set images_str ""
 } elseif { $num_images == 1 } {
-    set images_str "and the associated image"
+    set images_str "[_ wp-slim.lt_and_the_associated_im]"
 } else {
-    set images_str ", including $num_images associated images"
+    set images_str ", [_ wp-slim.lt_including_num_images_]"
 }
 
 

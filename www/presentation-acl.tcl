@@ -34,7 +34,7 @@ and   ao.object_id = i.item_id
 
 set encoded_title [ns_urlencode $title]
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] "Authorization"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] "[_ wp-slim.Authorization]"]
 
 
 

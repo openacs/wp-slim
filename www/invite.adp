@@ -1,6 +1,6 @@
 <master>
-<property name="title">Invite User</property>
-<property name="context">@context;noquote@</property>
+<property name="title">#wp-slim.Invite_User#</property>
+<property name="context">@context@</property>
 
 <form action="invite-2" method=post>
 
@@ -12,13 +12,14 @@
 <table border=2 cellpadding=10><tr><td>
 <table>
   <tr><td colspan=2>
-	Please provide the name and E-mail address of the person whom you want to invite to @role@ the presentation, and we'll send an E-mail inviting him or her to do so, and describing how to register with ArsDigita. The E-mail will appear to come from you, and you'll receive a copy.</P><hr>
+	#wp-slim.lt_Please_provide_the_na#</P><hr>
   </td></tr>
-  <tr><th align=right>Name:&nbsp;</th><td><input name=name size=40></td></tr>
-  <tr><th align=right>E-mail:&nbsp;</th><td><input name=email size=40></td></tr>
-  <tr valign=top><th align=right><br>Message:&nbsp;</th><td><textarea name=message rows=6 cols=40></textarea><br><i>If you like, you can provide a brief message to include in the invitation E-mail.</i></td></tr>
-  <tr><td colspan=2 align=center><hr><input type=submit value="Send Invitation E-Mail"></td></tr>
+  <tr><th align=right>#wp-slim.Namenbsp#</th><td><input name=name size=40></td></tr>
+  <tr><th align=right>#wp-slim.E-mailnbsp#</th><td><input name=email size=40></td></tr>
+  <tr valign=top><th align=right><br>#wp-slim.Messagenbsp#</th><td><textarea name=message rows=6 cols=40></textarea><br><i>#wp-slim.lt_If_you_like_you_can_p#</i></td></tr>
+  <tr><td colspan=2 align=center><hr><input type=submit value="#wp-slim.lt_Send_Invitation_E-Mai#"></td></tr>
 </table>
 
 </td></tr></table></p>
+
 

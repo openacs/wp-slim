@@ -23,7 +23,7 @@ ad_page_contract {
 
 ad_require_permission $pres_item_id wp_admin_presentation
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "Authorization"] "Confirm Add User"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "[_ wp-slim.Authorization]"] "[_ wp-slim.Confirm_Add_User]"]
 
 
 set privilege [ad_decode $role "read" "wp_view_presentation" "write" "wp_edit_presentation" "admin" "wp_admin_presentation" ""]
@@ -35,7 +35,8 @@ if [db_0or1row privilege_check {
     and   grantee_id = :user_id_from_search
     and   privilege = :privilege
 }] {
-    ad_return_error "User Already Had That Privilege" "That user can already $role the presentation. Maybe you want to <a href=\"presentation-acl?[export_url_vars pres_item_id]\">try again</a>"
+    set vars [export_url_vars pres_item_id]
+    ad_return_error "[_ wp-slim.lt_User_Already_Had_That]" "[_ wp-slim.lt_That_user_can_already]"
     db_release_unused_handles
     return
 }

@@ -1,36 +1,36 @@
 <master>
-<property name="title">WimpyPoint</property>
-<property name="context">@context;noquote@</property>
+<property name="title">#wp-slim.WimpyPoint#</property>
+<property name="context">@context@</property>
 
 <table border=0 width="100%">
 <tr><td align=left>
 [ 
 <if @show_age@ eq 7>
-<b>Last Week</b>
+<b>#wp-slim.Last_Week#</b>
 </if>
 <else>
-<a href=index?show_age=7&@show_user_value@>Last Week</a>
+<a href=index?show_age=7&@show_user_value@>#wp-slim.Last_Week#</a>
 </else>
 | 
 <if @show_age@ eq 14>
-<b>Last Two Weeks</b>
+<b>#wp-slim.Last_Two_Weeks#</b>
 </if>
 <else>
-<a href=index?show_age=14&@show_user_value@>Last Two Weeks</a>
+<a href=index?show_age=14&@show_user_value@>#wp-slim.Last_Two_Weeks#</a>
 </else>
 | 
 <if @show_age@ eq 30>
-<b>Last Month</b>
+<b>#wp-slim.Last_Month#</b>
 </if>
 <else>
-<a href=index?show_age=30&@show_user_value@>Last Month</a>
+<a href=index?show_age=30&@show_user_value@>#wp-slim.Last_Month#</a>
 </else>
 | 
 <if @show_age@ eq 0>
-<b>All</b>
+<b>#wp-slim.All#</b>
 </if>
 <else>
-<a href=index?show_age=0&@show_user_value@>All</a>
+<a href=index?show_age=0&@show_user_value@>#wp-slim.All#</a>
 </else>
 ]
 </td>
@@ -39,47 +39,48 @@
 <td align=right>
 [ 
 <if @show_user@ eq "yours">
-<b>Yours</b>
+<b>#wp-slim.Yours#</b>
 | 
-<a href=index?show_user=all&@show_age_value@>Everyone's</a>
+<a href=index?show_user=all&@show_age_value@>#wp-slim.Everyones#</a>
 </if>
 <else>
-<a href=index?show_user=yours&@show_age_value@>Yours</a>
+<a href=index?show_user=yours&@show_age_value@>#wp-slim.Yours#</a>
 | 
-<b>Everyone's</b>
+<b>#wp-slim.Everyones#</b>
 </else>
 ]
 </td>
 </tr>
 </table>
 
-<h2>My Presentations</h2>
+<h2>#wp-slim.My_Presentations#</h2>
 
 <ul>
 <multiple name=presentations>
-<li><a href="display/@presentations.pres_item_id@/">@presentations.pres_title@</a> created on @presentations.creation_date@ [ <a href="presentation-top?pres_item_id=@presentations.pres_item_id@">edit</a> ] [<a href="presentation-print-view.tcl?item_id=@presentations.pres_item_id@">print view </a>]
+<li><a href="display/@presentations.pres_item_id@/">@presentations.pres_title@</a>&nbsp;#wp-slim.lt_created_on_presentati# [ <a href="presentation-top?pres_item_id=@presentations.pres_item_id@">#wp-slim.edit#</a> ] [<a href="presentation-print-view.tcl?item_id=@presentations.pres_item_id@">#wp-slim.print_view# </a>]
 </multiple>      
 </ul>
 
 
-<h2>Options</h2>
+<h2>#wp-slim.Options#</h2>
 <ul>
-  <li><a href="create-presentation">Create a new presentation.</a>
-  <li><a href="style-list">Edit your styles.</a>
-  <li>Show a list of <a href="users">all WimpyPoint users.</a>       
+  <li><a href="create-presentation">#wp-slim.lt_Create_a_new_presenta#</a>
+  <li><a href="style-list">#wp-slim.Edit_your_styles#</a>
+  <li>#wp-slim.Show_a_list_of# <a href="users">#wp-slim.all_WimpyPoint_users#</a>       
 </ul>
 
 
 <if @show_user@ eq "all">
-<h2> Everyone's Presentations</h2>
+<h2> #wp-slim.lt_Everyones_Presentatio#</h2>
 
 <ul>
 <multiple name=allpresentations>
-<li><a href="display/@allpresentations.pres_item_id@/">@allpresentations.pres_title@</a> created by <a href="/shared/community-member?user_id=@allpresentations.creation_user@">@allpresentations.full_name@</a> on @allpresentations.creation_date@ 
+<li><a href="display/@allpresentations.pres_item_id@/">@allpresentations.pres_title@</a>#wp-slim.lt_created_by_a_hrefshar# 
 <if @allpresentations.edit_p@ eq "t">
-[ <a href="presentation-top?pres_item_id=@allpresentations.pres_item_id@">edit</a> ] [<a href="presentation-print-view.tcl?item_id=@allpresentations.pres_item_id@">print view </a>]
+[ <a href="presentation-top?pres_item_id=@allpresentations.pres_item_id@">#wp-slim.edit#</a> ] [<a href="presentation-print-view.tcl?item_id=@allpresentations.pres_item_id@">#wp-slim.print_view# </a>]
 </if>
 </multiple>
 </ul>
 </if>
+
 

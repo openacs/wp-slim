@@ -26,7 +26,7 @@ set url [ad_conn url]
 
 if {![regexp {display/([0-9]+)/([0-9]+)\.wimpy} $url match pres_item_id slide_item_id]} {
     ns_log notice "Could not get a pres_item_id and slide_item_id out of url=$url"
-    ad_return_error "Wimpy Point" "Could not get a pres_item_id and slide_item_id out of url=$url"
+    ad_return_error "[_ wp-slim.Wimpy_Point]" "[_ wp-slim.lt_Could_not_get_a_pres_]"
 }
 
 #added permission checking  roc@
@@ -53,20 +53,22 @@ db_1row get_slide_info {
     wp_slide.get_preamble(:slide_item_id) as preamble,
     wp_slide.get_postamble(:slide_item_id) as postamble,
     wp_slide.get_bullet_items(:slide_item_id) as bullet_items,
-    to_char(ao.creation_date, 'HH24:MI, Mon DD, YYYY') as modified_date
+    ao.creation_date as modified_date
     from cr_wp_slides s, cr_items i, acs_objects ao
     where i.item_id = :slide_item_id
     and   i.live_revision = s.slide_id
     and   ao.object_id = s.slide_id
 }
 
+set modified_date [lc_time_fmt $modified_date "%Q"]
+
 db_1row get_presentation_page_signature { *SQL* }
 
-set context [list [list "$subsite_name/display/$pres_item_id" "one presentation"] "one slide"]
+set context [list [list "$subsite_name/display/$pres_item_id" "one presentation"] "[_ wp-slim.one_slide]"]
 
 # Figure out what the previous slide link should be.
 if {$sort_key == 1} {
-    set href_back "<a href=\"$subsite_name/display/$pres_item_id/\">top</a> | "
+    set href_back "<a href=\"$subsite_name/display/$pres_item_id/\">[_ wp-slim.top]</a> | "
 } else {
     set previous_slide_item_id [db_string get_previous_slide_item_id {
 	select i.item_id
@@ -76,7 +78,7 @@ if {$sort_key == 1} {
 	and   s.sort_key = (:sort_key - 1)
     }
     ]
-    set href_back "<a href=\"${previous_slide_item_id}.wimpy\">previous</a> | "
+    set href_back "<a href=\"${previous_slide_item_id}.wimpy\">[_ wp-slim.previous]</a> | "
 }
 
 # Figure out what the next slide link should be.    
@@ -97,9 +99,9 @@ if {!$found_slide} {
 	# this is the only slide.
 	set href_back ""
     }
-        set href_forward "<a href=\"$subsite_name/display/$pres_item_id\">top</a>"
+        set href_forward "<a href=\"$subsite_name/display/$pres_item_id\">[_ wp-slim.top]</a>"
 } else {
-    set href_forward "<a href=\"$subsite_name/display/$pres_item_id/${next_slide_item_id}.wimpy\">next</a>"
+    set href_forward "<a href=\"$subsite_name/display/$pres_item_id/${next_slide_item_id}.wimpy\">[_ wp-slim.next]</a>"
 }
 
 
@@ -113,10 +115,10 @@ db_multirow attach_list get_attachments {
 
 set extra ""
 if {$edit_p == 1} {
-    append extra "<a href=\"$subsite_name/edit-slide?[export_url_vars slide_item_id pres_item_id]\">edit</a> | "
+    append extra "<a href=\"$subsite_name/edit-slide?[export_url_vars slide_item_id pres_item_id]\">[_ wp-slim.edit]</a> | "
 }
 if {$delete_p == 1} {
-    append extra "<a href=\"$subsite_name/delete-slide?[export_url_vars slide_item_id pres_item_id slide_title]\">delete</a> |"
+    append extra "<a href=\"$subsite_name/delete-slide?[export_url_vars slide_item_id pres_item_id slide_title]\">[_ wp-slim.delete]</a> |"
 }
 
 set href_back_forward "$href_back $extra $href_forward"

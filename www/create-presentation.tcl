@@ -30,6 +30,6 @@ set items [db_list_of_lists wp_styles { *SQL* }]
     set available_styles "<select name=style>
     [ad_generic_optionlist $names $values -1]</select>\n"
 
-set title "Create Presentation"
+set title "[_ wp-slim.Create_Presentation]"
 set context [list $title]
 

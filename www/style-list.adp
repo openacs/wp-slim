@@ -1,5 +1,5 @@
 <master>
-<property name="title">Your Styles</property>
+<property name="title">#wp-slim.Your_Styles#</property>
 <property name="context">@context@</property>
 
 <p><center>
@@ -7,9 +7,9 @@
 <table border=2 cellpadding=10><tr><td>
 <table cellspacing=0 cellpadding=0>
 <tr>
-<th align=left>Style</th><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<th align=right>#&nbsp;Images</th><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<th align=right>Total Size</th><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<th align=left>#wp-slim.Style_1#</th><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<th align=right>#wp-slim.nbspImages#</th><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<th align=right>#wp-slim.Total_Size#</th><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr><td colspan=7><hr></td></tr>
 
@@ -24,17 +24,18 @@
     <else>
 	<td align=right>-</td>
     </else>
-    <td></td><td>[ <a href="style-delete?style_id=@styles_select.style_id@">delete</a> ]</td></tr>
+    <td></td><td>[ <a href="style-delete?style_id=@styles_select.style_id@">#wp-slim.delete#</a> ]</td></tr>
 
 </multiple>
 </if>
 <else>
-	<tr><td align=center colspan=7><i>You haven't created any styles.</i></td></tr>
+	<tr><td align=center colspan=7><i>#wp-slim.lt_You_havent_created_an#</i></td></tr>
 </else>
 
-<tr><td colspan=7 align=center><hr><b><a href="style-edit"	>Create a new style</a></b></td></tr>
+<tr><td colspan=7 align=center><hr><b><a href="style-edit">#wp-slim.Create_a_new_style#</a></b></td></tr>
 
 </table>
 </td></tr></table>
 
 </center></p>
+

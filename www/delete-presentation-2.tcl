@@ -23,7 +23,7 @@ if { [ad_check_password $user_id $password] } {
 	end;
     }
 } else {
-    ad_return_error "Bad Password" "Wrong password."
+    ad_return_error "[_ wp-slim.Bad_Password]" "[_ wp-slim.Wrong_password]"
     ad_script_abort
 }
 

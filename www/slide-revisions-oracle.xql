@@ -7,7 +7,7 @@
       <querytext>
       
     select r.revision_id,
-           to_char(ao.creation_date, 'HH24:MI:SS Mon DD, YYYY') as creation_date,
+           ao.creation_date as creation_date,
            ao.creation_ip,
            i.live_revision,
            p.first_names || ' ' || p.last_name as full_name

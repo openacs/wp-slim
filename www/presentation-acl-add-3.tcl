@@ -27,7 +27,7 @@ if {![empty_string_p $email]} {
 	from parties
 	where party_id = :user_id
     }
-    ns_sendmail $email_from_search $sender_email "WimpyPoint Authorization" "$message"
+    ns_sendmail $email_from_search $sender_email "[_ wp-slim.lt_WimpyPoint_Authorizat]" "$message"
 }
 
 set privilege_list "wp_view_presentation"

@@ -1,6 +1,6 @@
 <master>
-<property name="title">Add Group</property>
-<property name="context">@context;noquote@</property>
+<property name="title">#wp-slim.Add_Group#</property>
+<property name="context">@context@</property>
 
 <form action="presentation-acl-add-group-2">
 
@@ -13,8 +13,7 @@
 
 <p><table border=2 cellpadding=10 width="60%"><tr><td>
 <table cellspacing=0 cellpadding=0>
-<tr><td colspan=2>Please select the name of the group
-you wish to give permission to @role@ thee presentation test.
+<tr><td colspan=2>#wp-slim.lt_Please_select_the_nam#
 <hr></td></tr>
 <tr><td align=center>
 <select name=group_id>
@@ -24,6 +23,7 @@ you wish to give permission to @role@ thee presentation test.
 </select>
 <tr><td colspan=2 align=center>
 <hr>
-<input type=submit value=Add>
+<input type=submit value="#wp-slim.Add#">
 </td></tr>
 </table></td></tr></table></p></center>
+

@@ -21,7 +21,7 @@ set url [ad_conn url]
 
 if {![regexp {display/([0-9]+)/?$} $url match pres_item_id]} {
     ns_log notice "Could not get a pres_item_id and slide_item_id out of url=$url"
-    ad_return_error "Wimpy Point" "Could not get a pres_item_id and slide_item_id out of url=$url"
+    ad_return_error "[_ wp-slim.Wimpy_Point]" "[_ wp-slim.lt_Could_not_get_a_pres__2]"
 }
 
 #added permission checking  roc@

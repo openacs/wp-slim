@@ -18,10 +18,10 @@ ad_page_contract {
 set user_id [ad_verify_and_get_user_id]
 permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
-set header [ad_header "Reorder Slides"]
+set header [ad_header "[_ wp-slim.Reorder_Slides]"]
 
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]"  "presentation"] "Reorder Slides"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]"  "[_ wp-slim.presentation]"] "[_ wp-slim.Reorder_Slides]"]
 
 set counter 0
 

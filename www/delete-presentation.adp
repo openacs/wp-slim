@@ -1,17 +1,17 @@
 <master>
-<property name="title">Delete Presentation</property>
-<property name="context">@context;noquote@</property>
+<property name="title">#wp-slim.Delete_Presentation#</property>
+<property name="context">@context@</property>
 
 <form method=post action="delete-presentation-2">
 
 <input type=hidden name=pres_item_id value="@pres_item_id@">
 
 
-Do you really want to delete @title@?
-All slides will be permanently deleted.
+#wp-slim.lt_Do_you_really_want_to#
 
-<p>If you're really sure, please reenter your password.
+<p>#wp-slim.lt_If_youre_really_sure_#
 
-<p><b>Password:</b> <input type=password size=20 name=password> <input type=submit value="Delete Presentation">
+<p><b>#wp-slim.Password#</b> <input type=password size=20 name=password> <input type=submit value="#wp-slim.Delete_Presentation#">
 
 </p>
+

@@ -40,27 +40,26 @@ if [info exists keyword] {
     # this is an administrator 
     if { [empty_string_p $keyword] } {
 	incr exception_count
-	append exception_text "<li>You forgot to type a search string!\n"
+	append exception_text "<li>[_ wp-slim.lt_You_forgot_to_type_a_]\n"
     }
 } else {
     # from one of the user pages
     if { (![info exists email] || [empty_string_p $email]) && \
 	    (![info exists last_name] || [empty_string_p $last_name]) } {
 	incr exception_count
-	append exception_text "<li>You must specify either an email address or last name to search for.\n"
+	append exception_text "<li>[_ wp-slim.lt_You_must_specify_eith]\n"
     }
 
     if { [info exists email] && [info exists last_name] && \
 	    ![empty_string_p $email] && ![empty_string_p $last_name] } {
 	incr exception_count
-	append exception_text "<li>You can only specify either email or last name, not both.\n"
+	append exception_text "<li>[_ wp-slim.lt_You_can_only_specify_]\n"
     }
 
     if { ![info exists target] || [empty_string_p $target] } {
 	incr exception_count
-	append exception_text "<li>Target was not specified. This shouldn't have happened,
-please contact the <a href=\"mailto:[ad_host_administrator]\">administrator</a>
-and let them know what happened.\n"
+	set host_administrator [ad_host_administrator]
+	append exception_text "<li>[_ wp-slim.lt_Target_was_not_specif]\n"
     }
 }
 

@@ -77,7 +77,7 @@ db_transaction {
     }
 } on_error {
     db_release_unused_handles
-    ad_return_error "Error" "Couldn't update your style."
+    ad_return_error "[_ wp-slim.Error]" "[_ wp-slim.lt_Couldnt_update_your_s]"
 }
 
 db_release_unused_handles

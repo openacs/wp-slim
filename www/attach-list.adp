@@ -1,10 +1,10 @@
 <master>
-<property name="title">List of Attachments</property>
-<property name="context">@context;noquote@</property>
+<property name="title">#wp-slim.List_of_Attachments#</property>
+<property name="context">@context@</property>
 
 <ul>
 <multiple name="att">
-<li>@att.name@ (<a href="attach-del?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@&pres_item_id=@pres_item_id@">remove</a> | <a href="attach-detail?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@&file_name=@att.name@&pres_item_id=@pres_item_id@">details</a>)
+<li>@att.name@ (<a href="attach-del?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@&pres_item_id=@pres_item_id@">#wp-slim.remove#</a> | <a href="attach-detail?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@&file_name=@att.name@&pres_item_id=@pres_item_id@">#wp-slim.details#</a>)
 </multiple>
 </ul>
 
@@ -12,19 +12,20 @@
 <input type=hidden name=slide_item_id value="@slide_item_id@">
 <input type=hidden name=pres_item_id value="@pres_item_id@">
 
-      <br><b>Add an Image or Attachment:</b>
+      <br><b>#wp-slim.lt_Add_an_Image_or_Attac#</b>
       <p><input type=file size=30 name=attachment>
-    <p><input type=radio name=inline_image_p value=t checked> Display as an image
+    <p><input type=radio name=inline_image_p value=t checked> #wp-slim.Display_as_an_image#
 <select name=display>
-<option value=top>at the very top (aligned center)
-<option value=preamble selected>next to the preamble (aligned right)
-<option value=after_preamble>after the preamble (aligned center)
-<option value=bullets>next to the bullets (aligned right)
-<option value=after_bullets>after the bullets (aligned center)
-<option value=postamble>next to the postamble (aligned right)
-<option value=bottom>at the very bottom (aligned center)
+<option value=top>#wp-slim.lt_at_the_very_top_align#
+<option value=preamble selected>#wp-slim.lt_next_to_the_preamble_#
+<option value=after_preamble>#wp-slim.lt_after_the_preamble_al#
+<option value=bullets>#wp-slim.lt_next_to_the_bullets_a#
+<option value=after_bullets>#wp-slim.lt_after_the_bullets_ali#
+<option value=postamble>#wp-slim.lt_next_to_the_postamble#
+<option value=bottom>#wp-slim.lt_at_the_very_bottom_al#
 
 </select>
-      <br><input type=radio name=inline_image_p value=f> Display a link the viewer can use to download the file
-      <p><input type=submit value="Add the Attachment">
+      <br><input type=radio name=inline_image_p value=f> #wp-slim.lt_Display_a_link_the_vi#
+      <p><input type=submit value="#wp-slim._Add#">
 </form>
+

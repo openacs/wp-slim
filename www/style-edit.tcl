@@ -25,7 +25,7 @@ if { [info exists style_id] } {
 
     set header [list "style-view.tcl?style_id=$style_id" $name]
 
-    set role "Edit"
+    set role "[_ wp-slim.Edit]"
 } else {
     # Creating a new style. Set fields to defaults.
     set show_modified_p "f"
@@ -35,7 +35,7 @@ if { [info exists style_id] } {
 	set $var ""
     }
 
-    set role "Create"
+    set role "[_ wp-slim.Create]"
 }
 
 set colors { Chartreuse Mauve Teal Oyster Cordova Burgundy Spruce }
@@ -51,7 +51,7 @@ if { [info exists style_id] } {
 db_release_unused_handles
 
 if { $items == "" } {
-    set background_images "<i>There are not yet any uploaded images to use as the background.</i>
+    set background_images "<i>[_ wp-slim.lt_There_are_not_yet_any]</i>
 <input type=hidden name=background_image value=\"0\">
 "
 } else {
@@ -62,7 +62,7 @@ if { $items == "" } {
 	lappend values [lindex $image 0]
     }
 
-    lappend names "none"
+    lappend names "[_ wp-slim.none_1]"
     lappend values 0
 
     set background_images "<select name=background_image>
@@ -70,16 +70,19 @@ if { $items == "" } {
 }
 
 set public "<select name=public_p>
-[ad_generic_optionlist [list Yes No] [list t f] $public_p]</select>\n"
+[ad_generic_optionlist [list "[_ wp-slim.Yes]" "[_ wp-slim.No]"] [list t f] $public_p]</select>\n"
 
 
 set values [list]
 
-set context "[list [list "style-list.tcl" "Your Styles"] $header "$role Style"]"
+set context "[list [list "style-list.tcl" "Your Styles"] $header "[_ wp-slim.role_Style]"]"
 
 set export_form_vars [export_form_vars style_id presentation_id]
 set ad_color_widget_js [ad_color_widget_js]
-set ramdom_name "[lindex $colors [randomRange [llength $colors]]] on [lindex $colors [randomRange [llength $colors]]] with [lindex $elements [randomRange [llength $elements]]]"
+set random_range_1 [lindex $colors [randomRange [llength $colors]]]
+set random_range_2 [lindex $colors [randomRange [llength $colors]]]
+set random_range_3 [lindex $elements [randomRange [llength $elements]]]
+set ramdom_name "$random_range_1 on $random_range_2 with $random_range_3"
 
 
 ad_return_template

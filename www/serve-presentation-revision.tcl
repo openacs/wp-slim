@@ -22,7 +22,7 @@ set url [ad_conn url]
 
 if {![regexp {presentation_revision/([0-9]+)/([0-9]+)} $url match pres_item_id pres_revision_id]} {
     ns_log notice "Could not get a pres_item_id and a pres_revision_id out of url=$url"
-    ad_return_error "Wimpy Point" "Could not get a pres_item_id and a pres_revision_id out of url=$url"
+    ad_return_error "[_ wp-slim.Wimpy_Point]" "[_ wp-slim.lt_Could_not_get_a_pres__1]"
 }
 
 #added permission checking  roc@
@@ -57,6 +57,6 @@ db_1row get_background_data {
     and r.revision_id = pb.id
 }   
 
-set context [list [list "$subsite_name/presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "One Revision"]
+set context [list [list "$subsite_name/presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "[_ wp-slim.One_Revision]"]
 
 ad_return_template

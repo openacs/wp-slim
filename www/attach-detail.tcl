@@ -35,16 +35,18 @@ set user_id [ad_verify_and_get_user_id]
 permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
 
-set context [list [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "Edit Slide"] "Details"]
+set context [list [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "[_ wp-slim.Edit_Slide]"] "[_ wp-slim.Details]"]
 
 db_multirow revisions revisions_get {
     select r.revision_id,
-           to_char(ao.creation_date, 'HH24:MI:SS Mon DD, YYYY') as creation_date,
+           ao.creation_date as creation_date,
            ao.creation_ip
     from cr_revisions r,
          acs_objects ao
     where r.item_id = :attach_item_id
     and   ao.object_id = r.revision_id
+} {
+    set creation_date [lc_time_fmt $creation_date "%X %Q"]
 }
 
 

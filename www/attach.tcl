@@ -31,12 +31,14 @@ set exception_count 0
 set exception_text ""
 
 if { $tmp_size == 0 } {
-    append exception_text "<li>You haven't uploaded a file.\n"
+    append exception_text "<li>[_ wp-slim.lt_You_havent_uploaded_a]\n"
     incr exception_count
 }
 
 if { ![empty_string_p [ad_parameter MaxAttachmentSize "comments"]] && $tmp_size > [ad_parameter MaxAttachmentSize "comments"] } {
-    append exception_text "<li>Your file is too large.  The publisher of [ad_system_name] has chosen to limit attachments to [util_commify_number [ad_parameter MaxAttachmentSize "comments"]] bytes.\n"
+    set system_name [ad_system_name]
+    set bytes [util_commify_number [ad_parameter MaxAttachmentSize "comments"]]
+    append exception_text "<li>[_ wp-slim.lt_Your_file_is_too_larg]\n"
     incr exception_count
 }
 
@@ -61,11 +63,7 @@ db_transaction {
 } on_error {
     # most likely a duplicate name, double click, or non-image file uploaded as an inline image.
 
-    ad_return_complaint 1 "There was an error trying to add your content.  Most likely causes you've
-<ul><li>Tried to upload a non-image file when you've select the \"display image in-line\" option.
-<li>Tried to add multiple copies of the same attachment to the slide
-<li>Double-clicking the \"Add\" button on the previous page.
-</ul><p>Here is the actual error message:<blockquote><pre>$errmsg</pre></blockquote>"
+    ad_return_complaint 1 "[_ wp-slim.lt_There_was_an_error_tr]<blockquote><pre>$errmsg</pre></blockquote>"
 
     ad_script_abort
 }

@@ -1,12 +1,12 @@
 <master src="wp-presentation-master">
-<property name="title">@slide_title;noquote@</property>
-<property name="context">@context;noquote@</property>
-<property name="style_id">@style;noquote@</property>
-<property name="page_signature">@page_signature;noquote@</property>
-<property name="copyright_notice">@copyright_notice;noquote@</property>
+<property name="title">@slide_title@</property>
+<property name="context">@context@</property>
+<property name="style_id">@style@</property>
+<property name="page_signature">@page_signature@</property>
+<property name="copyright_notice">@copyright_notice@</property>
 
 <if @show_modified_p@ eq t>
-<i>Last modified @modified_date@</i>
+<i>#wp-slim.lt_Last_modified_modifie#</i>
 </if>
 
 <multiple name="attach_list">
@@ -88,3 +88,4 @@
 
 
 @page_signature@
+

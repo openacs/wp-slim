@@ -11,7 +11,7 @@
     wp_slide__get_preamble_revision(:slide_revision_id) as preamble,
     wp_slide__get_postamble_revision(:slide_revision_id) as postamble,
     wp_slide__get_bullet_items_revision(:slide_revision_id) as bullet_items,
-    to_char(ao.creation_date, 'HH24:MI, Mon DD, YYYY') as modified_date
+    ao.creation_date as modified_date
     from cr_wp_slides s,
          cr_items i,
          acs_objects ao

@@ -17,6 +17,6 @@ ad_page_contract {
 
 ad_require_permission $pres_item_id wp_delete_presentation
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] "Delete Presentation"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] "[_ wp-slim.Delete_Presentation]"]
 
 ad_return_template

@@ -1,13 +1,14 @@
 <master>
-<property name="title">Email Sent</property>
-<property name="context">@context;noquote@</property>
+<property name="title">#wp-slim.Email_Sent#</property>
+<property name="context">@context@</property>
 
-@name@ (@email@) has been invited to work on the presentation test. The following E-mail was sent:
+#wp-slim.lt_name_email_has_been_i#
 
 <blockquote><pre>
 @email_content@
 </pre></blockquote>
 
-<p><a href="presentation-acl?pres_item_id=@pres_item_id@">Return to test</a>
+<p><a href="presentation-acl?pres_item_id=@pres_item_id@">#wp-slim.Return_to_test#</a>
 
 </p>
+

@@ -1,6 +1,6 @@
 <master>
-<property name="title">Edit Slide</property>
-<property name="context">@context;noquote@</property>
+<property name="title">#wp-slim.Edit_Slide#</property>
+<property name="context">@context@</property>
 
 <form name=f action=edit-slide-2 method=post>
 
@@ -23,18 +23,18 @@ function swapWithNext(index)
 
 <table>
   <tr>
-    <th align=right nowrap>Slide Title:&nbsp;</th>
+    <th align=right nowrap>#wp-slim.Slide_Titlenbsp#</th>
     <td><input type=text name=slide_title value="@slide_title@" size=50></td>
   </tr>
   <tr valign=top>
-    <th align=right nowrap><br>Preamble:</th>
+    <th align=right nowrap><br>#wp-slim.Preamble#</th>
     <td>
       <textarea rows=4 cols=70 name=preamble wrap=virtual>@preamble@</textarea><br>
-      <i>(optional random text that goes above the bullet list)</i>
+      <i>#wp-slim.lt_optional_random_text_#</i>
     </td>
   </tr>
   <tr valign=baseline>
-    <th align=right nowrap>Bullet Items:</th>
+    <th align=right nowrap>#wp-slim.Bullet_Items#</th>
     <td>
       <ul>
 
@@ -52,22 +52,23 @@ function swapWithNext(index)
 </multiple>
 <li><input type="text" size="70" name="bullet.@bullet_num@" value="">&nbsp;<a href="javascript:swapWithNext(@bullets:rowcount@)"><img src="pics/up.gif" width=18 height=15 border=0></a><img src="pics/1white.gif" width=18 height=15">
 
-        <br><i>You can add additional bullets later.</i>
+        <br><i>#wp-slim.lt_You_can_add_additiona#</i>
       </ul>
     </td>
   </tr>
   <tr valign=top>
-    <th align=right nowrap><br>Postamble:</th>
+    <th align=right nowrap><br>#wp-slim.Postamble#</th>
     <td>
       <textarea rows=4 cols=70 name=postamble wrap=virtual>@postamble@</textarea><br>
-      <i>(optional random text that goes after the bullet list)</i>
+      <i>#wp-slim.lt_optional_random_text__1#</i>
     </td>
   </tr>
 </table>
 <p><center>
-<input type=submit name=button value="Save Slide">
+<input type=submit name=button value="#wp-slim.Save_Slide#">
 <spacer type=horizontal size=50>
-<input type=submit name=button value="Upload Attachments">
+<input type=submit name=button value="#wp-slim.Upload_Attachments#">
 </center>
 </form>
+
 

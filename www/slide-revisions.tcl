@@ -23,12 +23,12 @@ permission::require_permission -party_id $user_id -object_id $pres_item_id -priv
 
 set subsite_name [ad_conn package_url]
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]" "Presentation"] "Slide Revisions"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "[_ wp-slim.Presentation]"] "[_ wp-slim.Slide_Revisions]"]
 
 
 db_multirow revisions revisions_get {
     select r.revision_id,
-           to_char(ao.creation_date, 'HH24:MI:SS Mon DD, YYYY') as creation_date,
+           ao.creation_date as creation_date,
            ao.creation_ip,
            i.live_revision,
            p.first_names || ' ' || p.last_name as full_name
@@ -41,6 +41,8 @@ db_multirow revisions revisions_get {
     and   i.item_id = r.item_id
     and   p.person_id = ao.creation_user
     order by creation_date
+} {
+    set creation_date [lc_time_fmt $creation_date "%X %Q"]
 }
 
 set return_url [ns_urlencode "slide-revisions?[export_url_vars slide_item_id pres_item_id]"]

@@ -49,10 +49,7 @@ db_transaction {
 } on_error {
     # most likely a duplicate name, double click, or non-image file uploaded as an inline image.
 
-    ad_return_complaint 1 "There was an error trying to add your image.  Most likely causes you've
-<ul><li>Tried to upload a non-image file.
-<li>Double-clicking the \"Save Image\" button on the previous page.
-</ul><p>Here is the actual error message:<blockquote><pre>$errmsg</pre></blockquote>"
+    ad_return_complaint 1 "[_ wp-slim.lt_There_was_an_error_tr_1]<blockquote><pre>$errmsg</pre></blockquote>"
 
     ad_script_abort
 

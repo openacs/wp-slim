@@ -1,10 +1,9 @@
 <master>
-<property name="title">Reorder Slides</property>
-<property name="context">@context;noquote@</property>
+<property name="title">#wp-slim.Reorder_Slides#</property>
+<property name="context">@context@</property>
 
 <form name=f>
-To move a slide in your presentation, select its title and click the Up or Down arrow.
-When you're done, click <i>Save Changes</i>.
+#wp-slim.lt_To_move_a_slide_in_yo# <i>#wp-slim.Save_Changes#</i>.
 
 <script language=javascript>
 
@@ -60,13 +59,13 @@ function done() {
 @out@
 </select>
 </td>
-<td align=center valign=middle><a href="javascript:up()"><img src="pics/up.gif" border=0 alt="up"></a></td>
+<td align=center valign=middle><a href="javascript:up()"><img src="pics/up.gif" border=0 alt="#wp-slim.up#"></a></td>
 </tr>
 <tr>
-<td align=center valign=middle><a href="javascript:down()"><img src="pics/down.gif" border=0 alt="down"></a></td>
+<td align=center valign=middle><a href="javascript:down()"><img src="pics/down.gif" border=0 alt="#wp-slim.down#"></a></td>
 </tr>
 
-<tr><td align=center><input type=button value="Save Changes" onClick="done()"></td></tr>
+<tr><td align=center><input type=button value="#wp-slim.Save_Changes#" onClick="done()"></td></tr>
 
 </table>
 </center>

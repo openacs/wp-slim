@@ -6,7 +6,7 @@
 </head>
 <body <%=[wp_header $style_id]%>>
 <if @body_start_include@ not nil>
-<include src="@body_start_include;noquote@" />
+<include src="@body_start_include@" />
 </if>
 <slave>
 
@@ -18,4 +18,5 @@
 @ds_link@
 </body>
 </html>
+
 

@@ -22,7 +22,7 @@ ad_page_contract {
 
 ad_require_permission $pres_item_id wp_admin_presentation
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "Authorization"] [list "invite?[export_url_vars pres_item_id role title]" "Invite User"] "Email Sent"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "[_ wp-slim.Authorization]"] [list "invite?[export_url_vars pres_item_id role title]" "[_ wp-slim.Invite_User]"] "[_ wp-slim.Email_Sent]"]
 
 set user_id [ad_verify_and_get_user_id]
 
@@ -34,20 +34,12 @@ db_1row user_info_get {
     and   parties.party_id = :user_id
 }
 
+set server [ad_conn server]
+set location [ad_conn location]
 set email_content [ad_convert_to_html -html_p t "
-From: $user_name $user_email
-To: $name $email
-
-Hello! I have invited you to work on the WimpyPoint presentation named
-
-  $title
-
-on [ad_conn server]. To do so, you'll need to register for an account on
-[ad_conn server]. Please visit [ad_conn location] and follow the instructions.
-
-$message
+[_ wp-slim.lt_From_user_name_user_e]
 "]
 
-ns_sendmail $email $user_email "WimpyPoint Invitation" "$email_content"
+ns_sendmail $email $user_email "[_ wp-slim.lt_WimpyPoint_Invitation]" "$email_content"
 
 ad_return_template

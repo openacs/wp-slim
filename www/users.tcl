@@ -19,7 +19,7 @@ set package_id [ad_conn package_id]
 # What presentations that users has created (but only if the current user has permission to see/view
 # those presentations.)
 
-set context "[list "All Authors"]"
+set context "[list "[_ wp-slim.All_Authors]"]"
 
 db_multirow users get_wp_users {
     select p.person_id, p.first_names, p.last_name, parties.email, count(i.item_id) as num_presentations

@@ -1,14 +1,14 @@
 <master>
-<property name="title">Delete @name@</property>
+<property name="title">#wp-slim.Delete_name#</property>
 <property name="context">@context@</property>
 
 <form action=style-delete-2.tcl>
-@form_vars@
-Are you sure that you want to delete the style @name@ @images_str@?
+#wp-slim.lt_form_varsAre_you_sure#
 
 <p><center>
-<input type=button value="No, I want to cancel." onClick="location.href='style-list.tcl'">
+<input type=button value="#wp-slim.No_I_want_to_cancel#" onClick="location.href='style-list.tcl'">
 <spacer type=horizontal size=50>
-<input type=submit value="Yes, proceed.">
+<input type=submit value="#wp-slim.Yes_proceed#">
 </p></center>
 </form>
+

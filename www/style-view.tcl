@@ -45,10 +45,10 @@ foreach property { text_color link_color alink_color vlink_color } {
 if { [exists_and_not_null presentation_id] } {
     set last_link " [list "presentation-top?pres_item_id=$presentation_id" "[db_string pres_name_select "select title from cr_wp_presentations where presentation_id = :presentation_id"]"]"
 } else {
-set last_link [list "style-list?user_id=$user_id" "Your Styles"]
+set last_link [list "style-list?user_id=$user_id" "[_ wp-slim.Your_Styles]"]
 }
 
-set context [list $last_link "One Style"]
+set context [list $last_link "[_ wp-slim.One_Style]"]
 
 set export_form_vars "[export_form_vars style_id presentation_id]"
 

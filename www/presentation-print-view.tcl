@@ -20,7 +20,7 @@ This  generates a printer friendly view of a presentation, suitable for print-ou
     owner_id : onevalue
 }
 
-set context [list "Print View"]
+set context [list "[_ wp-slim.Print_View]"]
 set user_id [ad_verify_and_get_user_id]
 ## permission checking roc@
 permission::require_permission -party_id $user_id -object_id $item_id -privilege wp_view_presentation

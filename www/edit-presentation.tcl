@@ -23,7 +23,7 @@ ad_page_contract {
 set user_id [ad_verify_and_get_user_id]
 permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
-set header [ad_header "Edit Presentation"]
+set header [ad_header "[_ wp-slim.Edit_Presentation]"]
 
 db_1row get_presentation_data { *SQL* }
 
@@ -45,7 +45,7 @@ db_1row get_back_data {
     and r.revision_id = i.live_revision
 }
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]"  "$pres_title"] "Edit Presentation"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]"  "$pres_title"] "[_ wp-slim.Edit_Presentation]"]
 
 # quote html tags
 set page_signature [ad_quotehtml $page_signature]
