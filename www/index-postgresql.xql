@@ -16,6 +16,7 @@
 	and   ao.object_id = i.item_id
 	and   ao.creation_user = p.person_id
 	and   pres.public_p = 't'
+	and   ao.context_id = :package_id
     
       </querytext>
 </fullquery>
@@ -31,6 +32,7 @@
 	where i.live_revision = p.presentation_id
 	and   ao.object_id = i.item_id
 	and   ao.creation_user = :user_id
+	and   ao.context_id = :package_id
     
       </querytext>
 </fullquery>
@@ -51,6 +53,7 @@
 	and   ao.creation_user <> :user_id
 	and   ao.creation_user = p.person_id
 	and   acs_permission__permission_p(i.item_id, :user_id, 'wp_view_presentation') = 't'
+	and   ao.context_id = :package_id
     
       </querytext>
 </fullquery>

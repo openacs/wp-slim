@@ -10,6 +10,7 @@
     and   o.object_id = i.item_id
     and   p.person_id = o.creation_user
     and   parties.party_id = p.person_id
+    and   o.context_id = :package_id
     group by p.person_id, p.first_names, p.last_name, parties.email
 
       </querytext>
