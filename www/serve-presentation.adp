@@ -22,4 +22,6 @@ a Wimpy Point Presentation owned by <a href="/shared/community-member?user_id=@o
 </multiple>
 </ul>
 
+<p>Here is a <a href="@subsite_name@/presentation-print-view.tcl?item_id=@pres_item_id@">printer-friendly</a> version of the presentation.
+  <br>
 @page_signature@

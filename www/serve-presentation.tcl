@@ -14,6 +14,7 @@ ad_page_contract {
     owner_name
     owner_id
     slides:multirow
+    subsite_name:onevalue
 }
 
 set url [ad_conn url]
