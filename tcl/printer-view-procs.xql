@@ -14,6 +14,3 @@
 </fullquery>
  
 </queryset>
-
-
-}
