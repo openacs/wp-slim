@@ -4,7 +4,6 @@
 
 <h2>@pres_title@</h2>
 #wp-slim.lt_a_Wimpy_Point_Present# <a href="/shared/community-member?user_id=@owner_id@">@owner_name@</a>
-@copyright_notice@
 
 <multiple name="slides">
 			<hr>
@@ -95,4 +94,6 @@
 </multiple>
 <hr>
 @page_signature@
+<br>
+@copyright_notice@
 
