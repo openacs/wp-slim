@@ -3,7 +3,6 @@
 
 
 -- certainly needs to be modified !!
-delete from cr_item_publish_audit;
 
 -- ??
 delete from cr_folder_type_map
@@ -22,7 +21,6 @@ declare
 begin
 
   for c in v_attach_cursor loop
-    update acs_objects set context_id = null where context_id = c.item_id;
     content_item.delete(c.item_id);
   end loop;
 
@@ -90,22 +88,18 @@ declare
 begin
 
   for c in v_slide_clob_cursor loop
-    update acs_objects set context_id = null where context_id = c.item_id;
     content_item.delete(c.item_id);
   end loop;
 
   for c in v_slide_cursor loop
-    update acs_objects set context_id = null where context_id = c.item_id;
     content_item.delete(c.item_id);
   end loop;
 
   for c in v_pres_clob_cursor loop
-    update acs_objects set context_id = null where context_id = c.item_id;
     content_item.delete(c.item_id);
   end loop;
 
   for c in v_pres_cursor loop
-    update acs_objects set context_id = null where context_id = c.item_id;
     content_item.delete(c.item_id);
   end loop;
 
