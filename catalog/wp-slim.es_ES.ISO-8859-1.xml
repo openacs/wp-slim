@@ -201,9 +201,11 @@ si solo quiere que ciertos usuarios puedan verla.</msg>
   <msg key="No_users_found">No se encontrar&amp;oacute;n usuarios.</msg>
   <msg key="none">(ninguna)</msg>
   <msg key="none_1">ninguna</msg>
-  <msg key="one_presentation">&quot;una presentaci&amp;oacute;n&quot;</msg>
+  <msg key="one_presentation">una presentaci&amp;oacute;n</msg>
+  <msg key="One_Presentation">Una Presentaci&amp;oacute;n</msg>
   <msg key="One_Revision">Una Revisi&amp;oacute;n</msg>
   <msg key="one_slide">una diapositiva</msg>
+  <msg key="One_Slide">Una Diapositiva</msg>
   <msg key="One_Style">Un Estilo</msg>
   <msg key="Options">Opciones</msg>
   <msg key="or">o</msg>

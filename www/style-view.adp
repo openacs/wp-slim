@@ -4,7 +4,7 @@
 
 <form name=f action=style-image-add method=post enctype=multipart/form-data>
 
-@export_form_vars@
+@export_form_vars;noquote@
 
 <p><center>
 <table border=2 cellpadding=10><tr><td>

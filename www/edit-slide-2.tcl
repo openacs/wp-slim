@@ -56,7 +56,8 @@ db_exec_plsql update_slide {
 }
 
 if {[regexp {Upload} $button]} {
-    set context [list [list "presentation-top?[export_url_vars pres_item_id]" "[_ wp-slim.Presentation_Top]"] [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "[_ wp-slim.Edit_Slide]"] "$slide_title"]
+    db_1row get_presentation {}
+    set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "[_ wp-slim.Edit_Slide]"] "$slide_title"]
     # get the number of attachments
     set attachment_count [db_string get_number_of_attachments {
 	select count(1) 

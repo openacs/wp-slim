@@ -64,7 +64,9 @@ set modified_date [lc_time_fmt $modified_date "%Q"]
 
 db_1row get_presentation_page_signature { *SQL* }
 
-set context [list [list "$subsite_name/display/$pres_item_id" "one presentation"] "[_ wp-slim.one_slide]"]
+set context [list [list "$subsite_name/display/$pres_item_id" [_ wp-slim.One_Presentation]] "[_ wp-slim.One_Slide]"]
+
+
 
 # Figure out what the previous slide link should be.
 if {$sort_key == 1} {

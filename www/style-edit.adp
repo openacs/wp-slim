@@ -31,7 +31,7 @@
   </tr>
   <tr>
     <th nowrap align=right>#wp-slim.Background_Imagenbsp#</th>
-    <td>@background_images@</td>
+    <td>@background_images;noquote@</td>
   </tr>
   <tr>
     <th nowrap align=right>#wp-slim.Link_Colornbsp#</th>
@@ -47,7 +47,7 @@
   </tr>
   <tr>
     <th nowrap align=right>#wp-slim.lt_Available_to_other_pe#</th>
-    <td>@public@ </td>
+    <td>@public;noquote@ </td>
   </tr>
   <tr>
     <th nowrap align=right valign=top><br>#wp-slim.CSS_Sourcenbsp#</th>

@@ -10,7 +10,7 @@ ad_page_contract {
 
 set user_id [ad_verify_and_get_user_id]
 
-set context "[_ wp-slim.your_styles]"
+set context "[_ wp-slim.Your_Styles]"
 
 
 db_multirow styles_select style_select_data { *SQL* } {

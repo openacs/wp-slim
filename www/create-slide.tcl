@@ -18,7 +18,7 @@ ad_page_contract {
 set package_id [ad_conn package_id]
 
 
-db_1row get_presentaiton {
+db_1row get_presentation {
 select pres_title
 from cr_wp_presentations p,
      cr_items i
@@ -26,7 +26,7 @@ where i.item_id = :pres_item_id
 and   i.live_revision = p.presentation_id
 }
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "$pres_title"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "[_ wp-slim.New_Slide]"]
 
 if {[empty_string_p $sort_key]} {
     set sort_key [db_string get_sort_key {

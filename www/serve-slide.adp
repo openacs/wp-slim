@@ -1,4 +1,4 @@
-<master src="wp-presentation-master">
+<master>
 <property name="title">@slide_title@</property>
 <property name="context">@context@</property>
 <property name="style_id">@style@</property>
@@ -7,7 +7,7 @@
 
 <table align=right>
 <tr>
-        <td>@href_back_forward@</td>
+        <td>@href_back_forward;noquote@</td>
 </tr>
 </table>
 
@@ -101,7 +101,7 @@
 
 <if @comments@ ne "">
 <h3>#wp-slim.Slide_Comments#</h3>
-@comments@
+@comments;noquote@
 </if>
 
 </if>
@@ -112,7 +112,7 @@
 <if @comment_link@ ne "">
 <ul>
 <li>
-@comment_link@
+@comment_link;noquote@
 </ul>
 </if>
 

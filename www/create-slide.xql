@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <queryset>
 
-<fullquery name="get_presentaiton">      
+<fullquery name="get_presentation">      
       <querytext>
       
 select pres_title

@@ -86,7 +86,7 @@
   </tr>
   <tr>
     <th nowrap align=right>#wp-slim.Style#</th>
-    <td>@available_styles@
+    <td>@available_styles;noquote@
   </tr>
   <tr>
     <td></td><td>
