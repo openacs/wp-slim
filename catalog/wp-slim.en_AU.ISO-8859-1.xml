@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<message_catalog package_key="wp-slim" package_version="4.0b3" locale="en_AU" charset="ISO-8859-1">
+
+  <msg key="_Add">the Attachment</msg>
+  <msg key="_admin_">[ admin ]</msg>
+  <msg key="_editor_">[ editor ]</msg>
+  <msg key="_viewer_">[ viewer ]</msg>
+  <msg key="Add">Add</msg>
+  <msg key="Add_an_image">Add an image:</msg>
+  <msg key="Add_Group">Add Group</msg>
+  <msg key="Add_One">Add One</msg>
+  <msg key="Add_User">Add User</msg>
+  <msg key="All">All</msg>
+  <msg key="All_Authors">All Authors</msg>
+  <msg key="All_Revisions">All Revisions</msg>
+  <msg key="all_WimpyPoint_users">all WimpyPoint users.</msg>
+  <msg key="arrow">arrow</msg>
+  <msg key="as_a_link">as a link</msg>
+  <msg key="attach">attach</msg>
+  <msg key="Audience">Audience:</msg>
+  <msg key="Audience_1">Audience</msg>
+  <msg key="Authorization">Authorization</msg>
+  <msg key="Available_to_Public">Available to Public?</msg>
+  <msg key="Background">Background:</msg>
+  <msg key="Background_1">Background</msg>
+  <msg key="Background_Colornbsp">Background Color:&amp;nbsp;</msg>
+  <msg key="Background_Imagenbsp">Background Image:&amp;nbsp;</msg>
+  <msg key="Bad_Password">Bad Password</msg>
+  <msg key="Bullet_Items">Bullet Items:</msg>
+  <msg key="Change">Change</msg>
+  <msg key="Color_Schemenbsp">Color Scheme:&amp;nbsp;</msg>
+  <msg key="Confirm_Add_User">Confirm Add User</msg>
+  <msg key="Confirm_Add_Users">Confirm Add Users</msg>
+  <msg key="Copyright_Notice">Copyright Notice:</msg>
+  <msg key="Copyright_Notice_1">Copyright Notice</msg>
+  <msg key="Create">Create</msg>
+  <msg key="Create_a_new_style">Create a new style</msg>
+  <msg key="Create_A_Slide">Create A Slide</msg>
+  <msg key="Create_Presentation">Create Presentation</msg>
+  <msg key="Create_Style">Create Style</msg>
+  <msg key="creator">(creator)</msg>
+  <msg key="CSS_Codenbsp">CSS Code:&amp;nbsp;</msg>
+  <msg key="CSS_Sourcenbsp">CSS Source:&amp;nbsp;</msg>
+  <msg key="default">default</msg>
+  <msg key="delete">delete</msg>
+  <msg key="Delete_a_Slide">Delete a Slide</msg>
+  <msg key="Delete_name">Delete %name%</msg>
+  <msg key="Delete_Presentation">Delete Presentation</msg>
+  <msg key="Details">Details</msg>
+  <msg key="details">details</msg>
+  <msg key="Display_as_an_image">Display as an image</msg>
+  <msg key="done">done</msg>
+  <msg key="down">down</msg>
+  <msg key="E-mailnbsp">E-mail:&amp;nbsp;</msg>
+  <msg key="Edit">Edit</msg>
+  <msg key="edit">edit</msg>
+  <msg key="Edit_Presentation">Edit Presentation</msg>
+  <msg key="Edit_Slide">Edit Slide</msg>
+  <msg key="Edit_Style">Edit Style</msg>
+  <msg key="Edit_your_styles">Edit your styles.</msg>
+  <msg key="Email_Sent">Email Sent</msg>
+  <msg key="Error">Error</msg>
+  <msg key="Everyones">Everyone's</msg>
+  <msg key="for_email_email">for email &quot;%email%&quot;</msg>
+  <msg key="go_live">go live</msg>
+  <msg key="Imagesnbsp">Images:&amp;nbsp;</msg>
+  <msg key="in_group_name">in %group_name%</msg>
+  <msg key="Insert">Insert</msg>
+  <msg key="Invite_User">Invite User</msg>
+  <msg key="Last_Month">Last Month</msg>
+  <msg key="Last_Namenbsp">Last Name:&amp;nbsp;</msg>
+  <msg key="Last_Two_Weeks">Last Two Weeks</msg>
+  <msg key="Last_Week">Last Week</msg>
+  <msg key="Link_Colornbsp">Link Color:&amp;nbsp;</msg>
+  <msg key="Linked_Text">Linked Text</msg>
+  <msg key="Linked_Text_Active">Linked Text (Active)</msg>
+  <msg key="Linked_Text_Visited">Linked Text (Visited)</msg>
+  <msg key="List_Attachments">List Attachments</msg>
+  <msg key="List_of_Attachments">List of Attachments</msg>
+  <msg key="log_in">log in</msg>
+  <msg key="lt_A_descriptive_name_li">A descriptive name, like %ramdom_name%.</msg>
+  <msg key="lt_a_Wimpy_Point_Present">a Wimpy Point Presentation owned by</msg>
+  <msg key="lt_Active_Link_Colornbsp">Active Link Color:&amp;nbsp;</msg>
+  <msg key="lt_Add_an_Image_or_Attac">Add an Image or Attachment:</msg>
+  <msg key="lt_after_the_bullets_ali">after the bullets (aligned center)</msg>
+  <msg key="lt_after_the_preamble_al">after the preamble (aligned center)</msg>
+  <msg key="lt_All_Revisions_of_This">All Revisions of This Presentation</msg>
+  <msg key="lt_All_revisions_of_this">All revisions of this presentation</msg>
+  <msg key="lt_All_Revisions_of_This_1">All Revisions of This Slide</msg>
+  <msg key="lt_All_viewers_can_see_t">All viewers can see the comments (</msg>
+  <msg key="lt_and_the_associated_im">and the associated image</msg>
+  <msg key="lt_Are_you_sure_that_you">Are you sure that you want to delete this slide?</msg>
+  <msg key="lt_Are_you_sure_you_want">Are you sure you want to give %first_names_from_search% %last_name_from_search% permission to view the presentation test?</msg>
+  <msg key="lt_Are_you_sure_you_want_1">Are you sure you want to give the following users permission to %role% the presentation %title%?</msg>
+  <msg key="lt_at_the_very_bottom_al">at the very bottom (aligned center)</msg>
+  <msg key="lt_at_the_very_top_align">at the very top (aligned center)</msg>
+  <msg key="lt_attachments_currently">attachments currently associated with this slide.</msg>
+  <msg key="lt_Available_to_other_pe">Available to other people? (Public):&amp;nbsp;</msg>
+  <msg key="lt_Change_order_of_slide">Change order of slides</msg>
+  <msg key="lt_Change_people_who_can">Change people who can view/edit this presentation</msg>
+  <msg key="lt_Could_not_get_a_pres_">Could not get a pres_item_id and slide_item_id out of url=%url%</msg>
+  <msg key="lt_Could_not_get_a_pres__1">Could not get a pres_item_id and a pres_revision_id out of url=%url%</msg>
+  <msg key="lt_Could_not_get_a_pres__2">Could not get a pres_item_id and slide_item_id out of url=@url@</msg>
+  <msg key="lt_Could_not_get_a_pres__3">Could not get a pres_item_id, slide_item_id and slide_revision_id out of url=%url%</msg>
+  <msg key="lt_Couldnt_update_your_s">Couldn't update your style.</msg>
+  <msg key="lt_Create_a_new_presenta">Create a new presentation.</msg>
+  <msg key="lt_Create_a_new_revision">Create a new revision</msg>
+  <msg key="lt_Create_the_first_slid">Create the first slide.</msg>
+  <msg key="lt_created_by_a_hrefshar">created by &lt;a href=&quot;/shared/community-member?user_id=%allpresentations.creation_user%&quot;&gt;%allpresentations.full_name%&lt;/a&gt; on %allpresentations.creation_date%</msg>
+  <msg key="lt_Created_by_revisionsf">Created by %revisions.full_name% from
+%revisions.creation_ip% at %revisions.creation_date%</msg>
+  <msg key="lt_Created_by_revisionsf_1">Created by %revisions.full_name% from %revisions.creation_ip% at
+%revisions.creation_date%</msg>
+  <msg key="lt_Created_by_revisionsf_2">Created by %revisions.full_name% from %revisions.creation_ip% at %revisions.creation_date%</msg>
+  <msg key="lt_created_on_presentati">created on %presentations.creation_date%</msg>
+  <msg key="lt_Delete_this_presentat">Delete this presentation.</msg>
+  <msg key="lt_Display_a_link_the_vi">Display a link the viewer can use to download the file</msg>
+  <msg key="lt_Do_you_really_want_to">Do you really want to delete %title%?
+All slides will be permanently deleted.</msg>
+  <msg key="lt_Edit_one_of_your_styl">Edit one of your styles</msg>
+  <msg key="lt_Edit_presentation_pro">Edit presentation properties.</msg>
+  <msg key="lt_Editors_can_see_the_c">Editors can see the comments (</msg>
+  <msg key="lt_Everyone_can_view_the">Everyone can view the presentation, since it is public.</msg>
+  <msg key="lt_Everyones_Presentatio">Everyone's Presentations</msg>
+  <msg key="lt_Finally_if_youre_plan">Finally, if you're planning on making the presentation public, you might want to let the
+world know whom you gave the presentation to and for what purpose.</msg>
+  <msg key="lt_for_last_name_last_na">for last name &quot;%last_name%&quot;</msg>
+  <msg key="lt_for_name_or_email_mat">for name or email matching &quot;%keyword%&quot;</msg>
+  <msg key="lt_form_varsAre_you_sure">%form_vars%
+Are you sure that you want to delete the style %name% %images_str%?</msg>
+  <msg key="lt_From_user_name_user_e">From: %user_name% %user_email%
+To: %name% %email%
+
+Hello! I have invited you to work on the WimpyPoint presentation named
+
+  %title%
+
+on %server%. To do so, you'll need to register for an account on
+%server%. Please visit %location% and follow the instructions.
+
+%message%
+</msg>
+  <msg key="lt_from_WimpyPoints_main">from WimpyPoint's main page.)</msg>
+  <msg key="lt_Give_this_presentatio">Give this presentation a title.  Pick a title that you've never used
+before, otherwise you won't be able to tell this new presentation from 
+old ones.  Also, keep the title reasonably short so that if you choose
+a style where the overall presentation title is presented on each slide,
+it won't take up too much space.</msg>
+  <msg key="lt_If_you_cant_find_the_">If you can't find the person you're looking for,
+he or she probably hasn't yet registered on ArsDigita, but you can &lt;a href=&quot;invite?pres_item_id=%pres_item_id%&amp;role=%role%&amp;title=%encoded_title%&quot;&gt;invite him or her to
+view your presentation&lt;/a&gt;.</msg>
+  <msg key="lt_If_you_like_you_can_p">If you like, you can provide a brief message to include in the invitation E-mail.</msg>
+  <msg key="lt_If_you_want_a_copyrig">If you want a copyright notice somewhere on each slide, enter it here:</msg>
+  <msg key="lt_If_you_want_a_signatu">If you want a signature at the bottom of each slide, then enter it here:</msg>
+  <msg key="lt_If_you_want_to_hide_t">If you want to hide this presentation from everyone except yourself
+and any collaborators that you add, you should say so.  Eventually
+you'll probably want to change this and make the presentation public,
+unless you are only using WimpyPoint to generate .html
+pages and/or hardcopy slides that you will show privately.</msg>
+  <msg key="lt_If_youre_really_sure_">If you're really sure, please reenter your password.</msg>
+  <msg key="lt_in_collaboration_with">in collaboration with</msg>
+  <msg key="lt_Includethe_following_">Include
+the following message (optional):</msg>
+  <msg key="lt_including_num_images_">including %num_images% associated images</msg>
+  <msg key="lt_Last_modified_modifie">Last modified %modified_date%</msg>
+  <msg key="lt_make_available_only_f">make available only for editors</msg>
+  <msg key="lt_make_available_to_all">make available to all viewers</msg>
+  <msg key="lt_name_email_has_been_i">%name% (%email%) has been invited to work on the presentation test. The following E-mail was sent:</msg>
+  <msg key="lt_next_to_the_bullets_a">next to the bullets (aligned right)</msg>
+  <msg key="lt_next_to_the_postamble">next to the postamble (aligned right)</msg>
+  <msg key="lt_next_to_the_preamble_">next to the preamble (aligned right)</msg>
+  <msg key="lt_Note_this_is_not_a_co">Note: this is not a complete list of the users.
+Users who are collaborators on
+presentations owned by others are excluded.  Users who have created
+only private presentations are excluded.</msg>
+  <msg key="lt_optional_random_text_">(optional random text that goes above the bullet list)</msg>
+  <msg key="lt_optional_random_text__1">(optional random text that goes after the bullet list)</msg>
+  <msg key="lt_or_you_can_a_hrefpres">or you can &lt;a href=&quot;presentation-public?pres_item_id=%pres_item_id%&amp;public_p=t&quot;&gt;make the presentation public&lt;/a&gt; so everyone can view it</msg>
+  <msg key="lt_Personally_I_like_to_">(Personally, I like to have my email address, hyperlinked to my home
+page; remember that HTML is OK here and you can have up to 200 characters.)</msg>
+  <msg key="lt_Please_enter_part_of_">Please enter part of the E-mail address or last name of the user
+you wish to give permission to view the presentation test.</msg>
+  <msg key="lt_Please_provide_the_na">Please provide the name and E-mail address of the person whom you want to invite to %role% the presentation, and we'll send an E-mail inviting him or her to do so, and describing how to register with ArsDigita. The E-mail will appear to come from you, and you'll receive a copy.</msg>
+  <msg key="lt_Please_select_the_nam">Please select the name of the group
+you wish to give permission to %role% thee presentation test.</msg>
+  <msg key="lt_Printer_friendly_view">Printer friendly view.</msg>
+  <msg key="lt_Revision_in_font_colo">Revision in &lt;font color=red&gt;red&lt;/font&gt; is the current live revision.</msg>
+  <msg key="lt_Select_an_author_from">Select an author from this list of users who have created presentations (number of presentations shown in parentheses.)</msg>
+  <msg key="lt_Send_an_E-mail_messag">Send an E-mail message to %first_names_from_search% with a link to the presentation.</msg>
+  <msg key="lt_Send_Invitation_E-Mai">Send Invitation E-Mail</msg>
+  <msg key="lt_Show_Modification_Dat">Show Modification Date?</msg>
+  <msg key="lt_Suggestion_if_you_hav">Suggestion: if you have truly secret information for a presentation,
+you'd be best off keeping it on your desktop machine.  We try to keep
+our database secure but remember that your packets are being sent in
+the clear.</msg>
+  <msg key="lt_Target_was_not_specif">Target was not specified. This shouldn't have happened,
+please contact the &lt;a href=\&quot;mailto:%host_administrator%\&quot;&gt;administrator&lt;/a&gt;
+and let them know what happened.</msg>
+  <msg key="lt_text_color_fontPlain_">%text_color_font%Plain Text%text_color_font_end%</msg>
+  <msg key="lt_That_user_can_already">That user can already %role% the presentation. Maybe you want to &lt;a href=\&quot;presentation-acl?%vars%\&quot;&gt;try again&lt;/a&gt;</msg>
+  <msg key="lt_The_file_is_neither_a">The file is neither a .gif file nor a .jpg file. Therefore we cannot display it as an image.</msg>
+  <msg key="lt_The_following_users_m">The following users may view the presentation:</msg>
+  <msg key="lt_The_following_users_m_1">The following users may view and make changes to the presentation:</msg>
+  <msg key="lt_The_following_users_m_2">The following users may view and make changes to the presentation, and decide who gets to view/edit it:</msg>
+  <msg key="lt_The_presentation_is_p">The presentation is public, so anyone is allowed to view it.</msg>
+  <msg key="lt_There_are_not_yet_any">There are not yet any uploaded images to use as the background.</msg>
+  <msg key="lt_There_was_an_error_tr">There was an error trying to add your content.  Most likely causes you've
+&lt;ul&gt;&lt;li&gt;Tried to upload a non-image file when you've select the \&quot;display image in-line\&quot; option.
+&lt;li&gt;Tried to add multiple copies of the same attachment to the slide
+&lt;li&gt;Double-clicking the \&quot;Add\&quot; button on the previous page.
+&lt;/ul&gt;&lt;p&gt;Here is the actual error message:</msg>
+  <msg key="lt_There_was_an_error_tr_1">There was an error trying to add your image.  Most likely causes you've
+&lt;ul&gt;&lt;li&gt;Tried to upload a non-image file.
+&lt;li&gt;Double-clicking the \&quot;Save Image\&quot; button on the previous page.
+&lt;/ul&gt;&lt;p&gt;Here is the actual error message:</msg>
+  <msg key="lt_To_create_or_edit_pre">To create or edit presentations, please</msg>
+  <msg key="lt_To_move_a_slide_in_yo">To move a slide in your presentation, select its title and click the Up or Down arrow.
+When you're done, click</msg>
+  <msg key="lt_Uploaded_from_revisio">Uploaded from %revisions.creation_ip% at %revisions.creation_date%</msg>
+  <msg key="lt_Uploaded_from_revisio_1">Uploaded from %revisions.creation_ip% at %revisions.creation_date% (</msg>
+  <msg key="lt_User_Already_Had_That">User Already Had That Privilege</msg>
+  <msg key="lt_Viewers__Collaborator">Viewers / Collaborators</msg>
+  <msg key="lt_Visited_Link_Colornbs">Visited Link Color:&amp;nbsp;</msg>
+  <msg key="lt_Want_to_make_your_pre">Want to make your presentation pretty? Select a style to give your presentation
+some pizzazz. If you select &quot;I'll provide my own,&quot; once you submit this form
+you'll be given the opportunity to create a style, selecting your own color
+scheme, background image, etc.
+(You can access your personal style repository by clicking the link
+entitled</msg>
+  <msg key="lt_WimpyPoint_Authorizat">WimpyPoint Authorization</msg>
+  <msg key="lt_WimpyPoint_Invitation">WimpyPoint Invitation</msg>
+  <msg key="lt_WimpyPoint_keeps_trac">WimpyPoint keeps track of the last modification time
+of each slide.  If you'd like that displayed on each slide, you can
+say so here:</msg>
+  <msg key="lt_You_can_add_additiona">You can add additional bullets later.</msg>
+  <msg key="lt_You_can_nobra_hrefpre">You can &lt;nobr&gt;&lt;a href=&quot;presentation-public?pres_item_id=%pres_item_id%&amp;public_p=f&quot;&gt;make the presentation private&lt;/a&gt;&lt;/nobr&gt; if you want only certain users to be able to view it.</msg>
+  <msg key="lt_You_can_only_specify_">You can only specify either email or last name, not both.</msg>
+  <msg key="lt_You_forgot_to_type_a_">You forgot to type a search string!</msg>
+  <msg key="lt_You_havent_created_an">You haven't created any styles.</msg>
+  <msg key="lt_You_havent_uploaded_a">You haven't uploaded a file.</msg>
+  <msg key="lt_You_must_specify_eith">You must specify either an email address or last name to search for.</msg>
+  <msg key="lt_Your_file_is_too_larg">Your file is too large.  The publisher of %system_name% has chosen to limit attachments to %bytes% bytes.</msg>
+  <msg key="Messagenbsp">Message:&amp;nbsp;</msg>
+  <msg key="My_Presentations">My Presentations</msg>
+  <msg key="Namenbsp">Name:&amp;nbsp;</msg>
+  <msg key="nbspImages">#&amp;nbsp;Images</msg>
+  <msg key="New_Slide">New Slide</msg>
+  <msg key="next">next</msg>
+  <msg key="No">No</msg>
+  <msg key="No_I_want_to_cancel">No, I want to cancel.</msg>
+  <msg key="No_I_want_to_go_back">No, I want to go back.</msg>
+  <msg key="No_users">No users.</msg>
+  <msg key="No_users_found">No users found.</msg>
+  <msg key="none">(none)</msg>
+  <msg key="none_1">none</msg>
+  <msg key="One_Presentation">One Presentation</msg>
+  <msg key="one_presentation">one presentation</msg>
+  <msg key="One_Revision">One Revision</msg>
+  <msg key="One_Slide">One Slide</msg>
+  <msg key="one_slide">one slide</msg>
+  <msg key="One_Style">One Style</msg>
+  <msg key="Options">Options</msg>
+  <msg key="or">or</msg>
+  <msg key="Page_Signature">Page Signature:</msg>
+  <msg key="Page_Signature_1">Page Signature</msg>
+  <msg key="Password">Password:</msg>
+  <msg key="Postamble">Postamble:</msg>
+  <msg key="Preamble">Preamble:</msg>
+  <msg key="Presentation">Presentation</msg>
+  <msg key="presentation">presentation</msg>
+  <msg key="Presentation_Top">Presentation Top</msg>
+  <msg key="Preview_the_Slide">Preview the Slide</msg>
+  <msg key="previous">previous</msg>
+  <msg key="Print_View">Print View</msg>
+  <msg key="print_view">print view</msg>
+  <msg key="Public">Public?</msg>
+  <msg key="remove">remove</msg>
+  <msg key="Reorder_Slides">Reorder Slides</msg>
+  <msg key="Return_to_test">Return to test</msg>
+  <msg key="role_Style">%role% Style</msg>
+  <msg key="Save_Changes">Save Changes</msg>
+  <msg key="Save_Image">Save Image</msg>
+  <msg key="Save_Presentation">Save Presentation</msg>
+  <msg key="Save_Slide">Save Slide</msg>
+  <msg key="Save_Style">Save Style</msg>
+  <msg key="Search">Search</msg>
+  <msg key="Show_a_list_of">Show a list of</msg>
+  <msg key="Show_Modified_Date">Show Modified Date?</msg>
+  <msg key="Show_presentation">Show presentation.</msg>
+  <msg key="Slide_Comments">Slide Comments</msg>
+  <msg key="Slide_Revisions">Slide Revisions</msg>
+  <msg key="Slide_Titlenbsp">Slide Title:&amp;nbsp;</msg>
+  <msg key="Style">Style:</msg>
+  <msg key="Style_1">Style</msg>
+  <msg key="Text_Colornbsp">Text Color:&amp;nbsp;</msg>
+  <msg key="The_Slides">The Slides</msg>
+  <msg key="There_are_">There are </msg>
+  <msg key="Title">Title:</msg>
+  <msg key="Title_1">Title</msg>
+  <msg key="Title__slide_title">Title:  %slide_title%</msg>
+  <msg key="top">top</msg>
+  <msg key="Total_Size">Total Size</msg>
+  <msg key="up">up</msg>
+  <msg key="Upload_Attachments">Upload Attachments</msg>
+  <msg key="User_Search">User Search</msg>
+  <msg key="User_search">&quot;User search&quot;</msg>
+  <msg key="Versioning">Versioning</msg>
+  <msg key="view">view</msg>
+  <msg key="view_revisions">view revisions</msg>
+  <msg key="Wimpy_Point">Wimpy Point</msg>
+  <msg key="Wimpy_Point_Users">Wimpy Point Users</msg>
+  <msg key="WimpyPoint">WimpyPoint</msg>
+  <msg key="Wrong_password">Wrong password.</msg>
+  <msg key="Yes">Yes</msg>
+  <msg key="Yes_delete_the_slide">Yes, delete the slide.</msg>
+  <msg key="Yes_proceed">Yes, proceed.</msg>
+  <msg key="You">(You)</msg>
+  <msg key="Your_Styles">Your Styles</msg>
+  <msg key="your_styles">your styles</msg>
+  <msg key="Yours">Yours</msg>
+</message_catalog>
