@@ -971,7 +971,7 @@ begin
     
     delete from acs_permissions where object_id = pres_item_id;
     update acs_objects set context_id=null where context_id = pres_item_id;
-    delete from cr_wp_presentations where exists (select 1 from cr_revisions where cr_revisions__revision_id = cr_wp_presentations__presentation_id and cr_revisions__item_id = pres_item_id);    
+    delete from cr_wp_presentations where exists (select 1 from cr_revisions where cr_revisions__revision_id = cr_wp_presentations__presentation_id and cr_revisions.item_id = pres_item_id);    
     content_item__delete(pres_item_id);
 return 0;
 end;' language 'plpgsql';
@@ -1411,9 +1411,8 @@ declare
     delete_preamble__preamble_item_id         alias for $1;
 begin 
     delete from cr_wp_slides_preamble
-    where exists (select 1 from cr_revisions where revision_id =
-    cr_wp_slides_preamble__id 
-    and item_id = delete_preamble__preamble_item_id);    
+    where exists (select 1 from cr_revisions where revision_id = cr_wp_slides_preamble.id 
+                  and item_id = delete_preamble__preamble_item_id);    
     
     delete from cr_item_publish_audit
     where item_id = delete_preamble__preamble_item_id;
@@ -1430,7 +1429,7 @@ declare
 begin
     delete from cr_wp_slides_postamble
     where exists (select 1 from cr_revisions where revision_id =
-    cr_wp_slides_postamble__id 
+    cr_wp_slides_postamble.id 
     and item_id = delete_postamble__postamble_item_id);
     
     delete from cr_item_publish_audit
@@ -1448,13 +1447,13 @@ declare
 begin 
     delete from cr_wp_slides_bullet_items
     where exists (select 1 from cr_revisions where revision_id =
-    cr_wp_slides_bullet_items__id 
+    cr_wp_slides_bullet_items.id 
     and item_id = delete_bullet_items__bullet_items_item_id);
     
     delete from cr_item_publish_audit
     where item_id = delete_bullet_items__bullet_items_item_id;
 
-    PERFORM content_item__delete(bullet_items_item_id);
+    PERFORM content_item__delete(delete_bullet_items__bullet_items_item_id);
     return 0;
 end;' language 'plpgsql';
 
@@ -1473,7 +1472,7 @@ begin
     for del_rec in select item_id as attach_item_id
     from cr_items
     where content_type in (''cr_wp_image_attachment'', ''cr_wp_file_attachment'')
-    and   parent_id = slide_item_id
+    and   parent_id = delete__slide_item_id
     loop
      wp_attachment__delete(del_rec.attach_item_id);
     end loop;
@@ -1481,42 +1480,35 @@ begin
     select item_id into v_preamble_item_id
     from cr_items
     where content_type = ''cr_wp_slide_preamble''
-    and   parent_id = slide_item_id;
+    and   parent_id = delete__slide_item_id;
     
-    PERFORM delete_preamble(v_preamble_item_id);
+    PERFORM wp_slide__delete_preamble(v_preamble_item_id);
     
     select item_id into v_postamble_item_id
     from cr_items
     where content_type = ''cr_wp_slide_postamble''
-    and   parent_id = slide_item_id;
+    and   parent_id = delete__slide_item_id;
 
-    PERFORM delete_preamble(v_preamble_item_id);
-    
-    select item_id into v_postamble_item_id  
-    from cr_items
-    where content_type = ''cr_wp_slide_postamble''
-    and   parent_id = slide_item_id;
-    
-    PERFORM delete_postamble(v_postamble_item_id);
+    PERFORM wp_slide__delete_postamble(v_postamble_item_id);
     
     select item_id into v_bullet_items_item_id
     from cr_items
     where content_type = ''cr_wp_slide_bullet_items''
-    and   parent_id = slide_item_id;
+    and   parent_id = delete__slide_item_id;
     
-    PERFORM delete_bullet_items(v_bullet_items_item_id);
+    PERFORM wp_slide__delete_bullet_items(v_bullet_items_item_id);
 
--- sort_key of all revisions should be the same
-    select max(s__sort_key), max(i__parent_id) into v_sort_key,
+    -- sort_key of all revisions should be the same
+    select max(s.sort_key), max(i.parent_id) into v_sort_key,
       v_pres_item_id
     from cr_wp_slides s, cr_revisions r, cr_items i
-    where r__item_id = slide_item_id
-    and   r__revision_id = s__slide_id
-    and   i__item_id = r__item_id;
+    where r.item_id = delete__slide_item_id
+    and   r.revision_id = s.slide_id
+    and   i.item_id = r.item_id;
     
     delete from cr_wp_slides where exists (select 1 from cr_revisions
-    where cr_revisions.revision_id = cr_wp_slides__slide_id 
-    and cr_revisions__item_id = slide_item_id);
+    where cr_revisions.revision_id = cr_wp_slides.slide_id 
+    and cr_revisions.item_id = delete__slide_item_id);
 
     update cr_wp_slides set sort_key = sort_key - 1 
     where sort_key > v_sort_key and exists 
@@ -1524,12 +1516,13 @@ begin
       where i.parent_id = v_pres_item_id and i.item_id = r.item_id
       and r.revision_id = cr_wp_slides.slide_id);    
 
-    update acs_objects set context_id=null
-    where context_id = slide_item_id;
+    update acs_objects set context_id = ''''
+    where context_id = delete__slide_item_id;
 
-    delete from cr_item_publish_audit where item_id = slide_item_id;
+    delete from cr_item_publish_audit where item_id = delete__slide_item_id;
 
-    PERFORM content_item__delete(slide_item_id);
+    PERFORM content_item__delete(delete__slide_item_id);
+
     return 0;
 end;' language 'plpgsql';
 
