@@ -77,5 +77,7 @@ foreach item $bullet_items {
 incr bullet_num
 set bullet_max [expr $bullet_num + 1]
 
+# quote html tags contained in bullet items
+set bullet_items [ad_quotehtml $bullet_items]
 
 ad_return_template
