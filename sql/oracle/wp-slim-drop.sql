@@ -195,7 +195,7 @@ begin
 
     default_context := acs.magic_object_id('default_context');
     registered_users := acs.magic_object_id('registered_users');
-    the_public := acs.magic_object_id('the_public');
+--    the_public := acs.magic_object_id('the_public');
 
     acs_permission.revoke_permission (
         object_id => default_context,
@@ -203,17 +203,27 @@ begin
         privilege => 'wp_create_presentation'
     );
 
-    acs_permission.revoke_permission (
-        object_id => default_context,
-        grantee_id => the_public,
-        privilege => 'wp_view_presentation'
-    );
+--    acs_permission.revoke_permission (
+--        object_id => default_context,
+--        grantee_id => the_public,
+--        privilege => 'wp_view_presentation'
+--    );
 
 end;
 /
 show errors
 
 begin
+	
+
+	acs_privilege.remove_child('admin', 'wp_admin_presentation');
+
+	acs_privilege.remove_child('wp_edit_presentation',  'wp_view_presentation');
+	acs_privilege.remove_child('wp_admin_presentation', 'wp_create_presentation');
+	acs_privilege.remove_child('wp_admin_presentation', 'wp_edit_presentation');
+	acs_privilege.remove_child('wp_admin_presentation', 'wp_delete_presentation');
+
+
 	delete from acs_permissions
 	where privilege in ('wp_admin_presentation', 'wp_create_presentation', 'wp_edit_presentation', 'wp_delete_presentation', 'wp_view_presentation');
 	acs_privilege.drop_privilege('wp_admin_presentation');
@@ -252,6 +262,15 @@ drop table cr_wp_slides;
 drop view cr_wp_presentationsi;
 drop view cr_wp_presentationsx;
 drop table cr_wp_presentations;
+
+-- droping style definitions roc@
+
+drop package wp_style;
+
+
+drop sequence wp_style_seq;
+
+drop table wp_style_images;
 
 drop table wp_styles;
 

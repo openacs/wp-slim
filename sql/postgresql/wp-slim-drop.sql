@@ -315,7 +315,7 @@ begin
 
     default_context := acs__magic_object_id(''default_context'');
     registered_users := acs__magic_object_id(''registered_users'');
-    the_public := acs__magic_object_id(''the_public'');
+--    the_public := acs__magic_object_id(''the_public'');
 
     PERFORM acs_permission__revoke_permission (
          default_context,
@@ -323,11 +323,11 @@ begin
          ''wp_create_presentation''
     );
 
-    PERFORM acs_permission__revoke_permission (
-         default_context,
-         the_public,
-         ''wp_view_presentation''
-    );
+--    PERFORM acs_permission__revoke_permission (
+--         default_context,
+--         the_public,
+--        ''wp_view_presentation''
+--    );
 
 return 0;
 end;' language 'plpgsql';
@@ -335,6 +335,15 @@ select inline_11 ();
 drop function inline_11 ();
 
 --checked
+
+select acs_privilege__remove_child('admin', 'wp_admin_presentation');
+
+select acs_privilege__remove_child('wp_edit_presentation', 'wp_view_presentation');
+select acs_privilege__remove_child('wp_admin_presentation', 'wp_create_presentation');
+select acs_privilege__remove_child('wp_admin_presentation', 'wp_edit_presentation');
+select acs_privilege__remove_child('wp_admin_presentation', 'wp_delete_presentation');
+
+
 create function inline_12 ()
 returns integer as'
 begin
@@ -368,7 +377,7 @@ DROP FUNCTION wp_attachment__new_revision(
 --drop package wp_slide;
 DROP FUNCTION wp_slide__new(
 	integer,
-	timestamptz,
+	timestamp,
 	integer,
 	varchar,
 	varchar,
@@ -408,7 +417,7 @@ DROP FUNCTION wp_slide__get_preamble(
 
 --drop package wp_presentation;
 DROP FUNCTION wp_presentation__new(
-	timestamptz,
+	timestamp,
 	integer,
 	varchar,
 	varchar,
@@ -450,7 +459,7 @@ DROP FUNCTION wp_presentation__get_background(
 );
 
 drop function wp_slide__new_revision(
-    timestamptz,
+    timestamp,
     integer,
     varchar,
     integer,
@@ -465,7 +474,7 @@ drop function wp_slide__new_revision(
     boolean);
 
 drop function wp_presentation__new_revision (
-    timestamptz,
+    timestamp,
     integer,	 
     varchar,	 
     integer,	 
@@ -500,10 +509,19 @@ drop view cr_wp_presentationsi;
 drop view cr_wp_presentationsx;
 drop table cr_wp_presentations;
 
-drop table wp_styles;
 drop function wp_slide__get_bullet_items_revision(integer);
 drop function wp_slide__get_postamble_revision(integer);
 drop function wp_slide__get_bullet_items(integer);
 drop function wp_slide__get_postamble(integer);
 
 drop function wp_presentation__set_live_revision(integer);
+
+drop sequence wp_style_seq;
+
+
+drop function wp_style__delete(integer);
+
+drop function wp_style__image_delete(integer);
+drop table wp_style_images;
+drop table wp_styles;
+
