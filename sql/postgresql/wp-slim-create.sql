@@ -716,7 +716,7 @@ drop function inline_11 ();
 
 --jackp: To p_create each presentation
 create function wp_presentation__new (
-	timestamp,
+	timestamptz,
 	integer,
 	varchar(400),
 	varchar(400),	
@@ -1029,7 +1029,7 @@ end;' language 'plpgsql';
    
 
 create function wp_presentation__new_revision (
-    timestamp,
+    timestamptz,
     integer,	 
     varchar,	 
     integer,	 
@@ -1160,7 +1160,7 @@ end;' language 'plpgsql';
 
 create function wp_slide__new (
     integer,
-    timestamp,
+    timestamptz,
     integer,
     varchar,
     varchar,
@@ -1602,7 +1602,7 @@ begin
 end;' language 'plpgsql';
 
 create function wp_slide__new_revision(
-    timestamp,
+    timestamptz,
     integer,
     varchar,
     integer,
