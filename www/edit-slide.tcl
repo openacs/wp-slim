@@ -61,6 +61,21 @@ and   i.live_revision = s.slide_id
 #
 #
 
-set bullet_num [llength $bullet_items]
+set bullet_num 0
+multirow create bullets item widget rows prev
+foreach item $bullet_items { 
+    if {[string length $item] < 60} { 
+        set rows 1 
+        set widget text
+    } else { 
+        set rows [max 3 [min 8 [expr {[string length $item]/45}]]]
+        set widget textarea
+    }
+    multirow append bullets $item $widget $rows $bullet_num
+    incr bullet_num
+}
+incr bullet_num
+set bullet_max [expr $bullet_num + 1]
+
 
 ad_return_template

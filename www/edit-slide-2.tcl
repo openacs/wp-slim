@@ -13,7 +13,6 @@ ad_page_contract {
     postamble:html
     sort_key
     original_slide_id
-    array_max
     button
     bullet:array,html
     bullet_num:integer
@@ -30,7 +29,7 @@ set creation_ip [ad_conn peeraddr]
 
 # construct the list of bullet_items
 set bullet_items [list]
-for {set index 1} {$index < [expr $bullet_num + 2]} {incr index} {
+for {set index 1} {$index < [expr $bullet_num + 1]} {incr index} {
     if {![empty_string_p $bullet($index)]} {
         lappend bullet_items $bullet($index)
     }
