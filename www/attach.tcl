@@ -68,4 +68,5 @@ db_transaction {
     ad_script_abort
 }
 
-ad_returnredirect edit-slide?[export_url_vars slide_item_id pres_item_id]
+set edit_slide 1
+ad_returnredirect add-edit-slide?[export_url_vars slide_item_id pres_item_id edit_slide]

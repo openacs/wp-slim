@@ -66,7 +66,7 @@
 
 <h2>#wp-slim.Options#</h2>
 <ul>
-  <li><a href="create-presentation">#wp-slim.lt_Create_a_new_presenta#</a>
+  <li><a href="add-edit-presentation">#wp-slim.lt_Create_a_new_presenta#</a>
   <li><a href="style-list">#wp-slim.Edit_your_styles#</a>
   <li>#wp-slim.Show_a_list_of# <a href="users">#wp-slim.all_WimpyPoint_users#</a>       
 </ul>

@@ -2,9 +2,8 @@
 <property name="title">#wp-slim.role_Style#</property>
 <property name="context">@context@</property>
 
-
+<a href="/wp-slim"> Done </a>
 <form name=f action=style-edit-2 method=post enctype=multipart/form-data>
-<h2>#wp-slim.Create_Style#</h2>
 
 @export_form_vars@
 

@@ -26,7 +26,7 @@
 <table width="100%">
 <tr>
 <td>
-<p>@preamble@
+<p>@preamble;noquote@
 </td>
 <td align=right>
 <multiple name="attach_list">
@@ -76,7 +76,7 @@
 <table width="100%">
 <tr>
 <td>
-<p>@postamble@
+<p>@postamble;noquote@
 </td>
 <td align=right>
 <multiple name="attach_list">

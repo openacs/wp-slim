@@ -60,6 +60,10 @@ db_1row get_slide_info {
     and   ao.object_id = s.slide_id
 }
 
+# to support htmlArea
+set preamble [lindex $preamble 0]
+set postamble [lindex $postamble 0]
+
 set modified_date [lc_time_fmt $modified_date "%Q"]
 
 db_1row get_presentation_page_signature { *SQL* }
@@ -115,9 +119,10 @@ db_multirow attach_list get_attachments {
     and   i.live_revision = x.attach_id
 }
 
+set edit_slide 1
 set extra ""
 if {$edit_p == 1} {
-    append extra "<a href=\"$subsite_name/edit-slide?[export_url_vars slide_item_id pres_item_id]\">[_ wp-slim.edit]</a> | "
+    append extra "<a href=\"$subsite_name/add-edit-slide?[export_url_vars slide_item_id pres_item_id edit_slide]\">[_ wp-slim.edit]</a> | "
 }
 if {$delete_p == 1} {
     append extra "<a href=\"$subsite_name/delete-slide?[export_url_vars slide_item_id pres_item_id slide_title]\">[_ wp-slim.delete]</a> |"

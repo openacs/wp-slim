@@ -4,7 +4,7 @@
 
 <h3>#wp-slim.The_Slides#</h3>
    <if  @slides:rowcount@ eq 0>
-          <a href="create-slide?sort_key=1&pres_item_id=@pres_item_id@">#wp-slim.lt_Create_the_first_slid#</a>
+      <a href="add-edit-slide?sort_key=1&edit_preamble=1&pres_item_id=@pres_item_id@">#wp-slim.lt_Create_the_first_slid#</a>
    </if>
    <else>
      <table border=0 cellspacing=10 cellpadding=0>
@@ -13,21 +13,26 @@
      <td>@slides.sort_key@.</td>
      <td> <a href="@subsite_name@display/@pres_item_id@/@slides.slide_item_id@.wimpy">@slides.slide_title@</a> </td>
      <td>
-[ <a href="edit-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">#wp-slim.edit#</a> |
+     [ #wp-slim.Preamble#
+     <a href="add-edit-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@&edit_slide=1&edit_preamble=1">
+     #wp-slim.edit#</a> |
+     #wp-slim.Postamble#
+     <a href="add-edit-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@&edit_slide=1&edit_preamble=0">
+     #wp-slim.edit#</a> |
 <if @delete_p@ eq t>
   <a href="delete-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@&slide_title=@slides.slide_title@">#wp-slim.delete#</a> |
 </if>
 <a href="attach-list?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">#wp-slim.attach#</a> |
 <a href="slide-revisions?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">#wp-slim.view_revisions#</a>]
      </td>
-     <td> <img src="pics/arrow.gif" alt="#wp-slim.arrow#" align=top> <font size=-1><a href="create-slide?pres_item_id=@pres_item_id@&sort_key=@slides.sort_key@">#wp-slim.Insert#</a></font> </td>
+     <td> <img src="pics/arrow.gif" alt="#wp-slim.arrow#" align=top> <font size=-1><a href="add-edit-slide?pres_item_id=@pres_item_id@&sort_key=@slides.sort_key@">#wp-slim.Insert#</a></font> </td>
      </tr>
      </multiple>
      <tr>
      <td></td>
      <td> <a href="slides-reorder?pres_item_id=@pres_item_id@">#wp-slim.lt_Change_order_of_slide#</a> </td>
      <td></td>
-     <td> <img src="pics/arrow.gif" alt="#wp-slim.arrow#" align=top> <font size=-1><a href="create-slide?pres_item_id=@pres_item_id@">#wp-slim.Add#</a></font> </td>
+     <td> <img src="pics/arrow.gif" alt="#wp-slim.arrow#" align=top> <font size=-1><a href="add-edit-slide?pres_item_id=@pres_item_id@">#wp-slim.Add#</a></font> </td>
      </tr>
      </table>
 </else>
@@ -37,7 +42,7 @@
 <ul>
 <li> <a href="display/@pres_item_id@/">#wp-slim.Show_presentation#</a>
 <li> <a href="presentation-print-view.tcl?item_id=@pres_item_id@">#wp-slim.lt_Printer_friendly_view# </a>
-<li> <a href="edit-presentation?pres_item_id=@pres_item_id@">#wp-slim.lt_Edit_presentation_pro#</a>
+<li> <a href="add-edit-presentation?pres_item_id=@pres_item_id@">#wp-slim.lt_Edit_presentation_pro#</a>
 <if @delete_p@ eq t>
   <li> <a href="delete-presentation?pres_item_id=@pres_item_id@&title=@encoded_title@">#wp-slim.lt_Delete_this_presentat#</a>
 </if>

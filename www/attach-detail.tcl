@@ -34,8 +34,8 @@ set pres_item_id [db_string pres_item_id_get {
 set user_id [ad_verify_and_get_user_id]
 permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
-
-set context [list [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "[_ wp-slim.Edit_Slide]"] "[_ wp-slim.Details]"]
+set edit-slide 1
+set context [list [list "add-edit-slide?[export_url_vars slide_item_id pres_item_id edit-slide]" "[_ wp-slim.Edit_Slide]"] "[_ wp-slim.Details]"]
 
 db_multirow revisions revisions_get {
     select r.revision_id,

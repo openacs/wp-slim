@@ -20,6 +20,6 @@
 </multiple>
 </ul>
 
-<p> <a href="edit-slide?slide_item_id=@slide_item_id@&pres_item_id=@pres_item_id@">#wp-slim.lt_Create_a_new_revision#</a>
+<p> <a href="add-edit-slide?slide_item_id=@slide_item_id@&pres_item_id=@pres_item_id@">#wp-slim.lt_Create_a_new_revision#</a>
 </blockquote>
 

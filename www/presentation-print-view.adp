@@ -20,7 +20,8 @@
           <table width="100%">
           <tr>
           <td>
-          <p>@slides.preamble@
+	  <% set slides(preamble) [lindex $slides(preamble) 0] %>
+          <p>@slides.preamble;noquote@
           </td>
 		    <td align="right">
              <multiple name="attach_list">
@@ -73,7 +74,8 @@
           <table width="100%">
           <tr>
           <td>
-          <p>@slides.postamble@
+	  <% set slides(postamble) [lindex $slides(postamble) 0] %>
+          <p>@slides.postamble;noquote@
           </td>
 
           <td align=right>
