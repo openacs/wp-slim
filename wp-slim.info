@@ -14,7 +14,7 @@
         <owner url="mailto:paulk@arsdigita.com">Paul Konigsberg</owner>
         <owner url="mailto:hqin@arsdigita.com">Haolan Qin</owner>
         <summary>Wimpy Point allows users to collaborate and share online presentations.</summary>
-        <release-date>2001-01-26</release-date>
+        <release-date>2001-01-26 00:00:00-08</release-date>
         <vendor url="http://arsdigita.com/">ArsDigita Corporation</vendor>
         <description format="text/plain">Fixed several bugs. Added new features (e.g. versioning and authorization).</description>
 
