@@ -3,14 +3,12 @@
 <queryset>
    <rdbms><type>postgresql</type><version>7.1</version></rdbms>
 
-<fullquery name="permission_grant">      
+<fullquery name="group_grant">      
       <querytext>
-	begin
-		perform acs_permission__grant_permission(:pres_item_id, :member_id, :permission);
-		return 0;
-	end;
+	select member_id
+        from group_member_map
+        where group_id = :group_id
       </querytext>
 </fullquery>
-
  
 </queryset>
