@@ -20,9 +20,9 @@
       <table border=2 @bgcolor_str@ cellpadding=10>
         <tr><td @bgimage_str@>
           #wp-slim.lt_text_color_fontPlain_#<br>
-          @link_color_font@<u>#wp-slim.Linked_Text#</u>@link_color_font_end@<br>
-          @vlink_color_font@<u>#wp-slim.Linked_Text_Visited#</u>@alink_color_font_end@<br>
-          @alink_color_font@<u>#wp-slim.Linked_Text_Active#</u>@vlink_color_font_end@
+          @link_color_font;noquote@<u>#wp-slim.Linked_Text#</u>@link_color_font_end;noquote@<br>
+          @vlink_color_font;noquote@<u>#wp-slim.Linked_Text_Visited#</u>@alink_color_font_end;noquote@<br>
+          @alink_color_font;noquote@<u>#wp-slim.Linked_Text_Active#</u>@vlink_color_font_end;noquote@
         </td></tr>
       </table>
     </td>
