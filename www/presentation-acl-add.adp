@@ -1,7 +1,7 @@
 <master src="master">
 <property name="title">Add User</property>
 
-<form action="/acs-admin/users/search">
+<form action="search">
 <h2>Add User</h2>
 @nav_bar@
 <hr>

@@ -24,7 +24,7 @@ set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_i
 
 set encoded_title [ns_urlencode $title]
 
-set target "/wp/presentation-acl-add-2"
+set target "[ad_conn package_url]/presentation-acl-add-2"
 set passthrough [list pres_item_id role title]
 set params [export_form_vars pres_item_id role title target passthrough]
 
