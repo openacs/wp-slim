@@ -9,11 +9,6 @@
 <center><p>
 <table border=2 cellpadding=10><tr><td>
 <table cellspacing=0 cellpadding=0>
-<tr>
-  <th align=left nowrap>File Name</th><td>&nbsp;&nbsp;&nbsp;</td>
-  <th align=right nowrap>File Size</th><td>&nbsp;&nbsp;&nbsp;</td>
-  <th nowrap>Display</th>
-</tr>
 <tr><td colspan=7><hr></td></tr>
 
 <tr><td colspan=7 align=center><i>There are 
@@ -21,7 +16,7 @@
 @attachment_count@
 </if>
 <else>
-<a href="attach-list?slide_item_id=@slide_item_id@">@attachment_count@</a>
+<a href="attach-list?slide_item_id=@slide_item_id@&pres_item_id=@pres_item_id@">@attachment_count@</a>
 </else>
  attachments currently associated with this slide.</i></td></tr>
 

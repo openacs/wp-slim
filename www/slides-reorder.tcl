@@ -14,6 +14,10 @@ ad_page_contract {
 }
 
 
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
+
 set header [ad_header "Reorder Slides"]
 
 

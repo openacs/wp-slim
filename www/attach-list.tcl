@@ -10,11 +10,16 @@ ad_page_contract {
      @cvs-id $Id$
 } {
     slide_item_id:naturalnum,notnull
+    pres_item_id:naturalnum,notnull
 } -properties {
     slide_item_id
     context
     att:multirow
 }
+
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
 
 set pres_item_id [db_string pres_item_id_get {

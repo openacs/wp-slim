@@ -32,11 +32,6 @@ db_multirow users get_wp_users {
     group by p.person_id, p.first_names, p.last_name, parties.email
 }
 
-set footer "Note: this is not a complete list of the users.
-Users who are collaborators on
-presentations owned by others are excluded.  Users who have created
-only private presentations are excluded.
-[ad_footer]"
 
 ad_return_template
 

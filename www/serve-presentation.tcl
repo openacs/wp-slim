@@ -24,6 +24,9 @@ if {![regexp {display/([0-9]+)/?$} $url match pres_item_id]} {
     ad_return_error "Wimpy Point" "Could not get a pres_item_id and slide_item_id out of url=$url"
 }
 
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_view_presentation
 
 set subsite_name [ad_conn package_url]
 regexp {^(.+)/$} $subsite_name match subsite_name
@@ -37,12 +40,7 @@ db_0or1row get_first_slide_item_id {
     and   exists (select 1 from cr_wp_slides s where s.slide_id=cr_items.live_revision and s.sort_key=1)
 }
 
-db_1row get_presentation_info {
-    select p.pres_title, p.page_signature
-    from cr_wp_presentations p, cr_items i
-    where i.item_id = :pres_item_id
-    and   i.live_revision = p.presentation_id
-}
+db_1row get_presentation_info { *SQL* }
 
 db_1row get_owner_name {
     select first_names || ' ' || last_name as owner_name, person_id as owner_id
@@ -58,5 +56,14 @@ where i.parent_id = :pres_item_id
 and   i.live_revision = s.slide_id
 order by s.sort_key
 "
+
+set users_list [list]
+db_multirow collaborators get_collaborators { *SQL* } {
+    if {[lsearch $users_list $person_id] != -1} {
+	continue
+    } 
+    lappend users_list $person_id
+}
+
 
 ad_return_template

@@ -6,191 +6,24 @@
     <pretty-plural>Wimpy Points</pretty-plural>
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
-
-    <version name="4.0b1" url="http://arsdigita.com/acs-repository/download/apm/wp-slim-4.0b1.apm">
+    
+    <version name="4.1" url="http://arsdigita.com/acs-repository/download/apm/wp-slim-4.1.apm">
     <database-support>
         <database>oracle</database>
         <database>postgresql</database>
     </database-support>
-        <owner url="mailto:purswami@ebt.ee.usyd.edu.au">Jack Purswani
-and Sidharth Widge(Porter)</owner>
-        <owner url="mailto:paulk@arsdigita.com">Paul Konigsberg</owner>
-        <owner url="mailto:hqin@arsdigita.com">Haolan Qin</owner>
+        <owner url="mailto:roc@viaro.net">Rocael Hernandez Rizzardini</owner>
         <summary>Wimpy Point allows users to collaborate and share online presentations.</summary>
-        <release-date>2001-01-26</release-date>
-        <vendor url="http://arsdigita.com/">ArsDigita Corporation</vendor>
-        <description format="text/plain">Ported (Jack). Fixed several bugs. Added new features (e.g. versioning and authorization).</description>
+        <release-date>2003-08-07</release-date>
+        <vendor url="http://openacs.org/">Openacs</vendor>
+        <description format="text/plain">Scalability test, permission revision, enhancements from WPII and other features added (Rocael). Ported (Jack). Fixed several bugs. Added new features (e.g. versioning and authorization).</description>
 
         <requires url="acs-content-repository" version="4.6.3"/>
-        <requires url="acs-kernel" version="4.6.2"/>
+        <requires url="acs-kernel" version="4.0"/>
+        <requires url="general-comments" version="4.0"/>
 
-        <files>
-            <file type="java_code" path="java/src/com/arsdigita/acs/wpSlim/test/WPSlimTest.java"/>
-            <file type="data_model_upgrade" db_type="oracle" path="sql/oracle/upgrade-4.0b-4.0b1.sql"/>
-            <file type="data_model_create" db_type="oracle" path="sql/oracle/wp-slim-create.sql"/>
-            <file type="data_model_drop" db_type="oracle" path="sql/oracle/wp-slim-drop.sql"/>
-            <file type="data_model_create" db_type="postgresql" path="sql/postgresql/wp-slim-create.sql"/>
-            <file type="data_model_drop" db_type="postgresql" path="sql/postgresql/wp-slim-drop.sql"/>
-            <file type="package_spec" path="wp-slim.info"/>
-            <file type="query_file" db_type="oracle" path="www/attach-del-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/attach-del-postgresql.xql"/>
-            <file type="content_page" path="www/attach-del.tcl"/>
-            <file type="query_file" db_type="oracle" path="www/attach-detail-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/attach-detail-postgresql.xql"/>
-            <file type="content_page" path="www/attach-detail.adp"/>
-            <file type="content_page" path="www/attach-detail.tcl"/>
-            <file type="query_file" path="www/attach-detail.xql"/>
-            <file type="content_page" path="www/attach-list.adp"/>
-            <file type="content_page" path="www/attach-list.tcl"/>
-            <file type="query_file" path="www/attach-list.xql"/>
-            <file type="content_page" path="www/attach.tcl"/>
-            <file type="query_file" path="www/attach.xql"/>
-            <file type="query_file" db_type="oracle" path="www/create-presentation-2-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/create-presentation-2-postgresql.xql"/>
-            <file type="content_page" path="www/create-presentation-2.tcl"/>
-            <file type="content_page" path="www/create-presentation.adp"/>
-            <file type="content_page" path="www/create-presentation.tcl"/>
-            <file type="query_file" db_type="oracle" path="www/create-slide-2-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/create-slide-2-postgresql.xql"/>
-            <file type="content_page" path="www/create-slide-2.tcl"/>
-            <file type="content_page" path="www/create-slide.adp"/>
-            <file type="content_page" path="www/create-slide.tcl"/>
-            <file type="query_file" path="www/create-slide.xql"/>
-            <file type="query_file" db_type="oracle" path="www/delete-presentation-2-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/delete-presentation-2-postgresql.xql"/>
-            <file type="content_page" path="www/delete-presentation-2.tcl"/>
-            <file type="content_page" path="www/delete-presentation.adp"/>
-            <file type="content_page" path="www/delete-presentation.tcl"/>
-            <file type="query_file" db_type="oracle" path="www/delete-slide-2-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/delete-slide-2-postgresql.xql"/>
-            <file type="content_page" path="www/delete-slide-2.tcl"/>
-            <file type="content_page" path="www/delete-slide.adp"/>
-            <file type="content_page" path="www/delete-slide.tcl"/>
-            <file type="content_page" path="www/dev-doc.html"/>
-            <file type="content_page" path="www/display-change.tcl"/>
-            <file type="query_file" path="www/display-change.xql"/>
-            <file type="query_file" db_type="oracle" path="www/edit-presentation-2-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/edit-presentation-2-postgresql.xql"/>
-            <file type="content_page" path="www/edit-presentation-2.tcl"/>
-            <file type="content_page" path="www/edit-presentation.adp"/>
-            <file type="content_page" path="www/edit-presentation.tcl"/>
-            <file type="query_file" path="www/edit-presentation.xql"/>
-            <file type="query_file" db_type="oracle" path="www/edit-slide-2-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/edit-slide-2-postgresql.xql"/>
-            <file type="content_page" path="www/edit-slide-2.tcl"/>
-            <file type="query_file" path="www/edit-slide-2.xql"/>
-            <file type="query_file" db_type="oracle" path="www/edit-slide-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/edit-slide-postgresql.xql"/>
-            <file type="content_page" path="www/edit-slide.adp"/>
-            <file type="content_page" path="www/edit-slide.tcl"/>
-            <file type="content_page" path="www/get-binary-data.tcl"/>
-            <file type="content_page" path="www/help/userops.html"/>
-            <file type="query_file" db_type="oracle" path="www/index-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/index-postgresql.xql"/>
-            <file type="content_page" path="www/index-unregistered.adp"/>
-            <file type="content_page" path="www/index.adp"/>
-            <file type="content_page" path="www/index.tcl"/>
-            <file type="content_page" path="www/index.vuh"/>
-            <file type="content_page" path="www/invite-2.adp"/>
-            <file type="content_page" path="www/invite-2.tcl"/>
-            <file type="query_file" path="www/invite-2.xql"/>
-            <file type="content_page" path="www/invite.adp"/>
-            <file type="content_page" path="www/invite.tcl"/>
-            <file type="query_file" db_type="oracle" path="www/live-revision-set-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/live-revision-set-postgresql.xql"/>
-            <file type="content_page" path="www/live-revision-set.tcl"/>
-            <file type="content_page" path="www/pics/1white.gif"/>
-            <file type="content_page" path="www/pics/arrow.gif"/>
-            <file type="content_page" path="www/pics/down.gif"/>
-            <file type="content_page" path="www/pics/up.gif"/>
-            <file type="content_page" path="www/presentation-acl-add-2.adp"/>
-            <file type="content_page" path="www/presentation-acl-add-2.tcl"/>
-            <file type="query_file" path="www/presentation-acl-add-2.xql"/>
-            <file type="query_file" db_type="oracle" path="www/presentation-acl-add-3-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/presentation-acl-add-3-postgresql.xql"/>
-            <file type="content_page" path="www/presentation-acl-add-3.tcl"/>
-            <file type="query_file" path="www/presentation-acl-add-3.xql"/>
-            <file type="content_page" path="www/presentation-acl-add-group-2.adp"/>
-            <file type="content_page" path="www/presentation-acl-add-group-2.tcl"/>
-            <file type="query_file" path="www/presentation-acl-add-group-2.xql"/>
-            <file type="query_file" db_type="oracle" path="www/presentation-acl-add-group-3-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/presentation-acl-add-group-3-postgresql.xql"/>
-            <file type="content_page" path="www/presentation-acl-add-group-3.tcl"/>
-            <file type="content_page" path="www/presentation-acl-add-group.adp"/>
-            <file type="content_page" path="www/presentation-acl-add-group.tcl"/>
-            <file type="query_file" path="www/presentation-acl-add-group.xql"/>
-            <file type="content_page" path="www/presentation-acl-add.adp"/>
-            <file type="content_page" path="www/presentation-acl-add.tcl"/>
-            <file type="query_file" db_type="oracle" path="www/presentation-acl-delete-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/presentation-acl-delete-postgresql.xql"/>
-            <file type="content_page" path="www/presentation-acl-delete.tcl"/>
-            <file type="content_page" path="www/presentation-acl.adp"/>
-            <file type="content_page" path="www/presentation-acl.tcl"/>
-            <file type="query_file" path="www/presentation-acl.xql"/>
-            <file type="query_file" db_type="oracle" path="www/presentation-public-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/presentation-public-postgresql.xql"/>
-            <file type="content_page" path="www/presentation-public.tcl"/>
-            <file type="query_file" path="www/presentation-public.xql"/>
-            <file type="query_file" db_type="oracle" path="www/presentation-publish-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/presentation-publish-postgresql.xql"/>
-            <file type="content_page" path="www/presentation-publish.tcl"/>
-            <file type="query_file" db_type="oracle" path="www/presentation-revisions-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/presentation-revisions-postgresql.xql"/>
-            <file type="content_page" path="www/presentation-revisions.adp"/>
-            <file type="content_page" path="www/presentation-revisions.tcl"/>
-            <file type="query_file" db_type="oracle" path="www/presentation-top-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/presentation-top-postgresql.xql"/>
-            <file type="content_page" path="www/presentation-top.adp"/>
-            <file type="content_page" path="www/presentation-top.tcl"/>
-            <file type="query_file" path="www/presentation-top.xql"/>
-            <file type="content_page" path="www/serve-presentation-revision.adp"/>
-            <file type="content_page" path="www/serve-presentation-revision.tcl"/>
-            <file type="query_file" path="www/serve-presentation-revision.xql"/>
-            <file type="content_page" path="www/serve-presentation.adp"/>
-            <file type="content_page" path="www/serve-presentation.tcl"/>
-            <file type="query_file" path="www/serve-presentation.xql"/>
-            <file type="query_file" db_type="oracle" path="www/serve-slide-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/serve-slide-postgresql.xql"/>
-            <file type="query_file" db_type="oracle" path="www/serve-slide-revision-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/serve-slide-revision-postgresql.xql"/>
-            <file type="content_page" path="www/serve-slide-revision.adp"/>
-            <file type="content_page" path="www/serve-slide-revision.tcl"/>
-            <file type="query_file" path="www/serve-slide-revision.xql"/>
-            <file type="content_page" path="www/serve-slide.adp"/>
-            <file type="content_page" path="www/serve-slide.tcl"/>
-            <file type="query_file" path="www/serve-slide.xql"/>
-            <file type="query_file" db_type="oracle" path="www/slide-publish-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/slide-publish-postgresql.xql"/>
-            <file type="content_page" path="www/slide-publish.tcl"/>
-            <file type="query_file" db_type="oracle" path="www/slide-revisions-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/slide-revisions-postgresql.xql"/>
-            <file type="content_page" path="www/slide-revisions.adp"/>
-            <file type="content_page" path="www/slide-revisions.tcl"/>
-            <file type="content_page" path="www/slides-reorder-2.tcl"/>
-            <file type="query_file" path="www/slides-reorder-2.xql"/>
-            <file type="content_page" path="www/slides-reorder.adp"/>
-            <file type="content_page" path="www/slides-reorder.tcl"/>
-            <file type="query_file" path="www/slides-reorder.xql"/>
-            <file type="content_page" path="www/upload-attachments.adp"/>
-            <file type="content_page" path="www/user-requirements.html"/>
-            <file type="content_page" path="www/users.adp"/>
-            <file type="content_page" path="www/users.tcl"/>
-            <file type="query_file" path="www/users.xql"/>
-            <file type="query_file" db_type="oracle" path="www/attach-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/attach-postgresql.xql"/>
-            <file type="content_page" path="www/developer-doc.html"/>
-            <file type="query_file" db_type="oracle" path="www/edit-presentation-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/edit-presentation-postgresql.xql"/>
-            <file type="content_page" path="www/help/user-ops.html"/>
-            <file type="content_page" path="www/presentation-print-view.adp"/>
-            <file type="content_page" path="www/presentation-print-view.tcl"/>
-            <file type="query_file" path="www/presentation-print-view.xql"/>
-            <file type="content_page" path="www/search.adp"/>
-            <file type="content_page" path="www/search.tcl"/>
-            <file type="query_file" path="www/search.xql"/>
-            <file type="query_file" db_type="oracle" path="www/serve-presentation-revision-oracle.xql"/>
-            <file type="query_file" db_type="postgresql" path="www/serve-presentation-revision-postgresql.xql"/>
-        </files>
+        <callbacks>
+        </callbacks>
         <parameters>
         <!-- No version parameters -->
         </parameters>

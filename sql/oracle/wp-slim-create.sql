@@ -40,6 +40,8 @@ from dual
 where not exists (select 1 from cr_mime_types where mime_type = 'application/octet-stream');
 
 
+create sequence wp_style_seq;
+
 create table wp_styles (
 	style_id		integer 
                                 constraint wp_styles_style_id_pk
@@ -47,21 +49,40 @@ create table wp_styles (
 	name			varchar2(400) 
                                 constraint wp_styles_name_nn
                                 not null,
-	-- CSS source
 	css			varchar(4000),
-	-- HTML style properties. Colors are in the form '192,192,255'.
-	text_color		varchar2(20) check(text_color like '%,%,%'),
-	background_color	varchar2(20) check(background_color like '%,%,%'),
-	background_image	varchar2(200),
-	link_color		varchar2(20) check(link_color like '%,%,%'),
-	alink_color		varchar2(20) check(alink_color like '%,%,%'),
-	vlink_color		varchar2(20) check(vlink_color like '%,%,%')
+	text_color		varchar(20) check(text_color like '%,%,%'),
+	background_color	varchar(20) check(background_color like '%,%,%'),
+	background_image	integer default 0,
+	link_color		varchar(20) check(link_color like '%,%,%'),
+	alink_color		varchar(20) check(alink_color like '%,%,%'),
+	vlink_color		varchar(20) check(vlink_color like '%,%,%'),
+	public_p		char(1) default 'f' check(public_p in ('t','f')),
+	owner			integer 
+				constraint wp_styles_to_users
+				references users (user_id)
 );
 
--- Insert the magic, "default" style.
+
 insert into wp_styles(style_id, name, css)
 values(-1, 'Default (Plain)',
        'BODY { back-color: white; color: black } P { line-height: 120% } UL { line-height: 140% }');
+
+-- this is also a new index!  roc@
+create index wp_styles_by_owner on wp_styles(owner);
+
+-- new table for supporting background images!
+-- Images used for styles.
+
+create table wp_style_images (
+-- this one references to a cr!
+	wp_style_images_id integer  primary key,
+	style_id	integer references wp_styles(style_id) on delete cascade not null,
+	file_size	integer not null,
+	file_name	varchar(200) not null
+);
+
+create index wp_style_images_style_id on wp_style_images(style_id);
+
 
 
 create table cr_wp_presentations (
@@ -88,7 +109,10 @@ create table cr_wp_presentations (
 	-- Show last-modified date for slides?
 	show_modified_p         char(1) default 'f'
 				constraint cr_wp_show_p_ck
-				check(show_modified_p in ('t','f'))
+				check(show_modified_p in ('t','f')),
+	show_comments_p		char(1) default 'f' 
+				constraint cr_wp_pres_show_comments_p 
+				check(show_comments_p in ('t','f'))
 );
 
 
@@ -533,19 +557,6 @@ end;
 show errors
 
 
--- begin
-
-    -- bind privileges to global names
-
-    -- acs_privilege.add_child('create','wp_create_presentation');
-    -- acs_privilege.add_child('write','wp_edit_presentation');
-    -- acs_privilege.add_child('delete','wp_delete_presentation');
-    -- acs_privilege.add_child('read','wp_view_presentation');
-    -- commit;
--- end;
--- /
--- show errors
-
 
 declare
     default_context acs_objects.object_id%TYPE;
@@ -555,7 +566,7 @@ begin
 
     default_context := acs.magic_object_id('default_context');
     registered_users := acs.magic_object_id('registered_users');
-    the_public := acs.magic_object_id('the_public');
+--    the_public := acs.magic_object_id('the_public');
 
     -- give registered users the power to create presentations by default
 
@@ -567,11 +578,12 @@ begin
 
     -- give the public the power to view by default
 
-    acs_permission.grant_permission (
-        object_id => default_context,
-        grantee_id => the_public,
-        privilege => 'wp_view_presentation'
-    );
+--	this commented out because permission, with this any user could see an slide that has not become public!
+--    acs_permission.grant_permission (
+--        object_id => default_context,
+--       grantee_id => the_public,
+--        privilege => 'wp_view_presentation'
+--    );
 
 end;
 /
@@ -1668,6 +1680,92 @@ as
   end;
 
 end wp_attachment;
+/
+show errors
+
+
+-- adding some new permissions roc@
+
+Begin
+
+	acs_privilege.add_child('wp_edit_presentation',  'wp_view_presentation');
+	acs_privilege.add_child('wp_admin_presentation', 'wp_create_presentation');
+	acs_privilege.add_child('wp_admin_presentation', 'wp_edit_presentation');
+	acs_privilege.add_child('wp_admin_presentation', 'wp_delete_presentation');
+
+-- lets give site-wide permissions, wp-permissions! 
+	acs_privilege.add_child('admin', 'wp_admin_presentation');
+
+end;
+/
+
+--style package roc@
+
+create or replace package wp_style
+as
+
+procedure delete (
+    p_style_id     in wp_styles.style_id%TYPE
+);
+
+procedure image_delete(
+    p_revision_id       in wp_style_images.wp_style_images_id%TYPE
+);
+
+end wp_style;
+/
+show errors
+
+
+
+create or replace package body wp_style 
+as
+
+procedure delete (
+    p_style_id	 in wp_styles.style_id%TYPE
+)
+is 
+    p_item_id			integer;
+begin
+
+	for one_image in (
+	    select * from wp_style_images 
+	    where wp_style_images_id = (select background_image from wp_styles where style_id = wp_style.delete.p_style_id))
+	loop
+		delete from wp_style_images where wp_style_images_id = one_image.wp_style_images_id;
+		select item_id into p_item_id from cr_revisions where revision_id = one_image.wp_style_images_id;
+		
+		content_item.delete(item_id => p_item_id);
+	end loop;
+	
+	update cr_wp_slides set style = -1 where style = wp_style.delete.p_style_id;
+	update cr_wp_presentations set style = -1 where style = wp_style.delete.p_style_id;
+	delete from wp_styles where style_id = wp_style.delete.p_style_id;
+
+end;
+
+
+
+procedure image_delete(
+    p_revision_id	in wp_style_images.wp_style_images_id%TYPE
+) 
+is
+    p_item_id			integer;
+begin
+
+    update wp_styles set background_image = 0 where background_image = wp_style.image_delete.p_revision_id;
+
+    delete from wp_style_images 
+    where wp_style_images_id = wp_style.image_delete.p_revision_id;
+    
+    select item_id into p_item_id from cr_revisions where revision_id = wp_style.image_delete.p_revision_id;
+
+    content_item.delete(item_id => p_item_id);
+
+end;
+
+
+end wp_style;
 /
 show errors
 

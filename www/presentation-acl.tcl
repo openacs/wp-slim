@@ -16,19 +16,9 @@ ad_page_contract {
     pres_item_id
 }
 
-ad_require_permission $pres_item_id wp_admin_presentation
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_admin_presentation
 
-set user_id [ad_maybe_redirect_for_registration]
-#wp_check_authorization $pres_item_id $user_id "write"
-
-#db_1row pres_select {
-#select  title,
-#	creation_user,
-#	public_p,
-#	group_id
-#from wp_presentations
-#where pres_item_id = :pres_item_id
-#}
 
 db_1row get_presentaiton {
 select p.pres_title as title,

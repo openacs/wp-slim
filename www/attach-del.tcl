@@ -10,8 +10,12 @@ ad_page_contract {
 } {
     slide_item_id:naturalnum,notnull
     attach_item_id:naturalnum,notnull
+    pres_item_id:naturalnum,notnull
 }
 
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_delete_presentation
 
 
 db_exec_plsql revisions_and_item_delete {
@@ -20,4 +24,4 @@ db_exec_plsql revisions_and_item_delete {
     end;
 }
     
-ad_returnredirect "attach-list?[export_url_vars slide_item_id]"
+ad_returnredirect "attach-list?[export_url_vars slide_item_id pres_item_id]"

@@ -12,6 +12,10 @@ ad_page_contract {
 }
 
 
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
+
 # Just iterate over the values for slide_id in order and set their respective
 # sort_keys to 1, 2, 3, ...
 set counter 0

@@ -1,6 +1,9 @@
-<master>
+<master src="wp-presentation-master">
 <property name="title">@pres_title;noquote@</property>
 <property name="context">@context;noquote@</property>
+<property name="style_id">@style;noquote@</property>
+<property name="page_signature">@page_signature;noquote@</property>
+<property name="copyright_notice">@copyright_notice;noquote@</property>
 
 <h3>One Revision</h3>
 
@@ -30,7 +33,7 @@
 <th align=left>Show Modified Date?</th>
 <td>@show_modified_p@</td>
 </tr>
-
+wp
 <tr>
 <th align=left>Audience</th>
 <td>@audience@</td>

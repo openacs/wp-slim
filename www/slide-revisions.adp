@@ -14,7 +14,7 @@ Revision in <font color=red>red</font> is the current live revision.
 <font color=red>Created by @revisions.full_name@ from @revisions.creation_ip@ at @revisions.creation_date@</font> (<a href="@subsite_name@slide_revision/@pres_item_id@/@slide_item_id@/@revisions.revision_id@.wimpy">view</a>)
 </if>
 <else>
-Created by @revisions.full_name@ from @revisions.creation_ip@ at @revisions.creation_date@ (<a href="@subsite_name@slide_revision/@pres_item_id@/@slide_item_id@/@revisions.revision_id@.wimpy">view</a> | <a href="slide-publish?revision_id=@revisions.revision_id@&return_url=@return_url@">go live</a>)
+Created by @revisions.full_name@ from @revisions.creation_ip@ at @revisions.creation_date@ (<a href="@subsite_name@slide_revision/@pres_item_id@/@slide_item_id@/@revisions.revision_id@.wimpy">view</a> | <a href="slide-publish?revision_id=@revisions.revision_id@&pres_item_id=@pres_item_id@&return_url=@return_url@">go live</a>)
 </else>
 
 </multiple>

@@ -31,6 +31,9 @@ if {![regexp {slide_revision/([0-9]+)/([0-9]+)/([0-9]+)\.wimpy} $url match pres_
     ad_return_error "Wimpy Point" "Could not get a pres_item_id, slide_item_id and slide_revision_id out of url=$url"
 }
 
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_view_presentation
 
 set subsite_name [ad_conn package_url]
 regexp {^(.+)/$} $subsite_name match subsite_name

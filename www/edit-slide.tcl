@@ -21,7 +21,11 @@ ad_page_contract {
 }
 
 
-set context [list "Edit Slide"]
+#added permission checking  roc@
+set user_id [ad_verify_and_get_user_id]
+permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
+
+set context [list "presentation-top?[export_url_vars pres_item_id] {presentation}" {Edit Slide}]
 
 db_1row get_slide_info {
 select s.slide_title,
@@ -63,6 +67,8 @@ and   i.live_revision = s.slide_id
 
 set bullet_num 0
 multirow create bullets item widget rows prev
+# up to 3 bullets now! roc@
+lappend bullet_items {} {}
 foreach item $bullet_items { 
     if {[string length $item] < 60} { 
         set rows 1 
@@ -74,7 +80,7 @@ foreach item $bullet_items {
     multirow append bullets $item $widget $rows $bullet_num
     incr bullet_num
 }
-incr bullet_num
+incr bullet_num 
 set bullet_max [expr $bullet_num + 1]
 
 # quote html tags contained in bullet items

@@ -21,7 +21,7 @@ it won't take up too much space.
   </tr>
   <tr>
     <th nowrap align=right>Title:</th>
-    <td><input type=text name=pres_title size=50 value="@pres_title@">
+    <td><input type=text name=pres_title size=50 maxlength="400" value="@pres_title@">
   </tr>
   <tr>
     <td></td><td>
@@ -30,7 +30,7 @@ If you want a signature at the bottom of each slide, then enter it here:
   </tr>
   <tr>
     <th nowrap align=right>Page Signature:</th>
-    <td><input type=text name=page_signature size=50 value="@page_signature@"></td>
+    <td><input type=text name=page_signature size=50 maxlength="200" value="@page_signature@"></td>
   </tr>
   <tr>
     <td></td><td>
@@ -42,7 +42,7 @@ page; remember that HTML is OK here and you can have up to 200 characters.)
   </tr>
   <tr>
     <th nowrap align=right>Copyright Notice:</th>
-    <td><input type=text name=copyright_notice size=50 value="@copyright_notice@"></td>
+    <td><input type=text name=copyright_notice size=50 maxlength="400" value="@copyright_notice@"></td>
   </tr>
   <tr>
     <td></td><td>
@@ -105,12 +105,7 @@ entitled <i>Edit one of your styles</i> from WimpyPoint's main page.)
   </tr>
   <tr>
     <th nowrap align=right>Style:</th>
-    <td><select name=style>
-<option value=-1>Default (Plain)
-
-<option value="upload">I'll provide my own
-</select>
-    </td>
+    <td>@available_styles@
   </tr>
   <tr>
     <td></td><td>

@@ -12,7 +12,8 @@
            p.public_p,
            p.show_modified_p, 
            wp_presentation.get_audience_revision(:pres_revision_id) as audience,
-           wp_presentation.get_background_revision(:pres_revision_id) as background
+           wp_presentation.get_background_revision(:pres_revision_id) as background,
+	   p.style
     from cr_wp_presentations p, cr_items i
     where i.item_id = :pres_item_id
     and   p.presentation_id = :pres_revision_id

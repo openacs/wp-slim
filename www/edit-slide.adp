@@ -71,5 +71,3 @@ function swapWithNext(index)
 </center>
 </form>
 
-
-
