@@ -1,6 +1,6 @@
 <master src="master">
 <property name="title">@pres_title@</property>
-
+<property name="context">"one presentation"</property>
 
 <table align=right>
 <tr>

@@ -1,10 +1,6 @@
 <master src="master">
 <property name="title">Upload Attachments</property>
-
-<h2>Upload Attachments</h2>
-@nav_bar@
-<hr>
-
+<property name="context">@context@</property>
 
 <form enctype=multipart/form-data action=attach method=post>
 <input type=hidden name=slide_item_id value="@slide_item_id@">

@@ -12,7 +12,7 @@ ad_page_contract {
 } {
     pres_item_id:naturalnum
 } -properties {
-    nav_bar
+    context
     slides:multirow
     viewers:multirow
     public_p
@@ -39,7 +39,7 @@ and   ao.object_id = :pres_item_id
 }
 
 set encoded_title [ns_urlencode $presentation_title]
-set nav_bar [ad_context_bar "$presentation_title"]
+set context [list "$presentation_title"]
 set subsite_name [ad_conn package_url]
 
 db_multirow slides get_slides {

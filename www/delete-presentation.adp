@@ -1,10 +1,8 @@
 <master src="master">
 <property name="title">Delete Presentation</property>
+<property name="context">@context@</property>
 
 <form method=post action="delete-presentation-2">
-<h2>Delete Presentation</h2>
-@nav_bar@
-<hr>
 
 <input type=hidden name=pres_item_id value="@pres_item_id@">
 

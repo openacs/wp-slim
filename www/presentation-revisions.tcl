@@ -9,7 +9,7 @@ ad_page_contract {
 } {
     pres_item_id:integer
 } -properties {
-    nav_bar
+    context
     pres_item_id
     
 }
@@ -32,7 +32,7 @@ db_multirow revisions revisions_get {
     order by creation_date
 }
 
-set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]"  "Presentation"] "All Revisions"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]"  "Presentation"] "All Revisions"]
 
 set return_url [ns_urlencode "presentation-revisions?[export_url_vars pres_item_id]"]
 

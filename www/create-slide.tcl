@@ -9,7 +9,7 @@ ad_page_contract {
     pres_item_id:naturalnum,notnull
     {sort_key:naturalnum,optional ""}
 } -properties {
-    nav_bar
+    context
     pres_item_id
     sort_key
     pres_title
@@ -26,7 +26,7 @@ where i.item_id = :pres_item_id
 and   i.live_revision = p.presentation_id
 }
 
-set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "$pres_title"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "$pres_title"]
 
 if {[empty_string_p $sort_key]} {
     set sort_key [db_string get_sort_key {

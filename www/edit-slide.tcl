@@ -10,7 +10,7 @@ ad_page_contract {
     pres_item_id:naturalnum,notnull
 } -properties {
     pres_item_id
-    nav_bar
+    context
     slide_title
     preamble
     postamble    
@@ -21,7 +21,7 @@ ad_page_contract {
 }
 
 
-set nav_bar [ad_context_bar "Edit Slide"]
+set context [list "Edit Slide"]
 
 db_1row get_slide_info {
 select s.slide_title,

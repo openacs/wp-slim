@@ -12,14 +12,14 @@ ad_page_contract {
     pres_item_id:naturalnum,notnull
 } -properties {
     pres_item_id
-    nav_bar
+    context
     subsite_name
 }
 
 
 set subsite_name [ad_conn package_url]
 
-set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]" "Presentation"] "Slide Revisions"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "Presentation"] "Slide Revisions"]
 
 
 db_multirow revisions revisions_get {

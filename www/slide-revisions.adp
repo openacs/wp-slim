@@ -1,9 +1,6 @@
 <master src="master">
 <property name="title">All Revisions of This Slide</property>
-
-<h2>All Revisions</h2>
-@nav_bar@
-<hr>
+<property name="context">@context@</property>
 
 <blockquote>
 

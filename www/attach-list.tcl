@@ -12,7 +12,7 @@ ad_page_contract {
     slide_item_id:naturalnum,notnull
 } -properties {
     slide_item_id
-    nav_bar
+    context
     att:multirow
 }
 
@@ -24,7 +24,7 @@ set pres_item_id [db_string pres_item_id_get {
     and   item_id = :slide_item_id
 }]
 
-set nav_bar [ad_context_bar [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "Edit Slide"] "List Attachemnts"]
+set context [list [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "Edit Slide"] "List Attachments"]
 
 db_multirow att attachments_get {
     select name, item_id

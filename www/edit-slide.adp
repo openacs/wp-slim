@@ -1,10 +1,6 @@
 <master src="master">
 <property name="title">Edit Slide</property>
-
-<h2>Edit Slide</h2>
-@nav_bar@
-<hr>
-
+<property name="context">@context@</property>
 
 <form name=f action=edit-slide-2 method=post>
 

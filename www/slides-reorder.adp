@@ -1,9 +1,6 @@
 <master src="master">
 <property name="title">Reorder Slides</property>
-
-<h2>Reorder Slides</h2>
-@nav_bar@
-<hr>
+<property name="context">@context@</property>
 
 <form name=f>
 To move a slide in your presentation, select its title and click the Up or Down arrow.

@@ -1,10 +1,8 @@
 <master src="master">
 <property name="title">Invite User</property>
+<property name="context">@context@</property>
 
 <form action="invite-2" method=post>
-<h2>Invite User</h2>
-@nav_bar@
-<hr>
 
 <input type=hidden name=pres_item_id value="@pres_item_id@">
 <input type=hidden name=role value="@role@">

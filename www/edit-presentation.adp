@@ -1,9 +1,7 @@
 <master src="master">
 <property name="title">Edit Presentation</property>
+<property name="context">@context@</property>
 
-<h2>Edit Presentation</h2>
-@nav_bar@
-<hr>
 
 <form name=f action=edit-presentation-2 method=post>
 

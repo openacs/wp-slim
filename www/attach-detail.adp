@@ -1,11 +1,6 @@
 <master src="master">
 <property name="title">Details</property>
-
-<h2>Details</h2>
-@nav_bar@
-<hr>
-
-<blockquote>
+<property name="context">@context@</property>
 
 Revision in <font color=red>red</font> is the current live revision.
 
@@ -42,4 +37,3 @@ Uploaded from @revisions.creation_ip@ at @revisions.creation_date@ (<a href="att
 </multiple>
 </ul>
 
-</blockquote>

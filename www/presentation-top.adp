@@ -1,9 +1,6 @@
 <master src="master">
 <property name="title">@presentation_title@</property>
-
-<h2>@presentation_title@</h2>
-@nav_bar@
-<hr>
+<property name="context">@context@</property>
 
 <h3>The Slides</h3>
 
@@ -15,7 +12,7 @@
      <multiple name="slides">
      <tr>
      <td>@slides.sort_key@.</td>
-     <td> <a href="@subsite_name@/display/@pres_item_id@/@slides.slide_item_id@.wimpy">@slides.slide_title@</a> </td>
+     <td> <a href="@subsite_name@display/@pres_item_id@/@slides.slide_item_id@.wimpy">@slides.slide_title@</a> </td>
      <td>
 [ <a href="edit-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">edit</a> |
 <if @delete_p@ eq t>

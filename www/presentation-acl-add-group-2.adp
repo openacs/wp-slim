@@ -1,10 +1,7 @@
 <master src="master">
 <property name="title">Confirm Add Users</property>
-
+<property name="context">@context@</property>
 <form action="presentation-acl-add-group-3">
-<h2>Confirm Add Users</h2>
-@nav_bar@
-<hr>
 
 <input type=hidden name=pres_item_id value="@pres_item_id@">
 <input type=hidden name=group_id value="@group_id@">

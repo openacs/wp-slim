@@ -1,9 +1,6 @@
 <master src="master">
 <property name="title">WimpyPoint</property>
-
-<h2>WimpyPoint</h2>
-<a href="/pvt/home">Your Workspace</a>: Wimpy Point
-<hr>
+<property name="context"></property>
 
 <h2> Everyone's Presentations</h2>
 

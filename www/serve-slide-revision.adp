@@ -1,8 +1,6 @@
 <master src="master">
 <property name="title">@slide_title@</property>
-
-<h2>@slide_title@</h2>
-<hr>
+<property name="context">@context@</property>
 
 <if @show_modified_p@ eq t>
 <i>Last modified @modified_date@</i>

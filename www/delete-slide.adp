@@ -1,10 +1,8 @@
 <master src="master">
 <property name="title">Delete a Slide</property>
+<property name="context">@context@</property>
 
 <form>
-<h2>Delete a Slide</h2>
-@nav_bar@
-<hr>
 
 Are you sure that you want to delete this slide?
 

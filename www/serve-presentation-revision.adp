@@ -1,9 +1,6 @@
 <master src="master">
 <property name="title">@pres_title@</property>
-
-<h2>@pres_title@</h2>
-@nav_bar@
-<hr>
+<property name="context">@context@</property>
 
 <h3>One Revision</h3>
 

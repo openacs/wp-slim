@@ -16,14 +16,14 @@ ad_page_contract {
     last_name_from_search
     email_from_search:notnull
 } -properties {
-    nav_bar
+    context
     pres_item_id
     role
 }
 
 ad_require_permission $pres_item_id wp_admin_presentation
 
-set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "Authorization"] "Confirm Add User"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "Authorization"] "Confirm Add User"]
 
 
 set privilege [ad_decode $role "read" "wp_view_presentation" "write" "wp_edit_presentation" "admin" "wp_admin_presentation" ""]

@@ -20,6 +20,7 @@ ad_page_contract {
     page_signature
     href_back_forward
     attach_list:multirow
+    context:onevalue
     subsite_name
 }
 
@@ -50,6 +51,8 @@ db_1row get_slide_info {
     and   ao.object_id = s.slide_id
 }
 
+set context [list [list "$subsite_name/display/$pres_item_id" "one presentation"] "one slide"]
+
 db_1row get_presentation_page_signature {
     select p.page_signature,
     p.show_modified_p
@@ -65,5 +68,3 @@ db_multirow attach_list get_attachments {
     where i.parent_id = :slide_item_id
     and   i.live_revision = x.attach_id
 }
-
-ad_return_template

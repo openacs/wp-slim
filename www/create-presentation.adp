@@ -1,7 +1,6 @@
 <master src="master">
 <property name="title">Create Presentation</property>
-
-@header@
+<property name="context">@context@</property>
 
 <form method=POST action="create-presentation-2">
 

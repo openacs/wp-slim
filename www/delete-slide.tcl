@@ -13,6 +13,6 @@ ad_page_contract {
 }
 
 
-set nav_bar [ad_context_bar "Delete a Slide"]
+set context [list "Delete a Slide"]
 
 ad_return_template

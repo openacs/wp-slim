@@ -10,7 +10,7 @@ ad_page_contract {
 } {
     pres_item_id:naturalnum,notnull
 } -properties {
-    nav_bar
+    context
     public_p
     presentation_title
     pres_item_id
@@ -44,7 +44,7 @@ and   ao.object_id = i.item_id
 
 set encoded_title [ns_urlencode $title]
 
-set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]" "$title"] "Authorization"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] "Authorization"]
 
 
 

@@ -1,11 +1,8 @@
 <master src="master">
 <property name="title">WimpyPoint</property>
+<property name="context">@context@</property>
 
-<h2>WimpyPoint</h2>
-@context_bar@
-<hr>
-
-<h2> My Presentations</h2>
+<h2>My Presentations</h2>
 
 <ul>
 <multiple name=presentations>

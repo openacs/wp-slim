@@ -7,7 +7,7 @@ ad_page_contract {
 } {
     pres_item_id:integer
 } -properties {
-    nav_bar
+    context
     pres_item_id
     pres_title
     page_signature
@@ -45,6 +45,6 @@ db_1row get_back_data {
     and r.revision_id = i.live_revision
 }
 
-set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]"  "$pres_title"] "Edit Presentation"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]"  "$pres_title"] "Edit Presentation"]
 
 ad_return_template

@@ -1,10 +1,8 @@
 <master src="master">
-<property name="title">Add User</property>
+<property name="title">Confirm Add User</property>
+<property name="context">@context@</property>
 
 <form action="presentation-acl-add-3">
-<h2>Confirm Add User</h2>
-@nav_bar@
-<hr>
 
 <input type=hidden name=pres_item_id value="@pres_item_id@">
 <input type=hidden name=user_id_from_search value="@user_id_from_search@">

@@ -1,11 +1,8 @@
 <master src="master">
 <property name="title">Email Sent</property>
+<property name="context">@context@</property>
 
-<h2>Email Sent</h2>
-@nav_bar@
-<hr>
-
-Haolan Qin (qinhl@hotmail.com) has been invited to work on the presentation test. The following E-mail was sent:
+@name@ (@email@) has been invited to work on the presentation test. The following E-mail was sent:
 
 <blockquote><pre>
 @email_content@

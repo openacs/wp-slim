@@ -1,11 +1,7 @@
 <master src="master">
 <property name="title">List of Attachments</property>
+<property name="context">@context@</property>
 
-<h2>List of Attachments</h2>
-@nav_bar@
-<hr>
-
-<blockquote>
 <ul>
 <multiple name="att">
 <li>@att.name@ (<a href="attach-del?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@">remove</a> | <a href="attach-detail?slide_item_id=@slide_item_id@&attach_item_id=@att.item_id@&file_name=@att.name@">details</a>)
@@ -32,5 +28,3 @@
       <br><input type=radio name=inline_image_p value=f> Display a link the viewer can use to download the file
       <p><input type=submit value="Add the Attachment">
 </form>
-
-</blockquote>

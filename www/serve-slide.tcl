@@ -18,6 +18,7 @@ ad_page_contract {
     page_signature
     href_back_forward
     attach_list:multirow
+    context:onevalue
     subsite_name
 }
 
@@ -54,6 +55,8 @@ db_1row get_presentation_page_signature {
     where i.item_id = :pres_item_id
     and   i.live_revision = p.presentation_id
 }
+
+set context [list [list "$subsite_name/display/$pres_item_id" "one presentation"] "one slide"]
 
 # Figure out what the previous slide link should be.
 if {$sort_key == 1} {

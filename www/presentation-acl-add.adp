@@ -1,10 +1,7 @@
 <master src="master">
 <property name="title">Add User</property>
-
+<property name="context">@context@</property>
 <form action="search">
-<h2>Add User</h2>
-@nav_bar@
-<hr>
 
 @params@
 
@@ -23,4 +20,5 @@ view your presentation</a>.</p>
 <hr>
 <input type=submit value=Search>
 </td></tr>
-</table></td></tr></table></p></center>
+</table></td></tr></table></p>
+</center>

@@ -53,6 +53,6 @@ db_1row get_background_data {
     and r.revision_id = pb.id
 }   
 
-set nav_bar [ad_context_bar [list "$subsite_name/presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "One Revision"]
+set context [list [list "$subsite_name/presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "One Revision"]
 
 ad_return_template

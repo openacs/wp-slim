@@ -7,19 +7,10 @@ ad_page_contract {
      @cvs-id $Id$
 } {
 } -properties {
-    header
+    title:onevalue
+    context:onevalue
 }
 
-set package_id [ad_conn package_id]
-
-
 set title "Create Presentation"
+set context [list $title]
 
-#set presentation_id [db_nextval acs_object_id_seq]
-
-set header "<h2>$title</h2>
-[ad_context_bar  $title]
-<hr>"
-
-
-ad_return_template

@@ -13,7 +13,7 @@ ad_page_contract {
     role:notnull
     title:notnull
 } -properties {
-    nav_bar
+    context
     pres_item_id
     role
     groups:multirow
@@ -21,7 +21,7 @@ ad_page_contract {
 
 ad_require_permission $pres_item_id wp_admin_presentation
 
-set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "Authorization"] "Add Group"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "Authorization"] "Add Group"]
 
 db_multirow groups groups_get {
     select group_id, group_name

@@ -1,13 +1,12 @@
 <master src="master">
 <property name="title">@slide_title@</property>
+<property name="context">@context@</property>
 
 <table align=right>
 <tr>
         <td>@href_back_forward@</td>
 </tr>
 </table>
-<h2>@slide_title@</h2>
-<hr>
 
 <if @show_modified_p@ eq t>
 <i>Last modified @modified_date@</i>

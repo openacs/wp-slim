@@ -17,7 +17,7 @@ ad_page_contract {
 set header [ad_header "Reorder Slides"]
 
 
-set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]"  "presentation"] "Reorder Slides"]
+set context [list [list "presentation-top?[export_url_vars pres_item_id]"  "presentation"] "Reorder Slides"]
 
 set counter 0
 

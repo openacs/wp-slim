@@ -1,10 +1,8 @@
 <master src="master">
 <property name="title">Add Group</property>
+<property name="context">@context@</property>
 
 <form action="presentation-acl-add-group-2">
-<h2>Add Group</h2>
-@nav_bar@
-<hr>
 
 <input type=hidden name=pres_item_id value="@pres_item_id@">
 <input type=hidden name=role value="@role@">

@@ -1,9 +1,7 @@
 <master src="master">
 <property name="title">Wimpy Point Users</property>
+<property name="context">@context@</property>
 
-<h2>Wimpy Point Users</h2>
-@nav_bar@
-<hr>
 Select an author from this list of users who have created presentations (number of presentations shown in parentheses.)
 
 <ul>

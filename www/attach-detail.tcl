@@ -12,7 +12,7 @@ ad_page_contract {
     attach_item_id:naturalnum,notnull
     file_name:notnull
 } -properties {
-    nav_bar
+    context
     slide_item_id
     attach_item_id
     revisions:multirow
@@ -30,7 +30,7 @@ set pres_item_id [db_string pres_item_id_get {
     and   item_id = :slide_item_id
 }]
 
-set nav_bar [ad_context_bar [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "Edit Slide"] "Details"]
+set context [list [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "Edit Slide"] "Details"]
 
 db_multirow revisions revisions_get {
     select r.revision_id,

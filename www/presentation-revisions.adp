@@ -1,11 +1,7 @@
 <master src="master">
 <property name="title">All Revisions of This Presentation</property>
+<property name="context">@context@</property>
 
-<h2>All Revisions</h2>
-@nav_bar@
-<hr>
-
-<blockquote>
 
 Revision in <font color=red>red</font> is the current live revision.
 
@@ -29,4 +25,3 @@ Created by @revisions.full_name@ from @revisions.creation_ip@ at
 </ul>
 
 <p> <a href="edit-presentation?pres_item_id=@pres_item_id@">Create a new revision</a>
-</blockquote>

@@ -1,8 +1,8 @@
 <master>
 <property name=title>User Search <if @group_name@ not nil>in @group_name@</if></property>
+<property name="context">@context@</property>
 
-<h2>User Search <if @group_name@ not nil>in @group_name@</if></h2>
-
+Search 
 <if @search_type@ eq "keyword">
   for name or email matching "@keyword@"
  </if><else>
@@ -11,8 +11,6 @@
  </if><else>
   for last name "@last_name@"
 </else></else>
-
-<hr>
 
 <ul>
 

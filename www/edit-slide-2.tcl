@@ -20,7 +20,7 @@ ad_page_contract {
 } -properties {
     slide_item_id
     pres_item_id
-    nav_bar
+    context
     attachment_count
 }
 
@@ -54,7 +54,7 @@ db_exec_plsql update_slide {
 }
 
 if {[regexp {Upload} $button]} {
-    set nav_bar [ad_context_bar [list "presentation-top?[export_url_vars pres_item_id]" "Presentation Top"] [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "Edit Slide"] "$slide_title"]
+    set context [list [list "presentation-top?[export_url_vars pres_item_id]" "Presentation Top"] [list "edit-slide?[export_url_vars slide_item_id pres_item_id]" "Edit Slide"] "$slide_title"]
     # get the number of attachments
     set attachment_count [db_string get_number_of_attachments {
 	select count(1) 

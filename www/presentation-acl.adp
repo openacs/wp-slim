@@ -1,13 +1,8 @@
 <master src="master">
 <property name="title">Authorization</property>
+<property name="context">@context@</property>
 
 <form name=f>
-
-<h2>Authorization</h2>
-@nav_bar@
-<hr>
-
-
 
 <p>
 <table cellpadding=0 cellspacing=0>
