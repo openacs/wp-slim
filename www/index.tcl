@@ -24,8 +24,11 @@ set show_user_value "show_user=$show_user"
 set show_age_value "show_age=$show_age"
 
 if {$show_age != 0} {
-    if {[db_type] == "oracle"} { set date sysdate } else { set date "now()" }
-    set extra_where_clauses "and ao.creation_date >= ($date - $show_age)"
+    if {[db_type] == "oracle"} {
+        set extra_where_clauses "and ao.creation_date >= (sysdate - $show_age)"
+    } else {
+        set extra_where_clauses "and ao.creation_date >= (now() - interval '$show_age days')"
+    }
 } else {
     set extra_where_clauses ""
 }
