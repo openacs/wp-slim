@@ -3,7 +3,7 @@ ad_page_contract {
      
      @author paulk@arsdigita.com [paulk@arsdigita.com]
      @creation-date Tue Nov 21 08:40:33 2000
-     @cvs-id
+     @cvs-id $Id$
 } {
     pres_item_id:integer,notnull
     pres_title
