@@ -22,7 +22,7 @@ and Sidharth Widge(Porter)</owner>
         <description format="text/plain">Ported (Jack). Fixed several bugs. Added new features (e.g. versioning and authorization).</description>
 
         <requires url="acs-content-repository" version="4.6.3"/>
-        <requires url="acs-kernel" version="4.0"/>
+        <requires url="acs-kernel" version="4.6.2"/>
 
         <files>
             <file type="java_code" path="java/src/com/arsdigita/acs/wpSlim/test/WPSlimTest.java"/>
