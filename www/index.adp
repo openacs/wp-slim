@@ -79,8 +79,9 @@
 <multiple name=allpresentations>
 <li><a href="display/@allpresentations.pres_item_id@/">@allpresentations.pres_title@</a> #wp-slim.lt_created_by_a_hrefshar# 
 <if @allpresentations.edit_p@ eq "t">
-[ <a href="presentation-top?pres_item_id=@allpresentations.pres_item_id@">#wp-slim.edit#</a> ] [ <a href="presentation-print-view.tcl?item_id=@allpresentations.pres_item_id@">#wp-slim.print_view#</a> ]
+[ <a href="presentation-top?pres_item_id=@allpresentations.pres_item_id@">#wp-slim.edit#</a> ]
 </if>
+&nbsp;[ <a href="presentation-print-view.tcl?item_id=@allpresentations.pres_item_id@">#wp-slim.print_view#</a> ]
 </multiple>
 </ul>
 </if>
