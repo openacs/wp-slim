@@ -19,7 +19,8 @@
       show_modified_p  => :show_modified_p,
       audience         => :audience,
       background       => :background,
-      parent_id       => :package_id
+      parent_id        => :package_id,
+      package_id       => :package_id
       );
     end;
 

@@ -17,7 +17,8 @@
       sort_key          => :sort_key,
       preamble          => :preamble,
       postamble         => :postamble,
-      bullet_items      => :bullet_list
+      bullet_items      => :bullet_list,
+      package_id        => :package_id
       );
     end;
 

@@ -18,6 +18,7 @@
       	:show_modified_p,
       	:audience,
       	:background,
+	:package_id,
 	:package_id
       );
 

@@ -8,6 +8,9 @@
 --jackp: From here on the functions are defined
 
 --jackp: To p_create each presentation
+
+select define_function_args('wp_presentation__new','creation_date,creation_user,creation_id,pres_title,page_signature,copyright_notice,style,public_p,show_modified_p,aud,back,parent_id,package_id');
+
 create or replace function wp_presentation__new (
     timestamptz,
     integer,
@@ -20,6 +23,7 @@ create or replace function wp_presentation__new (
     boolean,
     varchar,
     varchar,
+    integer,
     integer
 ) 
 returns integer as'
@@ -36,6 +40,7 @@ declare
     p_aud                       alias for $10;
     p_back                      alias for $11;
     p_parent_id                 alias for $12;
+    p_package_id                alias for $13;
     v_item_id                   cr_items.item_id%TYPE;
     v_audience_item_id          cr_items.item_id%TYPE;
     v_background_item_id        cr_items.item_id%TYPE;
@@ -68,7 +73,8 @@ begin
          ''text/plain'',
          null,
          null,
-         ''text''
+         ''text'',
+         p_package_id
     );
 
     v_revision_id := content_revision__new(
@@ -124,7 +130,8 @@ begin
          ''text/plain'',
          null,
          null,
-         ''text''
+         ''text'',
+         p_package_id
     );
 
     v_audience_revision_id := content_revision__new(
@@ -164,7 +171,8 @@ begin
          ''text/plain'',
          null,
          null,
-         ''text''
+         ''text'',
+         p_package_id
     );
     
     v_background_revision_id := content_revision__new(
@@ -320,6 +328,8 @@ begin
     and cr_revisions.revision_id = cr_items__live_revision;
 end;' language 'plpgsql';
 
+select define_function_args('wp_presentation__new_revision','creation_date,creation_user,creation_ip,pres_item_id,pres_title,page_signature,copyright_notce,style,public_p,show_modified_p,audience,background');
+
 create or replace function wp_presentation__new_revision (
     timestamptz,
     integer,     
@@ -442,6 +452,8 @@ begin
     return 0;
 end;' language 'plpgsql';
 
+select define_function_args('wp_slide__new','pres_item_id,creation_date,creation_user,creation_ip,slide_title,style,original_slide_id,sort_key,preamble,include_in_outline_p,context_break_after_p,context_id,package_id');
+
 create or replace function wp_slide__new (
     integer,
     timestamptz,
@@ -456,6 +468,7 @@ create or replace function wp_slide__new (
     varchar,
     boolean,
     boolean,
+    integer,
     integer
 ) returns integer as '
 declare
@@ -473,6 +486,7 @@ declare
     p_include_in_outline_p      alias for $12;
     p_context_break_after_p     alias for $13;
     p_context_id                alias for $14;
+    p_package_id                alias for $15;
     v_item_id                   cr_items.item_id%TYPE;
     v_preamble_item_id          cr_items.item_id%TYPE;
     v_postamble_item_id         cr_items.item_id%TYPE;
@@ -507,7 +521,8 @@ begin
         ''text/plain'',
         null,
         null,
-        ''text''
+        ''text'',
+        p_package_id
     );
 
     v_revision_id := content_revision__new(
@@ -568,7 +583,8 @@ begin
         ''text/plain'',
         null,
         null,
-        ''text''
+        ''text'',
+        p_package_id
     );  
 
     v_preamble_revision_id := content_revision__new(
@@ -608,7 +624,8 @@ begin
         ''text/plain'',
         null,
         null,
-        ''text''      
+        ''text'',
+        p_package_id
     );
 
     v_postamble_revision_id := content_revision__new(
@@ -648,7 +665,8 @@ begin
         null,
         ''text/plain'',
         null,  
-        ''text''      
+        ''text'',
+        p_package_id
     );
 
     v_bullet_items_revision_id := content_revision__new(

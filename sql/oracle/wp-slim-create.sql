@@ -608,7 +608,8 @@ as
     show_modified_p     in cr_wp_presentations.show_modified_p%TYPE default 'f',
     audience            in varchar2,
     background          in varchar2,
-    parent_id		in integer
+    parent_id		in integer,
+    package_id		in integer
   ) return cr_items.item_id%TYPE;
 
   procedure delete_audience (
@@ -679,7 +680,8 @@ as
     postamble           	in varchar2,
     include_in_outline_p 	in cr_wp_slides.include_in_outline_p%TYPE default 't',
     context_break_after_p 	in cr_wp_slides.context_break_after_p%TYPE default 'f',
-    context_id          	in acs_objects.context_id%TYPE default null
+    context_id          	in acs_objects.context_id%TYPE default null,
+    package_id                  in acs_objects.package_id%TYPE default null
   ) return cr_items.item_id%TYPE;
 
 
@@ -776,7 +778,8 @@ as
     show_modified_p     in cr_wp_presentations.show_modified_p%TYPE default 'f',
     audience            in varchar2,
     background          in varchar2,
-    parent_id		in integer
+    parent_id		in integer,
+    package_id		in integer
   ) return cr_items.item_id%TYPE
   is
     v_item_id			cr_items.item_id%TYPE;
@@ -804,7 +807,8 @@ as
       creation_date => creation_date,
       creation_user => creation_user,
       creation_ip   => creation_ip,
-      parent_id     => parent_id
+      parent_id     => parent_id,
+      package_id    => package_id
     );
 
     v_revision_id := content_revision.new(
@@ -845,7 +849,9 @@ as
       content_type  => 'cr_wp_presentation_aud',
       creation_date => creation_date,
       creation_user => creation_user,
-      creation_ip   => creation_ip
+      creation_ip   => creation_ip,
+      parent_id     => parent_id,
+      package_id    => package_id
     );
 
     v_audience_revision_id := content_revision.new(
@@ -876,7 +882,9 @@ as
       content_type  => 'cr_wp_presentation_back',
       creation_date => creation_date,
       creation_user => creation_user,
-      creation_ip   => creation_ip
+      creation_ip   => creation_ip,
+      parent_id     => parent_id,
+      package_id    => package_id
     );
 
     v_background_revision_id := content_revision.new(
@@ -1159,7 +1167,8 @@ as
     postamble           	in varchar2,
     include_in_outline_p 	in cr_wp_slides.include_in_outline_p%TYPE default 't',
     context_break_after_p 	in cr_wp_slides.context_break_after_p%TYPE default 'f',
-    context_id          	in acs_objects.context_id%TYPE default null
+    context_id          	in acs_objects.context_id%TYPE default null,
+    package_id                  in acs_objects.package_id%TYPE default null
   ) return cr_items.item_id%TYPE
   is
     v_item_id			cr_items.item_id%TYPE;
@@ -1189,7 +1198,9 @@ as
       content_type  => 'cr_wp_slide',
       creation_date => creation_date,
       creation_user => creation_user,
-      creation_ip   => creation_ip
+      creation_ip   => creation_ip,
+      parent_id     => parent_id,
+      package_id    => package_id
     );
 
     v_revision_id := content_revision.new(
@@ -1237,7 +1248,9 @@ as
       content_type  => 'cr_wp_slide_preamble',
       creation_date => creation_date,
       creation_user => creation_user,
-      creation_ip   => creation_ip
+      creation_ip   => creation_ip,
+      parent_id     => parent_id,
+      package_id    => package_id
     );
 
     v_preamble_revision_id := content_revision.new(
@@ -1268,7 +1281,9 @@ as
       content_type  => 'cr_wp_slide_postamble',
       creation_date => creation_date,
       creation_user => creation_user,
-      creation_ip   => creation_ip
+      creation_ip   => creation_ip,
+      parent_id     => parent_id,
+      package_id    => package_id
     );
 
     v_postamble_revision_id := content_revision.new(
@@ -1299,7 +1314,9 @@ as
       content_type  => 'cr_wp_slide_bullet_items',
       creation_date => creation_date,
       creation_user => creation_user,
-      creation_ip   => creation_ip
+      creation_ip   => creation_ip,
+      parent_id     => parent_id,
+      package_id    => package_id
     );
 
     v_bullet_items_revision_id := content_revision.new(
