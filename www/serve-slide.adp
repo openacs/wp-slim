@@ -1,4 +1,4 @@
-<master>
+<master src="wp-presentation-master">
 <property name="title">@slide_title@</property>
 <property name="context">@context@</property>
 <property name="style_id">@style@</property>
