@@ -38,7 +38,9 @@ select 'Binary data', 'application/octet-stream'
 from dual
 where not exists (select 1 from cr_mime_types where mime_type ='application/octet-stream');
 
---jackp: Create the different styles 
+
+create sequence wp_style_seq;
+
 create table wp_styles (
 	style_id		integer 
                                 constraint wp_styles_style_id_pk
@@ -46,18 +48,40 @@ create table wp_styles (
 	name			varchar(400) 
                                 constraint wp_styles_name_nn
                                 not null,
-	css			varchar(4000),
+	css			text,
 	text_color		varchar(20) check(text_color like '%,%,%'),
 	background_color	varchar(20) check(background_color like '%,%,%'),
-	background_image	varchar(200),
+	background_image	integer default 0,
 	link_color		varchar(20) check(link_color like '%,%,%'),
 	alink_color		varchar(20) check(alink_color like '%,%,%'),
-	vlink_color		varchar(20) check(vlink_color like '%,%,%')
+	vlink_color		varchar(20) check(vlink_color like '%,%,%'),
+	public_p		char(1) default 'f' check(public_p in ('t','f')),
+	owner			integer 
+				constraint wp_styles_to_users
+				references users (user_id)
 );
+
 
 insert into wp_styles(style_id, name, css)
 values(-1, 'Default (Plain)',
        'BODY { back-color: white; color: black } P { line-height: 120% } UL { line-height: 140% }');
+
+-- this is also a new index!  roc@
+create index wp_styles_by_owner on wp_styles(owner);
+
+-- new table for supporting background images!
+-- Images used for styles.
+
+create table wp_style_images (
+-- this one references to a cr!
+	wp_style_images_id integer  primary key,
+	style_id	integer references wp_styles(style_id) on delete cascade not null,
+	file_size	integer not null,
+	file_name	varchar(200) not null
+);
+
+create index wp_style_images_style_id on wp_style_images(style_id);
+
 
 --jackp: p_create the presentation table
 create table cr_wp_presentations (
@@ -84,7 +108,10 @@ create table cr_wp_presentations (
 	-- Show last-modified date for slide?
 	show_modified_p         boolean
 				constraint cr_wp_show_p_ck
-				check(show_modified_p in ('t','f'))
+				check(show_modified_p in ('t','f')),
+	show_comments_p		char(1) default 'f' 
+				constraint cr_wp_comments_p 
+				check(show_comments_p in ('t','f'))
 );
 
 
@@ -684,6 +711,7 @@ end;' language 'plpgsql';
 select inline_10 ();
 drop function inline_10 ();
 
+
 --jackp: set the permissions applicable to the package
 create function inline_11 ()
 returns integer as'
@@ -694,7 +722,7 @@ declare
 begin
     	default_context := acs__magic_object_id(''default_context'');
     	registered_users := acs__magic_object_id(''registered_users'');
-    	the_public := acs__magic_object_id(''the_public'');
+--    	the_public := acs__magic_object_id(''the_public'');
 
     	PERFORM acs_permission__grant_permission(
 		default_context, 
@@ -702,11 +730,12 @@ begin
 		''wp_create_presentation''
 	);
 
-    	PERFORM acs_permission__grant_permission(
-		default_context, 
-		the_public, 
-		''wp_view_presentation''
-	);
+--	this commented out because permission, with this any user could see an slide that has not become public!
+--    	PERFORM acs_permission__grant_permission(
+--		default_context, 
+--		the_public, 
+--		''wp_view_presentation''
+--	);
 	return 0;
 end;' language 'plpgsql';
 select inline_11 ();
@@ -716,7 +745,7 @@ drop function inline_11 ();
 
 --jackp: To p_create each presentation
 create function wp_presentation__new (
-	timestamptz,
+	timestamp,
 	integer,
 	varchar(400),
 	varchar(400),	
@@ -1029,7 +1058,7 @@ end;' language 'plpgsql';
    
 
 create function wp_presentation__new_revision (
-    timestamptz,
+    timestamp,
     integer,	 
     varchar,	 
     integer,	 
@@ -1160,7 +1189,7 @@ end;' language 'plpgsql';
 
 create function wp_slide__new (
     integer,
-    timestamptz,
+    timestamp,
     integer,
     varchar,
     varchar,
@@ -1475,7 +1504,7 @@ begin
     where content_type in (''cr_wp_image_attachment'', ''cr_wp_file_attachment'')
     and   parent_id = slide_item_id
     loop
-     wp_attachment__delete(del_rec.attach_item_id);
+     PERFORM wp_attachment__delete(del_rec.attach_item_id);
     end loop;
 
     select item_id into v_preamble_item_id
@@ -1602,7 +1631,7 @@ begin
 end;' language 'plpgsql';
 
 create function wp_slide__new_revision(
-    timestamptz,
+    timestamp,
     integer,
     varchar,
     integer,
@@ -1765,22 +1794,24 @@ begin
     return 0;
 end;' language 'plpgsql';
 
+-- bug fixed, delete first an image then a file, roc@
 create function wp_attachment__delete(
     integer
 ) returns integer as'
 declare 
     p_attach_item_id		alias for $1;
 begin
-    delete from cr_wp_file_attachments
-    where exists (select 1 from cr_revisions where revision_id 
-      = cr_wp_file_attachments.attach_id 
-      and item_id = p_attach_item_id);
-    
+   
     delete from cr_wp_image_attachments
     where exists (select 1 from cr_revisions where revision_id 
       = cr_wp_image_attachments.attach_id 
       and item_id = p_attach_item_id);
     
+    delete from cr_wp_file_attachments
+    where exists (select 1 from cr_revisions where revision_id 
+      = cr_wp_file_attachments.attach_id 
+      and item_id = p_attach_item_id);
+
     delete from cr_item_publish_audit
     where item_id = p_attach_item_id;
 
@@ -1821,5 +1852,62 @@ begin
   return 0;
 end;' language 'plpgsql';
 
+
+-- style functions roc@
+
+create function wp_style__delete(
+    integer
+) returns integer as'
+declare 
+    p_style_id		alias for $1;
+    p_item_id			integer;
+    one_image			record;
+begin
+
+	for one_image in 
+	    select * from wp_style_images 
+	    where wp_style_images_id = (select background_image from wp_styles where style_id = p_style_id)
+	loop
+		delete from wp_style_images where wp_style_images_id = one_image.wp_style_images_id;
+		select item_id into p_item_id from cr_revisions where revision_id = one_image.wp_style_images_id;
+		PERFORM content_item__delete(p_item_id);
+	end loop;
+	
+	update cr_wp_slides set style = -1 where style = p_style_id;
+	update cr_wp_presentations set style = -1 where style = p_style_id;
+	delete from wp_styles where style_id = p_style_id;
+
+    return 0;
+end;' language 'plpgsql';
+
+create function wp_style__image_delete(
+    integer
+) returns integer as'
+declare 
+    p_revision_id		alias for $1;
+    p_item_id			integer;
+begin
+
+    update wp_styles set background_image = 0 where background_image = p_revision_id;
+
+    delete from wp_style_images 
+    where wp_style_images_id = p_revision_id;
+    
+    select item_id into p_item_id from cr_revisions where revision_id = p_revision_id;
+
+    PERFORM content_item__delete(p_item_id);
+
+    return 0;
+end;' language 'plpgsql';
+
+
+-- new permissions roc@
+select acs_privilege__add_child('wp_edit_presentation', 'wp_view_presentation');
+select acs_privilege__add_child('wp_admin_presentation', 'wp_create_presentation');
+select acs_privilege__add_child('wp_admin_presentation', 'wp_edit_presentation');
+select acs_privilege__add_child('wp_admin_presentation', 'wp_delete_presentation');
+
+-- lets give site-wide permissions, wp-permissions! 
+select acs_privilege__add_child('admin', 'wp_admin_presentation');
 
 
