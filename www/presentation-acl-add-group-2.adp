@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">Confirm Add Users</property>
 <property name="context">@context@</property>
 <form action="presentation-acl-add-group-3">

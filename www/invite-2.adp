@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">Email Sent</property>
 <property name="context">@context@</property>
 

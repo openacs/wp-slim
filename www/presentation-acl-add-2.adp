@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">Confirm Add User</property>
 <property name="context">@context@</property>
 

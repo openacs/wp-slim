@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">All Revisions of This Slide</property>
 <property name="context">@context@</property>
 

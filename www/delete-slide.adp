@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">Delete a Slide</property>
 <property name="context">@context@</property>
 

@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">Add Group</property>
 <property name="context">@context@</property>
 

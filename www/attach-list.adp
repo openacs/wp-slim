@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">List of Attachments</property>
 <property name="context">@context@</property>
 

@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">Add User</property>
 <property name="context">@context@</property>
 <form action="search">

@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">Wimpy Point Users</property>
 <property name="context">@context@</property>
 

@@ -1,4 +1,4 @@
-<master src="master">
+<master>
 <property name="title">Create A Slide</property>
 <property name="context">@context@</property>
 
