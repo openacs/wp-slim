@@ -7,7 +7,7 @@
       <querytext>
       
 	begin
-  	  wp_presentation.delete(:pres_item_id);
+  	  wp_presentation.del(:pres_item_id);
 	end;
     
       </querytext>

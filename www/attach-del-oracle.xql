@@ -7,7 +7,7 @@
       <querytext>
       
     begin
-        wp_attachment.delete(:attach_item_id);
+        wp_attachment.del(:attach_item_id);
     end;
 
       </querytext>

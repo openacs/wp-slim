@@ -7,7 +7,7 @@
       <querytext>
 
 	begin
-	 wp_style.delete( p_style_id => :style_id );
+	 wp_style.del( p_style_id => :style_id );
 	end;
 
       </querytext>

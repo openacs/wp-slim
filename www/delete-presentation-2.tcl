@@ -19,7 +19,7 @@ set user_id [ad_verify_and_get_user_id]
 if { [ad_check_password $user_id $password] } {
     db_exec_plsql delete_presentation {
  	begin
-  	  wp_presentation.delete(:pres_item_id);
+  	  wp_presentation.del(:pres_item_id);
 	end;
     }
 } else {

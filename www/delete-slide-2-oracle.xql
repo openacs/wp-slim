@@ -7,7 +7,7 @@
       <querytext>
       
     begin
-      wp_slide.delete(:slide_item_id);
+      wp_slide.del(:slide_item_id);
     end;
 
       </querytext>

@@ -619,7 +619,7 @@ as
     background_item_id	in cr_items.item_id%TYPE
   );
 
-  procedure delete (
+  procedure del (
     pres_item_id	in cr_items.item_id%TYPE
   );
 
@@ -695,7 +695,7 @@ as
     bullet_items_item_id	in cr_items.item_id%TYPE
   );
     
-  procedure delete (
+  procedure del (
     slide_item_id	in cr_items.item_id%TYPE
   );
 
@@ -748,7 +748,7 @@ show errors
 create or replace package wp_attachment
 as
 
-  procedure delete (
+  procedure del (
     attach_item_id	in cr_items.item_id%TYPE
   );
 
@@ -916,7 +916,7 @@ as
     delete from cr_item_publish_audit
     where item_id = audience_item_id;
 
-    content_item.delete(audience_item_id);
+    content_item.del(audience_item_id);
   end;
 
   procedure delete_background (
@@ -930,10 +930,10 @@ as
     delete from cr_item_publish_audit
     where item_id = background_item_id;
 
-    content_item.delete(background_item_id);
+    content_item.del(background_item_id);
   end;
 
-  procedure delete (
+  procedure del (
     pres_item_id	in cr_items.item_id%TYPE
   )
   is
@@ -946,7 +946,7 @@ as
     and   parent_id = pres_item_id;
   begin
     for c in v_slide_cursor loop
-      wp_slide.delete(c.slide_item_id);
+      wp_slide.del(c.slide_item_id);
     end loop;
 
     select item_id into v_audience_item_id
@@ -966,7 +966,7 @@ as
     delete from acs_permissions where object_id = pres_item_id;
     update acs_objects set context_id=null where context_id = pres_item_id;
     delete from cr_wp_presentations where exists (select 1 from cr_revisions where cr_revisions.revision_id = cr_wp_presentations.presentation_id and cr_revisions.item_id = pres_item_id);
-    content_item.delete(pres_item_id);
+    content_item.del(pres_item_id);
   end;
 
   function get_audience (
@@ -1338,7 +1338,7 @@ as
     delete from cr_item_publish_audit
     where item_id = preamble_item_id;
 
-    content_item.delete(preamble_item_id);
+    content_item.del(preamble_item_id);
   end;
 
   procedure delete_postamble (
@@ -1352,7 +1352,7 @@ as
     delete from cr_item_publish_audit
     where item_id = postamble_item_id;
 
-    content_item.delete(postamble_item_id);
+    content_item.del(postamble_item_id);
   end;
 
    procedure delete_bullet_items (
@@ -1366,10 +1366,10 @@ as
     delete from cr_item_publish_audit
     where item_id = bullet_items_item_id;
 
-    content_item.delete(bullet_items_item_id);
+    content_item.del(bullet_items_item_id);
   end;
 
-  procedure delete (
+  procedure del (
     slide_item_id	in cr_items.item_id%TYPE
   )
   is
@@ -1385,7 +1385,7 @@ as
     and   parent_id = slide_item_id;
   begin
     for c in v_attach_cursor loop
-      wp_attachment.delete(c.attach_item_id);
+      wp_attachment.del(c.attach_item_id);
     end loop;
 
     select item_id into v_preamble_item_id
@@ -1419,7 +1419,7 @@ as
     update cr_wp_slides set sort_key = sort_key - 1 where sort_key > v_sort_key and exists (select 1 from cr_revisions r, cr_items i where i.parent_id = v_pres_item_id and i.item_id = r.item_id and r.revision_id = cr_wp_slides.slide_id);
     update acs_objects set context_id=null where context_id = slide_item_id;
     delete from cr_item_publish_audit where item_id = slide_item_id;
-    content_item.delete(slide_item_id);
+    content_item.del(slide_item_id);
   end;
 
   function get_preamble (
@@ -1654,7 +1654,7 @@ show errors
 create or replace package body wp_attachment
 as
     
-  procedure delete (
+  procedure del (
     attach_item_id	in cr_items.item_id%TYPE
   )
   is
@@ -1668,7 +1668,7 @@ as
     delete from cr_item_publish_audit
     where item_id = attach_item_id;
 
-    content_item.delete(attach_item_id);
+    content_item.del(attach_item_id);
   end;
 
   procedure new_revision (
@@ -1704,7 +1704,7 @@ end;
 create or replace package wp_style
 as
 
-procedure delete (
+procedure del (
     p_style_id     in wp_styles.style_id%TYPE
 );
 
@@ -1721,7 +1721,7 @@ show errors
 create or replace package body wp_style 
 as
 
-procedure delete (
+procedure del (
     p_style_id	 in wp_styles.style_id%TYPE
 )
 is 
@@ -1730,17 +1730,17 @@ begin
 
 	for one_image in (
 	    select * from wp_style_images 
-	    where wp_style_images_id = (select background_image from wp_styles where style_id = wp_style.delete.p_style_id))
+	    where wp_style_images_id = (select background_image from wp_styles where style_id = wp_style.del.p_style_id))
 	loop
 		delete from wp_style_images where wp_style_images_id = one_image.wp_style_images_id;
 		select item_id into p_item_id from cr_revisions where revision_id = one_image.wp_style_images_id;
 		
-		content_item.delete(item_id => p_item_id);
+		content_item.del(item_id => p_item_id);
 	end loop;
 	
-	update cr_wp_slides set style = -1 where style = wp_style.delete.p_style_id;
-	update cr_wp_presentations set style = -1 where style = wp_style.delete.p_style_id;
-	delete from wp_styles where style_id = wp_style.delete.p_style_id;
+	update cr_wp_slides set style = -1 where style = wp_style.del.p_style_id;
+	update cr_wp_presentations set style = -1 where style = wp_style.del.p_style_id;
+	delete from wp_styles where style_id = wp_style.del.p_style_id;
 
 end;
 
@@ -1760,7 +1760,7 @@ begin
     
     select item_id into p_item_id from cr_revisions where revision_id = wp_style.image_delete.p_revision_id;
 
-    content_item.delete(item_id => p_item_id);
+    content_item.del(item_id => p_item_id);
 
 end;
 

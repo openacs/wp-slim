@@ -21,7 +21,7 @@ declare
 begin
 
   for c in v_attach_cursor loop
-    content_item.delete(c.item_id);
+    content_item.del(c.item_id);
   end loop;
 
 end;
@@ -88,19 +88,19 @@ declare
 begin
 
   for c in v_slide_clob_cursor loop
-    content_item.delete(c.item_id);
+    content_item.del(c.item_id);
   end loop;
 
   for c in v_slide_cursor loop
-    content_item.delete(c.item_id);
+    content_item.del(c.item_id);
   end loop;
 
   for c in v_pres_clob_cursor loop
-    content_item.delete(c.item_id);
+    content_item.del(c.item_id);
   end loop;
 
   for c in v_pres_cursor loop
-    content_item.delete(c.item_id);
+    content_item.del(c.item_id);
   end loop;
 
 end;

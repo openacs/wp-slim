@@ -19,7 +19,7 @@ permission::require_permission -party_id $user_id -object_id $pres_item_id -priv
 
 db_exec_plsql delete_slide {
     begin
-      wp_slide.delete(:slide_item_id);
+      wp_slide.del(:slide_item_id);
     end;
 }
 

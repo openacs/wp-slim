@@ -20,7 +20,7 @@ permission::require_permission -party_id $user_id -object_id $pres_item_id -priv
 
 db_exec_plsql revisions_and_item_delete {
     begin
-        wp_attachment.delete(:attach_item_id);
+        wp_attachment.del(:attach_item_id);
     end;
 }
     
