@@ -3,7 +3,7 @@
 <property name="context">@context@</property>
 <form action="search">
 
-@params@
+@params;noquote@
 
 <center>
 
