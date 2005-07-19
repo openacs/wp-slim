@@ -3,42 +3,6 @@ ad_library {
    Wimpy procs
 }
 
-namespace eval wp::merge {
-
-    ad_proc -callback MergeShowUserInfo -impl wp-slim {
-	-user_id:required
-    } {
-	Merge the wp items of two users.
-    } {
-	set msg "Wimpty point items of $user_id"
-	set result [list $msg]
-
-	set styles [db_list_of_lists sel_wp_styles { *SQL* } ] 
-	
-	lappend result "Styles of $user_id: $styles"
-	
-	return $result
-    }
-
-    ad_proc -callback MergePackageUser -impl wp-slim {
-	-from_user_id:required
-	-to_user_id:required
-    } {
-	Merge the wp items of two users.
-    } {
-	set msg "Merging wp-slim "
-	ns_log Notice $msg
-	set result [list $msg]
-
-	db_dml upd_wp_styles  { *SQL* }
-	
-	lappend result "Merge of wp-slim is done"
-	
-	return $result
-    }
-}
-
-
 ad_proc wp_header {style_id} { Build the proper style for an specific page. } {
 
     db_1row get_style_data { *SQL* }
