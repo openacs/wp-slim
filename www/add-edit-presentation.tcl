@@ -64,7 +64,7 @@ ad_form -name add-edit-presentation -form {
     {public_p:text(radio)
 	{label "<b>#wp-slim.Available_to_Public#</b>"}
 	{options {{#wp-slim.Yes# t} {#wp-slim.No# f}}}
-	{value t}
+	{value f }
 	{help_text "$hide"}
     }
     {style:text(select)
