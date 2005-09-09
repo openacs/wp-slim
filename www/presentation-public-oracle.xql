@@ -14,11 +14,11 @@
 </fullquery>
 
  
-<fullquery name="grant_public_read">      
+<fullquery name="revoke_public_read">      
       <querytext>
       
         begin
-          acs_permission.grant_permission(:pres_item_id,acs.magic_object_id('the_public'),'wp_view_presentation');
+          acs_permission.revoke_permission(:pres_item_id,acs.magic_object_id('the_public'),'wp_view_presentation');
         end;
     
       </querytext>

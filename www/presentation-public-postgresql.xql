@@ -12,11 +12,11 @@ acs_permission__grant_permission(:pres_item_id,acs__magic_object_id('the_public'
 </fullquery>
 
  
-<fullquery name="grant_public_read">      
+<fullquery name="revoke_public_read">      
       <querytext>
   
 	select
-acs_permission__grant_permission(:pres_item_id,acs__magic_object_id('the_public'),'wp_view_presentation');
+acs_permission__revoke_permission(:pres_item_id,acs__magic_object_id('the_public'),'wp_view_presentation');
   
       </querytext>
 </fullquery>

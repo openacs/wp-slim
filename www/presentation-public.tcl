@@ -14,18 +14,10 @@ ad_page_contract {
 
 ad_require_permission $pres_item_id wp_admin_presentation
 
-if {[regexp {t} $public_p]} {
-    db_exec_plsql grant_public_read {
-        begin
-          acs_permission.grant_permission(:pres_item_id,acs.magic_object_id('the_public'),'wp_view_presentation');
-        end;
-    }
+if {[string equal $public_p t]} {
+    db_exec_plsql grant_public_read {}
 } else {
-    db_exec_plsql grant_public_read {
-        begin
-          acs_permission.revoke_permission(:pres_item_id,acs.magic_object_id('the_public'),'wp_view_presentation');
-        end;
-    }
+    db_exec_plsql revoke_public_read {}
 }
 
 db_dml public_p_change {
