@@ -35,6 +35,8 @@ set WimpyPoint [_ wp-slim.lt_WimpyPoint_keeps_trac]
 set hide [_ wp-slim.lt_If_you_want_to_hide_t] 
 append hide [_ wp-slim.lt_Suggestion_if_you_hav]
 set finally [_ wp-slim.lt_Finally_if_youre_plan]
+set title "[_ wp-slim.Create_Presentation]"
+set context [list $title]
 
 ad_form -name add-edit-presentation -form {
     pres_item_id:key
@@ -99,8 +101,6 @@ ad_form -name add-edit-presentation -form {
     }
 
 } -new_request {
-    set title "[_ wp-slim.Create_Presentation]"
-    set context [list $title]
 
 } -edit_request {
     db_1row get_presentation_data { *SQL* }
