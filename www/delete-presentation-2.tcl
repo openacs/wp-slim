@@ -15,16 +15,25 @@ ad_page_contract {
 ad_require_permission $pres_item_id wp_delete_presentation
 
 set user_id [ad_conn user_id]
+set username [db_string sel_authority_id "select username from cc_users where user_id = :user_id"]
+set authority_id [db_string sel_authority_id "select authority_id from cc_users where user_id = :user_id"]
 
-if { [ad_check_password $user_id $password] } {
-    db_exec_plsql delete_presentation {
+with_catch errmsg {
+  array set result [auth::authentication::Authenticate  -username $username  -authority_id $authority_id  -password $password]
+  if { [string equal $result(auth_status) "ok"] } {
+    #Ok
+  } else {
+    ad_return_error "[_ wp-slim.Bad_Password]" "[_ wp-slim.Bad_Password]"
+    ad_returnredirect ""
+  }
+} {
+  ad_return_error "[_ wp-slim.Bad_Password]" "[_ wp-slim.Bad_Password]"
+  ad_returnredirect ""
+}
+
+db_exec_plsql delete_presentation {
  	begin
   	  wp_presentation.del(:pres_item_id);
 	end;
-    }
-} else {
-    ad_return_error "[_ wp-slim.Bad_Password]" "[_ wp-slim.Wrong_password]"
-    ad_script_abort
 }
-
 ad_returnredirect ""
