@@ -26,7 +26,7 @@ ad_proc wp_header {style_id} { Build the proper style for an specific page. } {
 }
 
 
-proc_doc wp_check_style_authorization { style_id user_id } { Verifies that the user owns this style. } {
+ad_proc wp_check_style_authorization { style_id user_id } { Verifies that the user owns this style. } {
     set owner [db_string wp_style_owner_select { *SQL* } -default "not_found"]
     if { $owner == "not_found" } {
 	set err "Error"
