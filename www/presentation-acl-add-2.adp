@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Confirm_Add_User#</property>
+<property name="doc(title)">#wp-slim.Confirm_Add_User#</property>
 <property name="context">@context@</property>
 
 <form action="presentation-acl-add-3">

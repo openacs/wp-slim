@@ -1,5 +1,5 @@
 <master>
-<property name="title">@presentation_title@</property>
+<property name="doc(title)">@presentation_title@</property>
 <property name="context">@context@</property>
 
 <h3>#wp-slim.The_Slides#</h3>

@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Upload_Attachments#</property>
+<property name="doc(title)">#wp-slim.Upload_Attachments#</property>
 <property name="context">@context@</property>
 
 <form enctype=multipart/form-data action=attach method=post>

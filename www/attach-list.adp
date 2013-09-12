@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.List_of_Attachments#</property>
+<property name="doc(title)">#wp-slim.List_of_Attachments#</property>
 <property name="context">@context@</property>
 <ul>
 <multiple name="att">

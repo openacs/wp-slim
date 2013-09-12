@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Delete_Presentation#</property>
+<property name="doc(title)">#wp-slim.Delete_Presentation#</property>
 <property name="context">@context@</property>
 
 <form method=post action="delete-presentation-2">

@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Wimpy_Point_Users#</property>
+<property name="doc(title)">#wp-slim.Wimpy_Point_Users#</property>
 <property name="context">@context@</property>
 
 #wp-slim.lt_Select_an_author_from#

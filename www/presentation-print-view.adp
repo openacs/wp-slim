@@ -1,5 +1,5 @@
 <master>
-<property name="title">@pres_title@</property>
+<property name="doc(title)">@pres_title@</property>
 <property name="context">@context@</property>
 
 <h2>@pres_title@</h2>

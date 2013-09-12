@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Reorder_Slides#</property>
+<property name="doc(title)">#wp-slim.Reorder_Slides#</property>
 <property name="context">@context@</property>
 
 <form name=f>

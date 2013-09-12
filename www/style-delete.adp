@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Delete_name#</property>
+<property name="doc(title)">#wp-slim.Delete_name#</property>
 <property name="context">@context@</property>
 
 <form action=style-delete-2.tcl>

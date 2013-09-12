@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.role_Style#</property>
+<property name="doc(title)">#wp-slim.role_Style#</property>
 <property name="context">@context@</property>
 
 <a href="/wp-slim"> Done </a>

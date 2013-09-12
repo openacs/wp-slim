@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Authorization#</property>
+<property name="doc(title)">#wp-slim.Authorization#</property>
 <property name="context">@context@</property>
 
 <form name=f>

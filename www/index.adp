@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.WimpyPoint#</property>
+<property name="doc(title)">#wp-slim.WimpyPoint#</property>
 <property name="context">@context@</property>
 
 <table border=0 width="100%">

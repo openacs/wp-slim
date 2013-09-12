@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Delete_a_Slide#</property>
+<property name="doc(title)">#wp-slim.Delete_a_Slide#</property>
 <property name="context">@context@</property>
 
 <form>

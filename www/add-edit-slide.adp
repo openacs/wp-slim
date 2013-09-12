@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.Create_A_Slide#</property>
+<property name="doc(title)">#wp-slim.Create_A_Slide#</property>
 <property name="context">@context@</property>
 
 <script language=javascript>

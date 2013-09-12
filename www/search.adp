@@ -1,5 +1,5 @@
 <master>
-<property name=title>#wp-slim.User_Search# <if @group_name@ not nil>#wp-slim.in_group_name#</if></property>
+<property name="doc(title)">#wp-slim.User_Search# <if @group_name@ not nil>#wp-slim.in_group_name#</if></property>
 <property name="context">#wp-slim.User_search#</property>
 
 #wp-slim.Search# 

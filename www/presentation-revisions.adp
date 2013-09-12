@@ -1,5 +1,5 @@
 <master>
-<property name="title">#wp-slim.lt_All_Revisions_of_This#</property>
+<property name="doc(title)">#wp-slim.lt_All_Revisions_of_This#</property>
 <property name="context">@context@</property>
 
 
