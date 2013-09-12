@@ -82,4 +82,4 @@ db_transaction {
 
 db_release_unused_handles
 
-ad_returnredirect "style-view?[export_url_vars style_id presentation_id]"
+ad_returnredirect "style-view?[export_vars -url {style_id presentation_id}]"

@@ -13,7 +13,7 @@ ad_page_contract {
     group_id:integer,notnull
 }
 
-ad_require_permission $pres_item_id wp_admin_presentation
+permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation
 
 # adds a group of users
 db_foreach group_grant { *SQL } {
@@ -27,4 +27,4 @@ db_foreach group_grant { *SQL } {
     db_exec_plsql permission_grant { *SQL }
 }
 
-ad_returnredirect presentation-acl?[export_url_vars pres_item_id]
+ad_returnredirect presentation-acl?[export_vars -url {pres_item_id}]

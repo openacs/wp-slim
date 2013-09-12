@@ -35,9 +35,9 @@ if { $tmp_size == 0 } {
     incr exception_count
 }
 
-if { ![empty_string_p [ad_parameter MaxAttachmentSize "comments"]] && $tmp_size > [ad_parameter MaxAttachmentSize "comments"] } {
+if { ![empty_string_p [parameter::get -parameter MaxAttachmentSize -default "comments"]] && $tmp_size > [parameter::get -parameter MaxAttachmentSize -default "comments"] } {
     set system_name [ad_system_name]
-    set bytes [util_commify_number [ad_parameter MaxAttachmentSize "comments"]]
+    set bytes [util_commify_number [parameter::get -parameter MaxAttachmentSize -default "comments"]]
     append exception_text "<li>[_ wp-slim.lt_Your_file_is_too_larg]\n"
     incr exception_count
 }
@@ -69,4 +69,4 @@ db_transaction {
 }
 
 set edit_slide 1
-ad_returnredirect add-edit-slide?[export_url_vars slide_item_id pres_item_id edit_slide]
+ad_returnredirect add-edit-slide?[export_vars -url {slide_item_id pres_item_id edit_slide}]

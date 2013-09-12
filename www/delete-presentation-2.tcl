@@ -12,7 +12,7 @@ ad_page_contract {
     password:notnull
 }
 
-ad_require_permission $pres_item_id wp_delete_presentation
+permission::require_permission -object_id $pres_item_id -privilege wp_delete_presentation
 
 set user_id [ad_conn user_id]
 set username [db_string sel_authority_id "select username from cc_users where user_id = :user_id"]

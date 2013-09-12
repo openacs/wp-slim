@@ -18,7 +18,7 @@ ad_page_contract {
     {email ""}
 }
 
-ad_require_permission $pres_item_id wp_admin_presentation
+permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation
 
 if {![empty_string_p $email]} {
     set user_id [ad_conn user_id]

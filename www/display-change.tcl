@@ -37,4 +37,4 @@ if { ![empty_string_p $display] } {
 }
 
 
-ad_returnredirect "attach-detail?[export_url_vars slide_item_id attach_item_id file_name]"
+ad_returnredirect "attach-detail?[export_vars -url {slide_item_id attach_item_id file_name}]"

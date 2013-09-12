@@ -17,7 +17,7 @@ wp_check_style_authorization $style_id $user_id
 
 db_1row style_select { *SQL* }
 
-set url_vars "[export_url_vars style_id presentation_id]"
+set url_vars "[export_vars -url {style_id presentation_id}]"
 
 if { $background_color == "" } {
     set bgcolor_str ""
@@ -50,7 +50,7 @@ set last_link [list "style-list?user_id=$user_id" "[_ wp-slim.Your_Styles]"]
 
 set context [list $last_link "[_ wp-slim.One_Style]"]
 
-set export_form_vars "[export_form_vars style_id presentation_id]"
+set export_form_vars "[export_vars -form {style_id presentation_id}]"
 
 db_multirow style_images style_image_select { *SQL* } {
 

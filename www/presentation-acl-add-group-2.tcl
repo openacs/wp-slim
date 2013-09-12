@@ -20,9 +20,9 @@ ad_page_contract {
     groups:multirow
 }
 
-ad_require_permission $pres_item_id wp_admin_presentation
+permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation
 
-set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$title"] [list "presentation-acl?[export_url_vars pres_item_id]" "[_ wp-slim.Authorization]"] "[_ wp-slim.Confirm_Add_Users]"]
+set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$title"] [list "presentation-acl?[export_vars -url {pres_item_id}]" "[_ wp-slim.Authorization]"] "[_ wp-slim.Confirm_Add_Users]"]
 
 db_multirow group users_get {
     select p.first_names,

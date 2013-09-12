@@ -178,7 +178,7 @@ if { $edit_preamble == 1} {
 }
 
 if { $edit_slide == 1} {
-    set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "[_ wp-slim.Edit_Slide]"]
+    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] "[_ wp-slim.Edit_Slide]"]
     ad_form -extend -name f -form {
         {attach:text(radio)
 	    {label "<b>#wp-slim.Upload_Attachments#</b>"}
@@ -187,7 +187,7 @@ if { $edit_slide == 1} {
 	}
     }
 } else {
-    set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] "[_ wp-slim.New_Slide]"]
+    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] "[_ wp-slim.New_Slide]"]
     ad_form -extend -name f -form {
         {attach:text(hidden)
 	    {value "f"}
@@ -213,10 +213,10 @@ ad_form -extend -name f -new_data {
     #insert the slide
     db_exec_plsql wp_slide_insert { *SQL* }
     if { $attach == "t"} {
-    set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] [list "add-edit-slide?[export_url_vars slide_item_id pres_item_id edit_slide]" "[_ wp-slim.Edit_Slide]"] "$slide_title"]
-        ad_returnredirect attach-list?[export_url_vars pres_item_id slide_item_id]
+    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] [list "add-edit-slide?[export_vars -url {slide_item_id pres_item_id edit_slide}]" "[_ wp-slim.Edit_Slide]"] "$slide_title"]
+        ad_returnredirect attach-list?[export_vars -url {pres_item_id slide_item_id}]
     } else {
-        ad_returnredirect presentation-top?[export_url_vars pres_item_id]
+        ad_returnredirect presentation-top?[export_vars -url {pres_item_id}]
     }
 } -edit_data {
   
@@ -232,10 +232,10 @@ ad_form -extend -name f -new_data {
     # update the slide in the db
     db_exec_plsql update_slide { *SQL* }
     if { $attach == "t"} {
-    set context [list [list "presentation-top?[export_url_vars pres_item_id]" "$pres_title"] [list "add-edit-slide?[export_url_vars slide_item_id pres_item_id edit_slide]" "[_ wp-slim.Edit_Slide]"] "$slide_title"]
-        ad_returnredirect attach-list?[export_url_vars pres_item_id slide_item_id]
+    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] [list "add-edit-slide?[export_vars -url {slide_item_id pres_item_id edit_slide}]" "[_ wp-slim.Edit_Slide]"] "$slide_title"]
+        ad_returnredirect attach-list?[export_vars -url {pres_item_id slide_item_id}]
     } else {
-        ad_returnredirect presentation-top?[export_url_vars pres_item_id]
+        ad_returnredirect presentation-top?[export_vars -url {pres_item_id}]
     }
 } -edit_request {
 

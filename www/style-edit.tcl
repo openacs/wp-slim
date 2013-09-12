@@ -77,7 +77,7 @@ set values [list]
 
 set context "[list [list "style-list.tcl" "Your Styles"] $header "[_ wp-slim.role_Style]"]"
 
-set export_form_vars [export_form_vars style_id presentation_id]
+set export_form_vars [export_vars -form {style_id presentation_id}]
 set ad_color_widget_js [ad_color_widget_js]
 set random_range_1 [lindex $colors [randomRange [llength $colors]]]
 set random_range_2 [lindex $colors [randomRange [llength $colors]]]

@@ -31,6 +31,6 @@ if { $num_images == 0 } {
 }
 
 
-set form_vars [export_form_vars style_id]
+set form_vars [export_vars -form {style_id}]
 
 ad_return_template

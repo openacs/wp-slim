@@ -29,7 +29,7 @@ set pres_item_id [db_string pres_item_id_get {
     and   item_id = :slide_item_id
 }]
 set edit_slide 1
-set context [list [list "presentation-top?[export_url_vars pres_item_id ]" "[_ wp-slim.Edit_Slide]"] "[_ wp-slim.List_Attachments]"]
+set context [list [list "presentation-top?[export_vars -url {pres_item_id }]" "[_ wp-slim.Edit_Slide]"] "[_ wp-slim.List_Attachments]"]
 
 db_multirow att attachments_get {
     select name, item_id

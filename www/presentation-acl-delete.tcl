@@ -13,7 +13,7 @@ ad_page_contract {
     user_id:naturalnum,notnull
 }
 
-ad_require_permission $pres_item_id wp_admin_presentation
+permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation
 
 set privilege [ad_decode $role "read" "wp_view_presentation" "write" "wp_edit_presentation" "admin" "wp_admin_presentation" ""]
 
@@ -31,4 +31,4 @@ db_exec_plsql revoke_privilege {
     end;
 }
 
-ad_returnredirect presentation-acl?[export_url_vars pres_item_id]
+ad_returnredirect presentation-acl?[export_vars -url {pres_item_id}]

@@ -12,7 +12,7 @@ ad_page_contract {
     public_p:notnull
 }
 
-ad_require_permission $pres_item_id wp_admin_presentation
+permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation
 
 if {[regexp {t} $public_p]} {
     db_exec_plsql grant_public_read {
@@ -36,4 +36,4 @@ db_dml public_p_change {
                              where item_id = :pres_item_id)
 }
 
-ad_returnredirect presentation-acl?[export_url_vars pres_item_id]
+ad_returnredirect presentation-acl?[export_vars -url {pres_item_id}]
