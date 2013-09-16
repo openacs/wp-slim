@@ -17,7 +17,7 @@
 <table cellspacing=0 cellpadding=0>
   <tr valign=baseline>
     <th nowrap align=right>#wp-slim.Namenbsp#</th>
-    <td><input type=text name=name size=50 value="<%=[philg_quote_double_quotes $name]%>"><br>
+    <td><input type=text name=name size=50 value="<%=[ad_quotehtml $name]%>"><br>
 <i>#wp-slim.lt_A_descriptive_name_li#
   </tr>
   <tr>
@@ -50,7 +50,7 @@
   </tr>
   <tr>
     <th nowrap align=right valign=top><br>#wp-slim.CSS_Sourcenbsp#</th>
-    <td><textarea name=css rows=15 cols=60><%=[philg_quote_double_quotes $css]%></textarea></td>
+    <td><textarea name=css rows=15 cols=60><%=[ad_quotehtml $css]%></textarea></td>
   </tr>
   <tr><td colspan=2 align=center><hr><input type=submit value="#wp-slim.Save_Style#"></td></tr>
 </table>
