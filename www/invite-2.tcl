@@ -40,6 +40,6 @@ set email_content [ad_convert_to_html -html_p t "
 [_ wp-slim.lt_From_user_name_user_e]
 "]
 
-ns_sendmail $email $user_email "[_ wp-slim.lt_WimpyPoint_Invitation]" "$email_content"
+acs_mail_lite::send -to_addr $email -from_addr $user_email -subject [_ wp-slim.lt_WimpyPoint_Invitation] -body $email_content
 
 ad_return_template
