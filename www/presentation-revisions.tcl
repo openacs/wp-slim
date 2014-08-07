@@ -7,7 +7,7 @@ ad_page_contract {
     @creation-date 01/18/2001
     @cvs-id $Id$
 } {
-    pres_item_id:integer
+    pres_item_id:naturalnum,notnull
 } -properties {
     context
     pres_item_id

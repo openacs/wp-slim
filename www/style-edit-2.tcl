@@ -14,7 +14,7 @@ ad_page_contract {
     @param css is the text of a cascading style sheet (file)
 } {
     name:optional,notnull
-    style_id:integer,optional
+    style_id:naturalnum,optional
     presentation_id:naturalnum,optional
     text_color.c1:naturalnum,optional
     text_color.c2:naturalnum,optional

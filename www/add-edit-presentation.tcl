@@ -5,7 +5,7 @@ ad_page_contract {
      @creation-date Thu Nov  9 10:04:22 2000
      @cvs-id $Id$
 } {
-   pres_item_id:integer,optional
+   pres_item_id:naturalnum,optional
 } -properties {
     title:onevalue
     context:onevalue

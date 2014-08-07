@@ -10,7 +10,7 @@ ad_page_contract {
 } {
     pres_item_id:naturalnum,notnull
     role:notnull
-    group_id:integer,notnull
+    group_id:naturalnum,notnull
 }
 
 permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation

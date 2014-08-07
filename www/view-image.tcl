@@ -4,7 +4,7 @@ ad_page_contract {
 
 } {
 
-  revision_id:integer,notnull
+  revision_id:naturalnum,notnull
 
 }
 

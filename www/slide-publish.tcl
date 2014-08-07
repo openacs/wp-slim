@@ -10,7 +10,7 @@ ad_page_contract {
 } {
     revision_id:naturalnum,notnull
     return_url:notnull
-    pres_item_id:notnull
+    pres_item_id:naturalnum,notnull
 }
 
 #added permission checking  roc@

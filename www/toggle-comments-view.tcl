@@ -7,8 +7,8 @@ ad_page_contract {
     @author Rocael HR (roc@viaro.net)
     @creation-date Thu Mar 31 17:11:10 2003
 } {
-    pres_item_id
-    presentation_id:integer,notnull
+    pres_item_id:naturalnum,notnull
+    presentation_id:naturalnum,notnull
     view:notnull
 }
 

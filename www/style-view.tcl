@@ -7,7 +7,7 @@ ad_page_contract {
     @param style_id (if editing)
     @param presentation_id (if we were editing a presentation)
 } {
-    style_id:integer,optional
+    style_id:naturalnum,optional
     presentation_id:naturalnum,optional
 }
 

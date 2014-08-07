@@ -12,7 +12,7 @@ ad_page_contract {
     pres_item_id:naturalnum,notnull
     role:notnull
     title:notnull
-    group_id:integer,notnull
+    group_id:naturalnum,notnull
 } -properties {
     context
     pres_item_id

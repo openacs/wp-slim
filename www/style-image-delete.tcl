@@ -11,7 +11,7 @@ ad_page_contract {
     @cvs-id style-image-delete.tcl,v 3.2.2.5 2000/08/16 21:49:45 mbryzek Exp
 } {
     style_id:naturalnum,notnull
-    revision_id:notnull
+    revision_id:naturalnum,notnull
 }
 
 set user_id [ad_conn user_id]
