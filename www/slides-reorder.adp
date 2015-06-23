@@ -43,10 +43,10 @@ function done() {
     with (document.f.slides) {
         var i;
         for (i = 0; i < length; ++i)
-            query += '&slide_item_id=' + options[i].value;
+            query += '&amp;slide_item_id=' + options[i].value;
     }
 
-    location.href = 'slides-reorder-2?pres_item_id=@pres_item_id@' + query;
+    location.href='slides-reorder-2?pres_item_id=@pres_item_id@' + query;
 }
 </script>
 
@@ -54,8 +54,8 @@ function done() {
 
 <p>
 <table>
-<tr><td rowspan=2>
-<select name=slides size=10>
+<tr><td rowspan="2">
+<select name=slides size="10">
 @out;noquote@
 </select>
 </td>
@@ -65,7 +65,7 @@ function done() {
 <td align="center" valign="bottom"><a href="javascript:down()"><img src="pics/down.gif" border="0" alt="#wp-slim.down#"></a></td>
 </tr>
 
-<tr><td align=center><input type="button" value="#wp-slim.Save_Changes#" onClick="done()"></td></tr>
+<tr><td align="center"><input type="button" value="#wp-slim.Save_Changes#" onClick="done()"></td></tr>
 
 </table>
 </center>

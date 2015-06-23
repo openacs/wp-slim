@@ -5,7 +5,7 @@
 <property name="page_signature">@page_signature@</property>
 <property name="copyright_notice">@copyright_notice@</property>
 
-<table align=right>
+<table align="right">
 <tr>
         <td>@href_back_forward;noquote@</td>
 </tr>
@@ -28,7 +28,7 @@
 <td>
 <p>@preamble;noquote@
 </td>
-<td align=right>
+<td align="right">
 <multiple name="attach_list">
         <if @attach_list.display@ eq "preamble">
           <img src="../../attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
@@ -57,7 +57,7 @@
 </ul>
 </td>
 
-<td align=right>
+<td align="right">
 <multiple name="attach_list">
         <if @attach_list.display@ eq "bullets">
           <img src="../../attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
@@ -78,7 +78,7 @@
 <td>
 <p>@postamble;noquote@
 </td>
-<td align=right>
+<td align="right">
 <multiple name="attach_list">
         <if @attach_list.display@ eq "postamble">
           <img src="../../attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         

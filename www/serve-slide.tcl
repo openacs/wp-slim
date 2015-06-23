@@ -74,7 +74,7 @@ set context [list [list "$subsite_name/display/$pres_item_id" [_ wp-slim.One_Pre
 
 # Figure out what the previous slide link should be.
 if {$sort_key == 1} {
-    set href_back "<a href=\"$subsite_name/display/$pres_item_id/\">[_ wp-slim.top]</a> | "
+    set href_back [subst {<a href="[ns_quotehtml $subsite_name/display/$pres_item_id/]">[_ wp-slim.top]</a> | }]
 } else {
     set previous_slide_item_id [db_string get_previous_slide_item_id {
 	select i.item_id
@@ -84,7 +84,7 @@ if {$sort_key == 1} {
 	and   s.sort_key = (:sort_key - 1)
     }
     ]
-    set href_back "<a href=\"${previous_slide_item_id}.wimpy\">[_ wp-slim.previous]</a> | "
+    set href_back [subst {<a href="[ns_quotehtml $previous_slide_item_id.wimpy]">[_ wp-slim.previous]</a> | }]
 }
 
 # Figure out what the next slide link should be.    
@@ -105,9 +105,9 @@ if {!$found_slide} {
 	# this is the only slide.
 	set href_back ""
     }
-        set href_forward "<a href=\"$subsite_name/display/$pres_item_id\">[_ wp-slim.top]</a>"
+    set href_forward [subst {<a href="[ns_quotehtml $subsite_name/display/$pres_item_id]">[_ wp-slim.top]</a>}]
 } else {
-    set href_forward "<a href=\"$subsite_name/display/$pres_item_id/${next_slide_item_id}.wimpy\">[_ wp-slim.next]</a>"
+    set href_forward [subst {<a href="[ns_quotehtml $subsite_name/display/$pres_item_id/${next_slide_item_id}.wimpy]">[_ wp-slim.next]</a>}]
 }
 
 
@@ -122,10 +122,12 @@ db_multirow attach_list get_attachments {
 set edit_slide 1
 set extra ""
 if {$edit_p == 1} {
-    append extra "<a href=\"$subsite_name/add-edit-slide?[export_vars -url {slide_item_id pres_item_id edit_slide}]\">[_ wp-slim.edit]</a> | "
+    set href [export_vars -base $subsite_name/add-edit-slide {slide_item_id pres_item_id edit_slide}]
+    append extra [subst {<a href="[ns_quotehtml $href]">[_ wp-slim.edit]</a> | }]
 }
 if {$delete_p == 1} {
-    append extra "<a href=\"$subsite_name/delete-slide?[export_vars -url {slide_item_id pres_item_id slide_title}]\">[_ wp-slim.delete]</a> |"
+    set href [export_vars -base $subsite_name/delete-slide {slide_item_id pres_item_id slide_title}]
+    append extra [subst {<a href="[ns_quotehtml $href]">[_ wp-slim.delete]</a> |}]
 }
 
 set href_back_forward "$href_back $extra $href_forward"

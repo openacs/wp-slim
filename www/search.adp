@@ -16,7 +16,7 @@
 
 <multiple name="user_search">
 
-  <li><a href="@target@?user_id=@user_search.user_id@&@user_search.export_vars@&@passthrough_parameters@">@user_search.first_names@ @user_search.last_name@ (@user_search.email@)</a>
+  <li><a href="@target@?user_id=@user_search.user_id@&amp;@user_search.export_vars@&amp;@passthrough_parameters@">@user_search.first_names@ @user_search.last_name@ (@user_search.email@)</a>
   <if @user_search.member_state@ ne "approved">
      <font color=red>@user_search.member_state@</font>
   </if>

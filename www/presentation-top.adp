@@ -4,28 +4,28 @@
 
 <h3>#wp-slim.The_Slides#</h3>
    <if  @slides:rowcount@ eq 0>
-      <a href="add-edit-slide?sort_key=1&edit_preamble=1&pres_item_id=@pres_item_id@">#wp-slim.lt_Create_the_first_slid#</a>
+      <a href="add-edit-slide?sort_key=1&amp;edit_preamble=1&amp;pres_item_id=@pres_item_id@">#wp-slim.lt_Create_the_first_slid#</a>
    </if>
    <else>
-     <table border=0 cellspacing=10 cellpadding=0>
+     <table border="0" cellspacing="10" cellpadding="0">
      <multiple name="slides">
      <tr>
      <td>@slides.sort_key@.</td>
      <td> <a href="@subsite_name@display/@pres_item_id@/@slides.slide_item_id@.wimpy">@slides.slide_title;noquote@</a> </td>
      <td>
      [ #wp-slim.Preamble#
-     <a href="add-edit-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@&edit_slide=1&edit_preamble=1">
+     <a href="add-edit-slide?slide_item_id=@slides.slide_item_id@&amp;pres_item_id=@pres_item_id@&amp;edit_slide=1&amp;edit_preamble=1">
      #wp-slim.edit#</a> |
      #wp-slim.Postamble#
-     <a href="add-edit-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@&edit_slide=1&edit_preamble=0">
+     <a href="add-edit-slide?slide_item_id=@slides.slide_item_id@&amp;pres_item_id=@pres_item_id@&amp;edit_slide=1&amp;edit_preamble=0">
      #wp-slim.edit#</a> |
 <if @delete_p@ eq t>
-  <a href="delete-slide?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@&slide_title=@slides.slide_title@">#wp-slim.delete#</a> |
+  <a href="delete-slide?slide_item_id=@slides.slide_item_id@&amp;pres_item_id=@pres_item_id@&amp;slide_title=@slides.slide_title@">#wp-slim.delete#</a> |
 </if>
-<a href="attach-list?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">#wp-slim.attach#</a> |
-<a href="slide-revisions?slide_item_id=@slides.slide_item_id@&pres_item_id=@pres_item_id@">#wp-slim.view_revisions#</a>]
+<a href="attach-list?slide_item_id=@slides.slide_item_id@&amp;pres_item_id=@pres_item_id@">#wp-slim.attach#</a> |
+<a href="slide-revisions?slide_item_id=@slides.slide_item_id@&amp;pres_item_id=@pres_item_id@">#wp-slim.view_revisions#</a>]
      </td>
-     <td> <img src="pics/arrow.gif" alt="#wp-slim.arrow#" align=top> <font size=-1><a href="add-edit-slide?pres_item_id=@pres_item_id@&sort_key=@slides.sort_key@">#wp-slim.Insert#</a></font> </td>
+     <td> <img src="pics/arrow.gif" alt="#wp-slim.arrow#" align=top> <font size=-1><a href="add-edit-slide?pres_item_id=@pres_item_id@&amp;sort_key=@slides.sort_key@">#wp-slim.Insert#</a></font> </td>
      </tr>
      </multiple>
      <tr>
@@ -76,10 +76,10 @@
 <if @admin_p@ eq t>
   <li><a href="presentation-acl?pres_item_id=@pres_item_id@">#wp-slim.lt_Change_people_who_can#</a>
 <if @show_comments_p@ eq "t">
-  <li>#wp-slim.lt_All_viewers_can_see_t#<a href=toggle-comments-view?pres_item_id=@pres_item_id@&presentation_id=@presentation_id@&view=f>#wp-slim.lt_make_available_only_f#</a>)
+  <li>#wp-slim.lt_All_viewers_can_see_t#<a href="toggle-comments-view?pres_item_id=@pres_item_id@&amp;presentation_id=@presentation_id@&view=f">#wp-slim.lt_make_available_only_f#</a>)
 	</if>
 <else>
-  <li>#wp-slim.lt_Editors_can_see_the_c#<a href=toggle-comments-view?pres_item_id=@pres_item_id@&presentation_id=@presentation_id@&view=t>#wp-slim.lt_make_available_to_all#</a>)
+  <li>#wp-slim.lt_Editors_can_see_the_c#<a href="toggle-comments-view?pres_item_id=@pres_item_id@&amp;presentation_id=@presentation_id@&view=t">#wp-slim.lt_make_available_to_all#</a>)
 </else>
 </if>
 </ul>

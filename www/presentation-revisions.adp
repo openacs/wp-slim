@@ -14,7 +14,7 @@
 href="presentation_revision/@pres_item_id@/@revisions.revision_id@">#wp-slim.view#</a>)
 </if>
 <else>
-#wp-slim.lt_Created_by_revisionsf_1# (<a href="presentation_revision/@pres_item_id@/@revisions.revision_id@">#wp-slim.view#</a> | <a href="presentation-publish?revision_id=@revisions.revision_id@&return_url=@return_url@">#wp-slim.go_live#</a>)
+#wp-slim.lt_Created_by_revisionsf_1# (<a href="presentation_revision/@pres_item_id@/@revisions.revision_id@">#wp-slim.view#</a> | <a href="presentation-publish?revision_id=@revisions.revision_id@&amp;return_url=@return_url@">#wp-slim.go_live#</a>)
 </else>
 
 </li>

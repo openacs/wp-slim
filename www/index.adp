@@ -2,49 +2,49 @@
 <property name="doc(title)">#wp-slim.WimpyPoint#</property>
 <property name="context">@context@</property>
 
-<table border=0 width="100%">
-<tr><td align=left>
+<table border="0" width="100%">
+<tr><td align="left">
 [ 
 <if @show_age@ eq 7>
 <b>#wp-slim.Last_Week#</b>
 </if>
 <else>
-<a href=index?show_age=7&@show_user_value@>#wp-slim.Last_Week#</a>
+<a href="index?show_age=7&@show_user_value@">#wp-slim.Last_Week#</a>
 </else>
 | 
 <if @show_age@ eq 14>
 <b>#wp-slim.Last_Two_Weeks#</b>
 </if>
 <else>
-<a href=index?show_age=14&@show_user_value@>#wp-slim.Last_Two_Weeks#</a>
+<a href="index?show_age=14&@show_user_value@">#wp-slim.Last_Two_Weeks#</a>
 </else>
 | 
 <if @show_age@ eq 30>
 <b>#wp-slim.Last_Month#</b>
 </if>
 <else>
-<a href=index?show_age=30&@show_user_value@>#wp-slim.Last_Month#</a>
+<a href="index?show_age=30&@show_user_value@">#wp-slim.Last_Month#</a>
 </else>
 | 
 <if @show_age@ eq 0>
 <b>#wp-slim.All#</b>
 </if>
 <else>
-<a href=index?show_age=0&@show_user_value@>#wp-slim.All#</a>
+<a href="index?show_age=0&@show_user_value@">#wp-slim.All#</a>
 </else>
 ]
 </td>
 
 
-<td align=right>
+<td align="right">
 [ 
 <if @show_user@ eq "yours">
 <b>#wp-slim.Yours#</b>
 | 
-<a href=index?show_user=all&@show_age_value@>#wp-slim.Everyones#</a>
+<a href="index?show_user=all&@show_age_value@">#wp-slim.Everyones#</a>
 </if>
 <else>
-<a href=index?show_user=yours&@show_age_value@>#wp-slim.Yours#</a>
+<a href="index?show_user=yours&@show_age_value@">#wp-slim.Yours#</a>
 | 
 <b>#wp-slim.Everyones#</b>
 </else>

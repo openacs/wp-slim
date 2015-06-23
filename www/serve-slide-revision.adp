@@ -20,7 +20,7 @@
 <td>
 <p>@preamble@
 </td>
-<td align=right>
+<td align="right">
 <multiple name="attach_list">
         <if @attach_list.display@ eq "preamble">
           <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
@@ -49,7 +49,7 @@
 </ul>
 </td>
 
-<td align=right>
+<td align="right">
 <multiple name="attach_list">
         <if @attach_list.display@ eq "bullets">
           <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         
@@ -70,7 +70,7 @@
 <td>
 <p>@postamble@
 </td>
-<td align=right>
+<td align="right">
 <multiple name="attach_list">
         <if @attach_list.display@ eq "postamble">
           <img src="@subsite_name@/attach/@attach_list.attach_id@/@attach_list.file_name@" alt="@attach_list.file_name@">         

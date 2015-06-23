@@ -6,9 +6,9 @@
 #wp-slim.lt_form_varsAre_you_sure#
 
 <p><center>
-<input type=button value="#wp-slim.No_I_want_to_cancel#" onClick="location.href='style-list.tcl'">
-<spacer type=horizontal size=50>
-<input type=submit value="#wp-slim.Yes_proceed#">
+<input type="button" value="#wp-slim.No_I_want_to_cancel#" onClick="location.href='style-list.tcl'">
+<spacer type=horizontal size="50">
+<input type="submit" value="#wp-slim.Yes_proceed#">
 </p></center>
 </form>
 

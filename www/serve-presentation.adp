@@ -5,7 +5,7 @@
 <property name="page_signature">@page_signature@</property>
 <property name="copyright_notice">@copyright_notice@</property>
 
-<table align=right>
+<table align="right">
 <tr>
    <td><a href="@subsite_name@">#wp-slim.done#</a> 
    <if @first_slide_item_id@ not nil>

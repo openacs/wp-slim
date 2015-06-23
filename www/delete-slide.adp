@@ -10,8 +10,8 @@
 <li>#wp-slim.Title__slide_title#
 </ul>
 
-<input type=button value="#wp-slim.Yes_delete_the_slide#" onClick="location.href='delete-slide-2?pres_item_id=@pres_item_id@&slide_item_id=@slide_item_id@'">
-<input type=button value="#wp-slim.No_I_want_to_go_back#" onClick="location.href='presentation-top?pres_item_id=@pres_item_id@'">
+<input type="button" value="#wp-slim.Yes_delete_the_slide#" onClick="location.href='delete-slide-2?pres_item_id=@pres_item_id@&amp;slide_item_id="@slide_item_id@'"">
+<input type="button" value="#wp-slim.No_I_want_to_go_back#" onClick="location.href='presentation-top?pres_item_id="@pres_item_id@'"">
 
 </p>
 
