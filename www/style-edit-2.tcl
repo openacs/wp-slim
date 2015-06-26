@@ -32,7 +32,7 @@ ad_page_contract {
     vlink_color.c1:naturalnum,optional
     vlink_color.c2:naturalnum,optional
     vlink_color.c3:naturalnum,optional
-    public_p:notnull
+    public_p:boolean,notnull
     css:optional
 }
 

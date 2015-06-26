@@ -9,7 +9,7 @@ ad_page_contract {
     @cvs-id $Id$
 } {
     pres_item_id:naturalnum,notnull
-    public_p:notnull
+    public_p:boolean,notnull
 }
 
 permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation

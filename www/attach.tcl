@@ -10,7 +10,7 @@ ad_page_contract {
     slide_item_id:naturalnum,notnull
     pres_item_id:naturalnum,notnull
     attachment:notnull
-    inline_image_p:notnull
+    inline_image_p:boolean,notnull
     display:notnull
 }
 
