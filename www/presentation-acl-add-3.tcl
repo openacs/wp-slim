@@ -20,7 +20,7 @@ ad_page_contract {
 
 permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation
 
-if {![empty_string_p $email]} {
+if {$email ne ""} {
     set user_id [ad_conn user_id]
     db_1row email_get {
 	select email as sender_email
@@ -35,10 +35,10 @@ if {![empty_string_p $email]} {
 }
 
 set privilege_list "wp_view_presentation"
-if { [string equal $role "write"] } {
+if {$role eq "write"} {
     lappend privilege_list "wp_edit_presentation"
 }
-if { [string equal $role "write"] } {
+if {$role eq "write"} {
     lappend privilege_list "wp_edit_presentation"
 }
 
@@ -64,4 +64,4 @@ db_transaction {
     }   
 }
 
-ad_returnredirect presentation-acl?[export_vars -url { pres_item_id }]
+ad_returnredirect [export_vars -base presentation-acl { pres_item_id }]

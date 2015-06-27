@@ -28,8 +28,8 @@ set mime_type [db_string get_mime_type {
     where revision_id = :revision_id
 }]
 
-if { ![empty_string_p $display] } {
-    if { [cr_registered_type_for_mime_type $mime_type] != "image" } {
+if { $display ne "" } {
+    if { [cr_registered_type_for_mime_type $mime_type] ne "image" } {
 	ad_return_complaint 1 "<li>[_ wp-slim.lt_The_file_is_neither_a]"
         ad_script_abort
     }
@@ -37,4 +37,4 @@ if { ![empty_string_p $display] } {
 }
 
 
-ad_returnredirect "attach-detail?[export_vars -url {slide_item_id attach_item_id file_name}]"
+ad_returnredirect [export_vars -base attach-detail {slide_item_id attach_item_id file_name}]

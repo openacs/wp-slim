@@ -23,7 +23,7 @@ set mime_type [cr_filename_to_mime_type -create $attachment]
 set tmp_size [file size $tmp_filename]
 
 # strip off the C:\directories... crud and just get the file name
-if ![regexp {([^/\\]+)$} $attachment match client_filename] {
+if {![regexp {([^/\\]+)$} $attachment match client_filename]} {
     set client_filename $attachment
 }
 
@@ -35,7 +35,7 @@ if { $tmp_size == 0 } {
     incr exception_count
 }
 
-if { ![empty_string_p [parameter::get -parameter MaxAttachmentSize -default "comments"]] && $tmp_size > [parameter::get -parameter MaxAttachmentSize -default "comments"] } {
+if { [parameter::get -parameter MaxAttachmentSize -default "comments"] ne "" && $tmp_size > [parameter::get -parameter MaxAttachmentSize -default "comments"] } {
     set system_name [ad_system_name]
     set bytes [util_commify_number [parameter::get -parameter MaxAttachmentSize -default "comments"]]
     append exception_text "<li>[_ wp-slim.lt_Your_file_is_too_larg]\n"
@@ -47,7 +47,7 @@ if { $exception_count > 0 } {
     ad_script_abort
 }
 
-if {[string equal $mime_type "*/*"]} {
+if {$mime_type eq "*/*"} {
     set mime_type "application/octet-stream"
 }
 
@@ -69,4 +69,4 @@ db_transaction {
 }
 
 set edit_slide 1
-ad_returnredirect add-edit-slide?[export_vars -url {slide_item_id pres_item_id edit_slide}]
+ad_returnredirect [export_vars -base add-edit-slide {slide_item_id pres_item_id edit_slide}]

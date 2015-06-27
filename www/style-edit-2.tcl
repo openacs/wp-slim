@@ -37,11 +37,11 @@ ad_page_contract {
 }
 
 # check for naughty html
-if { [info exists name] && ![empty_string_p [ad_html_security_check $name]] } {
+if { [info exists name] && [ad_html_security_check $name] ne "" } {
     ad_return_complaint 1 "[ad_html_security_check $name]\n"
     return
 }
-if { [info exists css] && ![empty_string_p [ad_html_security_check $css]] } {
+if { [info exists css] && [ad_html_security_check $css] ne "" } {
     ad_return_complaint 1 "[ad_html_security_check $css]\n"
     return
 }
@@ -82,4 +82,4 @@ db_transaction {
 
 db_release_unused_handles
 
-ad_returnredirect "style-view?[export_vars -url {style_id presentation_id}]"
+ad_returnredirect [export_vars -base style-view {style_id presentation_id}]

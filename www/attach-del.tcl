@@ -24,4 +24,4 @@ db_exec_plsql revisions_and_item_delete {
     end;
 }
     
-ad_returnredirect "attach-list?[export_vars -url {slide_item_id pres_item_id}]"
+ad_returnredirect [export_vars -base attach-list {slide_item_id pres_item_id}]

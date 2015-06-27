@@ -23,4 +23,4 @@ db_exec_plsql delete_slide {
     end;
 }
 
-ad_returnredirect presentation-top?[export_vars -url {pres_item_id}]
+ad_returnredirect [export_vars -base presentation-top {pres_item_id}]

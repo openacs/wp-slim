@@ -17,14 +17,14 @@ wp_check_style_authorization $style_id $user_id
 
 db_1row style_select { *SQL* }
 
-set url_vars "[export_vars -url {style_id presentation_id}]"
+set url_vars "[export_vars {style_id presentation_id}]"
 
-if { $background_color == "" } {
+if { $background_color eq "" } {
     set bgcolor_str ""
 } else {
     set bgcolor_str "bgcolor=[ad_color_to_hex $background_color]"
 }
-if { $background_image == "" } {
+if { $background_image eq "" } {
     set bgimage_str ""
 } else {
     # this needs to be modified in order to handle the background images!!
@@ -32,7 +32,7 @@ if { $background_image == "" } {
 }
 
 foreach property { text_color link_color alink_color vlink_color } {
-    if { [set $property] == "" } {
+    if { [set $property] eq "" } {
 	set "${property}_font" ""
 	set "${property}_font_end" ""
     } else {
@@ -42,7 +42,7 @@ foreach property { text_color link_color alink_color vlink_color } {
 }
 
 # set the return link to the presentation we were editing, if id exists
-if { [exists_and_not_null presentation_id] } {
+if { ([info exists presentation_id] && $presentation_id ne "") } {
     set last_link " [list "presentation-top?pres_item_id=$presentation_id" "[db_string pres_name_select "select title from cr_wp_presentations where presentation_id = :presentation_id"]"]"
 } else {
 set last_link [list "style-list?user_id=$user_id" "[_ wp-slim.Your_Styles]"]
@@ -54,7 +54,7 @@ set export_form_vars "[export_vars -form {style_id presentation_id}]"
 
 db_multirow style_images style_image_select { *SQL* } {
 
-    set file_size "[format "%.1f" [expr $file_size / 1024.0]]K"
+    set file_size "[format "%.1f" [expr {$file_size / 1024.0}]]K"
 }
 
 db_release_unused_handles

@@ -39,8 +39,8 @@ db_multirow revisions revisions_get {
     set creation_date [lc_time_fmt $creation_date "%X %Q"]
 }
 db_1row get_presentation {}
-set context [list [list "presentation-top?[export_vars -url {pres_item_id}]"  "$pres_title"] "[_ wp-slim.All_Revisions]"]
+set context [list [list [export_vars -base presentation-top {pres_item_id}]  "$pres_title"] "[_ wp-slim.All_Revisions]"]
 
-set return_url [ns_urlencode "presentation-revisions?[export_vars -url {pres_item_id}]"]
+set return_url [ns_urlencode [export_vars -base presentation-revisions {pres_item_id}]]
 
 ad_return_template

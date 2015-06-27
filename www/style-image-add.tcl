@@ -25,7 +25,7 @@ set guessed_file_type [ns_guesstype $image]
 
 set n_bytes [file size $tmp_filename]
 # strip off the C:\directories... crud and just get the file name
-if ![regexp {([^/\\]+)$} $image match client_filename] {
+if {![regexp {([^/\\]+)$} $image match client_filename]} {
     set client_filename $image
 }
 

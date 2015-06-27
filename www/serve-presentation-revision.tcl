@@ -57,6 +57,6 @@ db_1row get_background_data {
     and r.revision_id = pb.id
 }   
 
-set context [list [list "$subsite_name/presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] "[_ wp-slim.One_Revision]"]
+set context [list [list [export_vars -base $subsite_name/presentation-top {pres_item_id}] "$pres_title"] "[_ wp-slim.One_Revision]"]
 
 ad_return_template

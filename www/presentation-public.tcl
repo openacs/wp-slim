@@ -36,4 +36,4 @@ db_dml public_p_change {
                              where item_id = :pres_item_id)
 }
 
-ad_returnredirect presentation-acl?[export_vars -url {pres_item_id}]
+ad_returnredirect [export_vars -base presentation-acl {pres_item_id}]

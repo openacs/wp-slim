@@ -14,8 +14,8 @@ set context "[_ wp-slim.Your_Styles]"
 
 
 db_multirow styles_select style_select_data { *SQL* } {
-    if {$total_size == ""} { set total_size 0 }
-    set total_size "[format "%.1f" [expr $total_size / 1024.0]]K"
+    if {$total_size eq ""} { set total_size 0 }
+    set total_size "[format "%.1f" [expr {$total_size / 1024.0}]]K"
 } 
 
 db_release_unused_handles

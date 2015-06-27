@@ -21,7 +21,7 @@ permission::require_permission -party_id $user_id -object_id $pres_item_id -priv
 set header [ad_header "[_ wp-slim.Reorder_Slides]"]
 
 db_1row get_presentation {}
-set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] "[_ wp-slim.Reorder_Slides]"]
+set context [list [list [export_vars -base presentation-top {pres_item_id}] "$pres_title"] "[_ wp-slim.Reorder_Slides]"]
 
 set counter 0
 

@@ -50,7 +50,7 @@ if { [info exists style_id] } {
 
 db_release_unused_handles
 
-if { $items == "" } {
+if { $items eq "" } {
     set background_images "<i>[_ wp-slim.lt_There_are_not_yet_any]</i>
 <input type=hidden name=background_image value=\"0\">
 "

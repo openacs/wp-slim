@@ -35,7 +35,7 @@ set user_id [ad_conn user_id]
 permission::require_permission -party_id $user_id -object_id $pres_item_id -privilege wp_edit_presentation
 
 set edit-slide 1
-set context [list [list "add-edit-slide?[export_vars -url {slide_item_id pres_item_id edit-slide}]" "[_ wp-slim.Edit_Slide]"] "[_ wp-slim.Details]"]
+set context [list [list [export_vars -base add-edit-slide {slide_item_id pres_item_id edit-slide}] "[_ wp-slim.Edit_Slide]"] "[_ wp-slim.Details]"]
 
 db_multirow revisions revisions_get {
     select r.revision_id,
@@ -65,6 +65,6 @@ set attachment_type [cr_registered_type_for_mime_type $mime_type]
 
 set ${display}_selected "selected"
 
-set return_url [ns_urlencode "attach-detail?[export_vars -url {slide_item_id attach_item_id file_name}]"]
+set return_url [ns_urlencode [export_vars -base attach-detail {slide_item_id attach_item_id file_name}]]
 
 ad_return_template

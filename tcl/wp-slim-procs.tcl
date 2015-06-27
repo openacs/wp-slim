@@ -7,7 +7,7 @@ ad_proc wp_header {style_id} { Build the proper style for an specific page. } {
 
     db_1row get_style_data { *SQL* }
     set out ""
-    if { $background_image != "" } {
+    if { $background_image ne "" } {
        append out " background=\"[ad_conn package_url]/view-image?revision_id=$background_image\""
     }
     foreach property {
@@ -18,7 +18,7 @@ ad_proc wp_header {style_id} { Build the proper style for an specific page. } {
 	{ alink alink_color }
     } {
        set value [set [lindex $property 1]]
-	if { $value != "" } {
+	if { $value ne "" } {
            append out " [lindex $property 0]=[ad_color_to_hex $value]"
 	}
     }
@@ -28,7 +28,7 @@ ad_proc wp_header {style_id} { Build the proper style for an specific page. } {
 
 ad_proc wp_check_style_authorization { style_id user_id } { Verifies that the user owns this style. } {
     set owner [db_string wp_style_owner_select { *SQL* } -default "not_found"]
-    if { $owner == "not_found" } {
+    if { $owner eq "not_found" } {
 	set err "Error"
 	set errmsg "Style $style_id was not found in the database."
     } else { 

@@ -30,4 +30,4 @@ foreach id $slide_item_id {
 
 db_release_unused_handles
 
-ad_returnredirect "presentation-top?[export_vars -url {pres_item_id}]"
+ad_returnredirect [export_vars -base presentation-top {pres_item_id}]

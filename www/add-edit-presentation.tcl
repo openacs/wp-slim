@@ -90,7 +90,7 @@ ad_form -name add-edit-presentation -form {
     }
 } -edit_data {
     set title "[_ wp-slim.Edit_Presentation]"
-    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]"  "$pres_title"] "[_ wp-slim.Edit_Presentation]"]
+    set context [list [list [export_vars -base presentation-top {pres_item_id}]  "$pres_title"] "[_ wp-slim.Edit_Presentation]"]
     db_exec_plsql update_wp_presentation { *SQL* }
     if {$public_p == "t"} {
 	db_exec_plsql grant_public_read { *SQL* }
@@ -111,9 +111,9 @@ ad_form -name add-edit-presentation -form {
     set audience [ad_quotehtml $audience] 
     set background [ad_quotehtml $background]
     set title "[_ wp-slim.Edit_Presentation]"
-    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]"  "$pres_title"] "[_ wp-slim.Edit_Presentation]"]
+    set context [list [list [export_vars -base presentation-top {pres_item_id}]  "$pres_title"] "[_ wp-slim.Edit_Presentation]"]
 } -after_submit {
-    ad_returnredirect "presentation-top?[export_vars -url {pres_item_id}]"
+    ad_returnredirect [export_vars -base presentation-top {pres_item_id}]
     ad_script_abort
 }
 

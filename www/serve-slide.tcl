@@ -89,7 +89,7 @@ if {$sort_key == 1} {
 
 # Figure out what the next slide link should be.    
 
-set next_sort_key [expr $sort_key + 1]
+set next_sort_key [expr {$sort_key + 1}]
 
 set found_slide [db_0or1row get_next_slide {
     select i.item_id as next_slide_item_id 

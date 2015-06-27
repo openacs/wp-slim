@@ -20,7 +20,7 @@ set authority_id [db_string sel_authority_id "select authority_id from cc_users 
 
 with_catch errmsg {
   array set result [auth::authentication::Authenticate  -username $username  -authority_id $authority_id  -password $password]
-  if { [string equal $result(auth_status) "ok"] } {
+  if {$result(auth_status) eq "ok"} {
     #Ok
   } else {
     ad_return_error "[_ wp-slim.Bad_Password]" "[_ wp-slim.Bad_Password]"

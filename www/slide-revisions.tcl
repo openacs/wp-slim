@@ -23,7 +23,7 @@ permission::require_permission -party_id $user_id -object_id $pres_item_id -priv
 
 set subsite_name [ad_conn package_url]
 
-set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "[_ wp-slim.Presentation]"] "[_ wp-slim.Slide_Revisions]"]
+set context [list [list [export_vars -base presentation-top {pres_item_id}] "[_ wp-slim.Presentation]"] "[_ wp-slim.Slide_Revisions]"]
 
 
 db_multirow revisions revisions_get {
@@ -45,6 +45,6 @@ db_multirow revisions revisions_get {
     set creation_date [lc_time_fmt $creation_date "%X %Q"]
 }
 
-set return_url [ns_urlencode "slide-revisions?[export_vars -url {slide_item_id pres_item_id}]"]
+set return_url [ns_urlencode [export_vars -base slide-revisions {slide_item_id pres_item_id}]]
 
 ad_return_template

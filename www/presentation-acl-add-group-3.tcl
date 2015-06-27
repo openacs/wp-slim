@@ -17,9 +17,9 @@ permission::require_permission -object_id $pres_item_id -privilege wp_admin_pres
 
 # adds a group of users
 db_foreach group_grant { *SQL } {
-    if {$role == "write"} {
+    if {$role eq "write"} {
 	set permission "wp_edit_presentation"
-    } elseif {$role == "admin"} {
+    } elseif {$role eq "admin"} {
 	set permission "wp_admin_presentation"
     } else {
 	set permission "wp_view_presentation"
@@ -27,4 +27,4 @@ db_foreach group_grant { *SQL } {
     db_exec_plsql permission_grant { *SQL }
 }
 
-ad_returnredirect presentation-acl?[export_vars -url {pres_item_id}]
+ad_returnredirect [export_vars -base presentation-acl {pres_item_id}]

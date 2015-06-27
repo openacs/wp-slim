@@ -13,7 +13,7 @@ if {![regexp {styles/(default|[0-9]+)/(.*)} $url match style_id file_name]} {
     ad_abort_script
 }
 
-if { $style_id == "default" } {
+if { $style_id eq "default" } {
        set style_id -1
 }
 

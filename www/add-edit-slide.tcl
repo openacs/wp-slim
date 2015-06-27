@@ -37,12 +37,12 @@ permission::require_permission -party_id $user_id -object_id $pres_item_id -priv
 
 db_1row get_presentation { *SQL* }
 
-if {![empty_string_p $edit_slide]} {
+if {$edit_slide ne ""} {
     db_1row get_bullets_stored { *SQL* }
     append bullet_num [llength $bullets_stored]
     db_1row get_slide_sort_key { *SQL* }
 } else {
-     if {[empty_string_p $sort_key] } {
+     if {$sort_key eq "" } {
          set sort_key [db_string get_sort_key { *SQL* }]
      }
 }
@@ -62,7 +62,7 @@ set optional_postamble [_ wp-slim.lt_optional_random_text__1]
 ################################################################################
 
 
-if { $edit_preamble == ""} {
+if { $edit_preamble eq ""} {
    set edit_preamble 1
 }
 
@@ -109,7 +109,7 @@ if { $edit_preamble == 1 } {
 if { $bullet_num <= 2} {
     set array_max 5
 } else {
-    set array_max [expr $bullet_num + 3] 
+    set array_max [expr {$bullet_num + 3}] 
 }
 
 ###################################################################################
@@ -126,12 +126,12 @@ for {set j 1} {$j <= $array_max} {incr j} {
 	lappend element [list after_html "&nbsp;<img src=\"pics/1white.gif\" width=18 height=15\"><a href=\"javascript:swapWithNext(1)\"\><img src=\"pics/down.gif\" width=18 height=15 border=0></a>"]
     }
     if { $j == $array_max } {
-	set swap_num [expr $array_max - 1]
+	set swap_num [expr {$array_max - 1}]
         lappend element [list help_text "$you_can"]
         lappend element [list after_html "&nbsp;<a href=\"javascript:swapWithNext($swap_num)\"><img src=\"pics/up.gif\" width=18 height=15 bord\er=0></a><img src=\"pics/1white.gif\" width=18 height=15>"]
     }
     if { $j > 1 && $j < $array_max } {
-	set swap_num [expr $j - 1 ]
+	set swap_num [expr {$j - 1 }]
         lappend element [list after_html "&nbsp;<a href=\"javascript:swapWithNext($swap_num)\"><img src=\"pics/up.gif\" width=18 height=15 bord\er=0></a><a href=\"javascript:swapWithNext($j)\"><img src=\"pics/down.gif\" width=18 height=15 border=0></a>"]
     }
     lappend element [list label "<b>Bullet $j:</b>" ]
@@ -178,7 +178,7 @@ if { $edit_preamble == 1} {
 }
 
 if { $edit_slide == 1} {
-    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] "[_ wp-slim.Edit_Slide]"]
+    set context [list [list [export_vars -base presentation-top {pres_item_id}] "$pres_title"] "[_ wp-slim.Edit_Slide]"]
     ad_form -extend -name f -form {
         {attach:text(radio)
 	    {label "<b>#wp-slim.Upload_Attachments#</b>"}
@@ -187,7 +187,7 @@ if { $edit_slide == 1} {
 	}
     }
 } else {
-    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] "[_ wp-slim.New_Slide]"]
+    set context [list [list [export_vars -base presentation-top {pres_item_id}] "$pres_title"] "[_ wp-slim.New_Slide]"]
     ad_form -extend -name f -form {
         {attach:text(hidden)
 	    {value "f"}
@@ -205,7 +205,7 @@ ad_form -extend -name f -new_data {
     set bullet_list [list]
     for {set i 1} {$i <= $array_max} {incr i} {
 	set bullet_value [set bullet.$i]
-	if { ![empty_string_p $bullet_value ] } {
+	if { $bullet_value ne "" } {
             lappend bullet_list [set bullet.$i]
        }
     }
@@ -213,10 +213,13 @@ ad_form -extend -name f -new_data {
     #insert the slide
     db_exec_plsql wp_slide_insert { *SQL* }
     if { $attach == "t"} {
-    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] [list "add-edit-slide?[export_vars -url {slide_item_id pres_item_id edit_slide}]" "[_ wp-slim.Edit_Slide]"] "$slide_title"]
-        ad_returnredirect attach-list?[export_vars -url {pres_item_id slide_item_id}]
+	set context [list \
+			 [list [export_vars -base presentation-top {pres_item_id}] "$pres_title"] \
+			 [list [export_vars -base add-edit-slide {slide_item_id pres_item_id edit_slide}] "[_ wp-slim.Edit_Slide]"] \
+			 $slide_title]
+        ad_returnredirect [export_vars -base attach-list {pres_item_id slide_item_id}]
     } else {
-        ad_returnredirect presentation-top?[export_vars -url {pres_item_id}]
+        ad_returnredirect [export_vars -base presentation-top {pres_item_id}]
     }
 } -edit_data {
   
@@ -224,7 +227,7 @@ ad_form -extend -name f -new_data {
     set bullet_items [list]
     for {set i 1} {$i <= $array_max} {incr i} {
 	set bullet_value [set bullet.$i]
-	if { ![empty_string_p $bullet_value ] } {
+	if { $bullet_value ne "" } {
             lappend bullet_items [set bullet.$i]
        }
     }
@@ -232,10 +235,13 @@ ad_form -extend -name f -new_data {
     # update the slide in the db
     db_exec_plsql update_slide { *SQL* }
     if { $attach == "t"} {
-    set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$pres_title"] [list "add-edit-slide?[export_vars -url {slide_item_id pres_item_id edit_slide}]" "[_ wp-slim.Edit_Slide]"] "$slide_title"]
-        ad_returnredirect attach-list?[export_vars -url {pres_item_id slide_item_id}]
+	set context [list \
+			 [list [export_vars -base presentation-top {pres_item_id}] "$pres_title"] \
+			 [list [export_vars -base add-edit-slide {slide_item_id pres_item_id edit_slide}] "[_ wp-slim.Edit_Slide]"] \
+			 $slide_title]
+        ad_returnredirect [export_vars -base attach-list {pres_item_id slide_item_id}]
     } else {
-        ad_returnredirect presentation-top?[export_vars -url {pres_item_id}]
+        ad_returnredirect [export_vars -base presentation-top {pres_item_id}]
     }
 } -edit_request {
 

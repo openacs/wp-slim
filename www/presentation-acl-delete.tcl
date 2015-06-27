@@ -31,4 +31,4 @@ db_exec_plsql revoke_privilege {
     end;
 }
 
-ad_returnredirect presentation-acl?[export_vars -url {pres_item_id}]
+ad_returnredirect [export_vars -base presentation-acl {pres_item_id}]

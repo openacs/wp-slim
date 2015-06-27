@@ -21,7 +21,7 @@ ad_page_contract {
 
 permission::require_permission -object_id $pres_item_id -privilege wp_admin_presentation
 
-set context [list [list "presentation-top?[export_vars -url {pres_item_id}]" "$title"] [list "presentation-acl?[export_vars -url {pres_item_id}]" "[_ wp-slim.Authorization]"] "[_ wp-slim.Add_Group]"]
+set context [list [list [export_vars -base presentation-top {pres_item_id}] "$title"] [list [export_vars -base presentation-acl {pres_item_id}] "[_ wp-slim.Authorization]"] "[_ wp-slim.Add_Group]"]
 
 db_multirow groups groups_get {
     select group_id, group_name
