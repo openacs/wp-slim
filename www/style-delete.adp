@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Delete_name#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 <form action=style-delete-2.tcl>
 #wp-slim.lt_form_varsAre_you_sure#

@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Details#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 #wp-slim.lt_Revision_in_font_colo#
 

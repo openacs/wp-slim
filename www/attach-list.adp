@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.List_of_Attachments#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 <ul>
 <multiple name="att">
 <li>@att.name@ (<a href="attach-del?slide_item_id=@slide_item_id@&amp;attach_item_id=@att.item_id@&amp;pres_item_id=@pres_item_id@">#wp-slim.remove#</a> | <a href="attach-detail?slide_item_id=@slide_item_id@&amp;attach_item_id=@att.item_id@&amp;file_name=@att.name@&amp;pres_item_id=@pres_item_id@">#wp-slim.details#</a>)

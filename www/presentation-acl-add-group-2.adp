@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Confirm_Add_Users#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 <form action="presentation-acl-add-group-3">
 
 <input type="hidden" name="pres_item_id" value="@pres_item_id@">

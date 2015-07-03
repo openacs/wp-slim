@@ -1,6 +1,6 @@
 <master>
-<property name="doc(title)">@presentation_title@</property>
-<property name="context">@context@</property>
+<property name="doc(title)">@presentation_title;literal@</property>
+<property name="context">@context;literal@</property>
 
 <h3>#wp-slim.The_Slides#</h3>
    <if  @slides:rowcount@ eq 0>

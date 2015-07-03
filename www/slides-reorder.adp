@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Reorder_Slides#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 <form name=f>
 #wp-slim.lt_To_move_a_slide_in_yo# <i>#wp-slim.Save_Changes#</i>.

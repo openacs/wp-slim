@@ -1,9 +1,9 @@
 <master src="wp-presentation-master">
-<property name="doc(title)">@slide_title@</property>
-<property name="context">@context@</property>
-<property name="style_id">@style@</property>
-<property name="page_signature">@page_signature@</property>
-<property name="copyright_notice">@copyright_notice@</property>
+<property name="doc(title)">@slide_title;literal@</property>
+<property name="context">@context;literal@</property>
+<property name="style_id">@style;literal@</property>
+<property name="page_signature">@page_signature;literal@</property>
+<property name="copyright_notice">@copyright_notice;literal@</property>
 
 <table align="right">
 <tr>

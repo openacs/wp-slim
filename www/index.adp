@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.WimpyPoint#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 <table border="0" width="100%">
 <tr><td align="left">

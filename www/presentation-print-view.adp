@@ -1,6 +1,6 @@
 <master>
-<property name="doc(title)">@pres_title@</property>
-<property name="context">@context@</property>
+<property name="doc(title)">@pres_title;literal@</property>
+<property name="context">@context;literal@</property>
 
 <h2>@pres_title@</h2>
 #wp-slim.lt_a_Wimpy_Point_Present# <a href="/shared/community-member?user_id=@owner_id@">@owner_name@</a>

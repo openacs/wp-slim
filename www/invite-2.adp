@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Email_Sent#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 #wp-slim.lt_name_email_has_been_i#
 

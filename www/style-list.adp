@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Your_Styles#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 <a href="/wp-slim"> Done </a>
 <p><center>
 

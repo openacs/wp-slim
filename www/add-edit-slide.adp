@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Create_A_Slide#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 <script language=javascript>
  

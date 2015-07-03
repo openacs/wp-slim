@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.role_Style#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 <a href="/wp-slim"> Done </a>
 <form name=f action=style-edit-2 method=post enctype=multipart/form-data>

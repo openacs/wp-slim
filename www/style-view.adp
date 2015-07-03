@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.One_Style#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="/wp-slim">Done</a>
 <form name=f action=style-image-add method=post enctype=multipart/form-data>
 

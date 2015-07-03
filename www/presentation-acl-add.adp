@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Add_User#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 <form action="search">
 
 @params;noquote@

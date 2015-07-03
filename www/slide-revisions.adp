@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.lt_All_Revisions_of_This_1#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 <blockquote>
 

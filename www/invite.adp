@@ -1,6 +1,6 @@
 <master>
 <property name="doc(title)">#wp-slim.Invite_User#</property>
-<property name="context">@context@</property>
+<property name="context">@context;literal@</property>
 
 <form action="invite-2" method=post>
 
