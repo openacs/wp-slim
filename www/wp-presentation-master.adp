@@ -6,7 +6,7 @@
 </head>
 <body @wp_header@>
 <if @body_start_include@ not nil>
-<include src="@body_start_include;noquote@" />
+<include src="@body_start_include;literal@" />
 </if>
 <slave>
 
