@@ -106,10 +106,10 @@ ad_form -name add-edit-presentation -form {
     db_1row get_presentation_data { *SQL* }
     db_1row get_aud_data { *SQL* } 
     db_1row get_back_data { *SQL* }
-    set page_signature [ad_quotehtml $page_signature]
-    set copyright_notice [ad_quotehtml $copyright_notice]
-    set audience [ad_quotehtml $audience] 
-    set background [ad_quotehtml $background]
+    set page_signature [ns_quotehtml $page_signature]
+    set copyright_notice [ns_quotehtml $copyright_notice]
+    set audience [ns_quotehtml $audience] 
+    set background [ns_quotehtml $background]
     set title "[_ wp-slim.Edit_Presentation]"
     set context [list [list [export_vars -base presentation-top {pres_item_id}]  "$pres_title"] "[_ wp-slim.Edit_Presentation]"]
 } -after_submit {
