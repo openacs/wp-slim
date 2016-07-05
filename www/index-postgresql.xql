@@ -56,11 +56,7 @@
         and   ao.creation_user = p.person_id
         and   ao.context_id =  :package_id
         $extra_where_clauses
-	and exists (select 1
-        from acs_object_party_privilege_map m
-        where m.object_id = i.item_id
-        and m.party_id = :user_id
-        and m.privilege = 'wp_view_presentation')
+	and acs_permission__permission_p(i.item_id, :user_id, 'wp_view_presentation')
       </querytext>
 </fullquery>
  
