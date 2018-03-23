@@ -578,7 +578,7 @@ create table cr_wp_image_attachments (
 				      'bottom'))
 );
 
---jackp: p_create the content-type and content-attribute assosciated with
+--jackp: p_create the content-type and content-attribute associated with
 --jackp: attachments
 create function inline_7 ()
 returns integer as'
