@@ -55,8 +55,8 @@ if { $items eq "" } {
 <input type=hidden name=background_image value=\"0\">
 "
 } else {
-    set names [list]
-    set values [list]
+    set names {}
+    set values {}
     foreach image $items {
 	lappend names [lindex $image 1]
 	lappend values [lindex $image 0]
