@@ -73,7 +73,7 @@ set public "<select name=public_p>
 [ad_generic_optionlist [list "[_ wp-slim.Yes]" "[_ wp-slim.No]"] [list t f] $public_p]</select>\n"
 
 
-set values [list]
+set values {}
 
 set context "[list [list "style-list.tcl" "Your Styles"] $header "[_ wp-slim.role_Style]"]"
 

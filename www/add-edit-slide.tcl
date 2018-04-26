@@ -116,7 +116,7 @@ if { $bullet_num <= 2} {
 # Creates the bullets list dynamically. The list of list elements has the bullets #
 ###################################################################################
 
-set elements [list]
+set elements {}
 for {set j 1} {$j <= $array_max} {incr j} {
     set element [list bullet.$j:text(text),optional \
 			    {html { size 60 }} \
@@ -202,7 +202,7 @@ if { $edit_slide == 1} {
 ad_form -extend -name f -new_data {
 
     # makes a bullet list to send to the procedure
-    set bullet_list [list]
+    set bullet_list {}
     for {set i 1} {$i <= $array_max} {incr i} {
 	set bullet_value [set bullet.$i]
 	if { $bullet_value ne "" } {
@@ -224,7 +224,7 @@ ad_form -extend -name f -new_data {
 } -edit_data {
   
     # makes a bullet list to send to the procedure
-    set bullet_items [list]
+    set bullet_items {}
     for {set i 1} {$i <= $array_max} {incr i} {
 	set bullet_value [set bullet.$i]
 	if { $bullet_value ne "" } {
