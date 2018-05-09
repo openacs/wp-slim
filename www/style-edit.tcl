@@ -55,8 +55,8 @@ if { $items eq "" } {
 <input type=hidden name=background_image value=\"0\">
 "
 } else {
-    set names {}
-    set values {}
+    set names [list]
+    set values [list]
     foreach image $items {
 	lappend names [lindex $image 1]
 	lappend values [lindex $image 0]
@@ -73,7 +73,7 @@ set public "<select name=public_p>
 [ad_generic_optionlist [list "[_ wp-slim.Yes]" "[_ wp-slim.No]"] [list t f] $public_p]</select>\n"
 
 
-set values {}
+set values [list]
 
 set context "[list [list "style-list.tcl" "Your Styles"] $header "[_ wp-slim.role_Style]"]"
 

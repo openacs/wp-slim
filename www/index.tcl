@@ -16,7 +16,7 @@ ad_page_contract {
 
 set package_id [ad_conn package_id]
 
-set context {}
+set context [list]
 
 set user_id [ad_conn user_id]
 
